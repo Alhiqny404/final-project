@@ -43,7 +43,7 @@ class Admin extends CI_Controller {
         $config['upload_path'] = './uploads/';
         $config['allowed_types'] = 'doc|docx|pdf|xls|xlsx';
         $config['max_size'] = '10048';
-        $config['file_name'] = $doc_name.".{$ext_upload}";
+        $config['file_name'] = trim($doc_name).".{$ext_upload}";
         $this->load->library('upload', $config);
         // KETIKA GAMBAR BERHASIL DIUPLOAD
         if ($this->upload->do_upload('doc_file')) {
