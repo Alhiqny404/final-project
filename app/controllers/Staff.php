@@ -6,6 +6,7 @@ class Staff extends CI_Controller {
   public function __construct() {
     parent::__Construct();
     isLogin();
+    isStaff();
   }
 
   public function dashboard() {
@@ -23,8 +24,8 @@ class Staff extends CI_Controller {
 
 
       //DEKLARASI VARIABLES
-      $doc_name = htmlspecialchars($this->input->post('doc_name'), true);
-      $doc_name = str_replace(' ', '_', $doc_name);
+      $name = htmlspecialchars($this->input->post('doc_name'), true);
+      $doc_name = str_replace(' ', '_', $name);
       $image = $_FILES['doc_file']['name'];
       $extension = pathinfo($_FILES['doc_file']['name'], PATHINFO_EXTENSION);
 
@@ -39,7 +40,7 @@ class Staff extends CI_Controller {
         if ($this->upload->do_upload('doc_file')) {
           $data_doc = [
             'document_file' => $config['file_name'],
-            'document_name' => $doc_name,
+            'document_name' => $name,
             'document_status' => 'pending',
             'created_at' => date('Y-m-d H:i:s')
           ];

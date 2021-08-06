@@ -39,3 +39,7 @@ function notLogin() {
 function isAdmin() {
   if (sud('role') != 'admin') return redirect(site_url('login'));
 }
+
+function isStaff() {
+  if (sud('role') != 'staff') return redirect(site_url('login'));
+}
