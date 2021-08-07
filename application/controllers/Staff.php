@@ -16,6 +16,12 @@ class Staff extends CI_Controller {
     view('staff/dashboard', $data);
   }
 
+  public function list_doc() {
+    $data['title'] = 'List Pengajuan Dokumen';
+    $data['documents'] = $this->db->get('document')->result();
+    view('staff/list-doc', $data);
+  }
+
   public function upload_doc() {
     $data['title'] = 'Upload Dokumen';
     view('staff/upload-doc', $data);
@@ -45,8 +51,9 @@ class Staff extends CI_Controller {
             'created_at' => date('Y-m-d H:i:s')
           ];
           $this->db->insert('document', $data_doc);
-          echo 'berhasil';
-          die;
+
+          $this->session->set_flashdata('success', 'dokumen berhasil diupload');
+          return ke('staff/list_doc');
         } else {
           // KETIKA GAMBAR TIDAK LOLOS VALIDASI
           echo   $image_error = $this->upload->display_errors();

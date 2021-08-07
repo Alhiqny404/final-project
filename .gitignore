@@ -1,12 +1,12 @@
 .DS_Store
 
-app/cache/*
-!app/cache/index.html
+application/cache/*
+!application/cache/index.html
 
-app/logs/*
-!app/logs/index.html
+application/logs/*
+!application/logs/index.html
 
-!app/*/.htaccess
+!application/*/.htaccess
 
 composer.lock
 
@@ -32,5 +32,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 
 ## custom
-app/config/config.php
-app/config/database.php
+application/config/config.php
+application/config/database.php

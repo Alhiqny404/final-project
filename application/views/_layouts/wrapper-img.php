@@ -4,16 +4,13 @@
       <img src="<?=assets_dashboard() ?>images/users/user-1.jpg" alt="user" class="rounded-circle img-thumbnail mb-1">
       <span class="online-icon"><i class="mdi mdi-record text-success"></i></span>
       <div class="media-body">
-        <h5 class="text-light">Mr. Michael Hill </h5>
+        <h5 class="text-light">Sebagai <?=sud('role') ?> </h5>
         <ul class="list-unstyled list-inline mb-0 mt-2">
           <li class="list-inline-item">
             <a href="#" class=""><i class="mdi mdi-account text-light"></i></a>
           </li>
           <li class="list-inline-item">
             <a href="#" class=""><i class="mdi mdi-settings text-light"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class=""><i class="mdi mdi-power text-danger"></i></a>
           </li>
         </ul>
       </div>
@@ -27,9 +24,14 @@
           <h4 class="page-title mb-2"><i class="mdi mdi-google-pages mr-2"></i><?=$title ?></h4>
           <div class="">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="javascript:void(0);">Admin</a></li>
-              <li class="breadcrumb-item"><a href="javascript:void(0);">Dashboard</a></li>
-              <li class="breadcrumb-item active">Starter</li>
+              <?php
+              $uri = explode('/', $this->uri->uri_string);
+              ?>
+
+              <?php foreach ($uri as $key => $val): ?>
+              <li class="breadcrumb-item"><a href="javascript:void(0);"><?=$val ?></a></li>
+              <?php endforeach; ?>
+
             </ol>
           </div>
         </div>
