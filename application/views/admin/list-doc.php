@@ -11,12 +11,264 @@
     <!-- Page Content-->
     <div class="page-content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
+        <nav>
+          <div class="nav nav-tabs d-flex align-items-center justify-content-center" id="nav-tab" role="tablist">
+            <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all">Semua Dokumen</button>
+            <button class="nav-link" id="nav-success-tab" data-bs-toggle="tab" data-bs-target="#nav-success-doc">Dukumen Diizinkan</button>
+            <button class="nav-link" id="nav-pending-tab" data-bs-toggle="tab" data-bs-target="#nav-pending">Dokumen Butuh Perizinan</button>
+            <button class="nav-link" id="nav-reject-tab" data-bs-toggle="tab" data-bs-target="#nav-reject">Dokumen Ditolak</button>
+            <button class="nav-link ml-auto" id="nav-list-table-tab" data-bs-toggle="tab" data-bs-target="#nav-list-table">Lihat Sebagai Table</button>
+          </div>
+        </nav>
+        <div class="tab-content pt-3" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+            <?php $i = 1; foreach ($documents as $doc): ?>
+            <?php
+            $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+            ?>
+            <div class="card p-2">
+              <div class="row">
+                <div class="col-sm-3 d-flex align-items-center">
+                  <img src="<?=assets_dashboard() ?>images/thumbnail/<?=$extension ?>.jpg" width="100%" class="rounded">
+                </div>
+                <div class="col-sm-9 p-3 pb-5 position-relative">
+                  <h4 class="my-0 text-uppercase d-inline"><?=$doc->document_name ?></h4>
+                  <small class="text-muted ms-2">.PowerPoint</small>
+                  <br>
+                  <?php if ($doc->document_status == 'pending'): ?>
+                  <span class="badge badge-warning">
+                    <i class="fas fa-info mr-2"></i>
+                    Dokumen Butuh Perizinan
+                  </span>
+                  <?php elseif ($doc->document_status == 'setuju'): ?>
+                  <span class="badge badge-success">
+                    <i class="fas fa-check mr-2"></i>
+                    Dukument Telah Disetujui
+                  </span>
+                  <?php elseif ($doc->document_status == 'tolak'): ?>
+                  <span class="badge badge-danger">
+                    <i class="fas fa-times mr-2"></i>
+                    Dokumen Tidak Disetujui
+                  </span>
+                  <?php endif; ?>
+                  <div class="my-3">
+                    <p class="text-muted my-0">
+                      Meminta Perizinan Pada : <?=date('d-m-Y', strtotime($doc->created_at)); ?>
+                    </p>
+                    <p class="text-muted mt-0 mb-3">
+                      Direspon Pada :
+                      <?php if ($doc->responsed_at == '0000-00-00 00:00:00'): ?>
+                      <i>Belum Direspon</i>
+                      <?php else : ?>
+                      <?=date('d-m-Y', strtotime($doc->responsed_at)); ?>
+                      <?php endif; ?>
+                    </p>
+                  </div>
+                  <div class="position-absolute w-100 bottom-0 d-flex align-items-center justify-content-between p-3" style="bottom: 0;padding-left: 0 !important;">
+                    <a href="<?=site_url("uploads/$doc->document_file") ?>" class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Download Document">
+                      <i class="fas fa-download"></i>
+                    </a>
+                    <div class="keputusan">
+                      <a href="<?=site_url("admin/upload_doc/{$doc->document_id}") ?>" class="btn btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Izinkan Document">
+                        <i class="fas fa-check"></i>
+                      </a>
+                      <a href="javascript:void(0)" data-id-doc="<?=$doc->document_id ?>" data-url="<?=site_url("admin/tolak_doc/{$doc->document_id}") ?>" data-name="<?=$doc->document_name ?>" class="btn btn-danger delete_doc mr-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Tolak Document">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach; ?>
+          </div>
+          <div class="tab-pane fade" id="nav-success-doc" role="tabpanel" aria-labelledby="nav-success-tab">
+            <?php foreach ($success_documents as $success_doc): ?>
+            <?php
+            $extension = pathinfo($success_doc->document_file, PATHINFO_EXTENSION);
+            ?>
+            <div class="card p-2">
+              <div class="row">
+                <div class="col-sm-3 d-flex align-items-center">
+                  <img src="<?=assets_dashboard() ?>images/thumbnail/<?=$extension ?>.jpg" width="100%" class="rounded">
+                </div>
+                <div class="col-sm-9 p-3 pb-5 position-relative">
+                  <h4 class="my-0 text-uppercase d-inline"><?=$success_doc->document_name ?></h4>
+                  <small class="text-muted ms-2">.PowerPoint</small>
+                  <br>
+                  <?php if ($success_doc->document_status == 'pending'): ?>
+                  <span class="badge badge-warning">
+                    <i class="fas fa-info mr-2"></i>
+                    Dokumen Butuh Perizinan
+                  </span>
+                  <?php elseif ($success_doc->document_status == 'setuju'): ?>
+                  <span class="badge badge-success">
+                    <i class="fas fa-check mr-2"></i>
+                    Dukument Telah Disetujui
+                  </span>
+                  <?php elseif ($success_doc->document_status == 'tolak'): ?>
+                  <span class="badge badge-danger">
+                    <i class="fas fa-times mr-2"></i>
+                    Dokumen Tidak Disetujui
+                  </span>
+                  <?php endif; ?>
+                  <div class="my-3">
+                    <p class="text-muted my-0">
+                      Meminta Perizinan Pada : <?=date('d-m-Y', strtotime($doc->created_at)); ?>
+                    </p>
+                    <p class="text-muted mt-0 mb-3">
+                      Direspon Pada :
+                      <?php if ($success_doc->responsed_at == '0000-00-00 00:00:00'): ?>
+                      <i>Belum Direspon</i>
+                      <?php else : ?>
+                      <?=date('d-m-Y', strtotime($success_doc->responsed_at)); ?>
+                      <?php endif; ?>
+                    </p>
+                  </div>
+                  <div class="position-absolute w-100 bottom-0 d-flex align-items-center justify-content-between p-3" style="bottom: 0;padding-left: 0 !important;">
+                    <a href="<?=site_url("uploads/$doc->document_file") ?>" class="btn btn-info">
+                      <i class="fas fa-download"></i>
+                    </a>
+                    <div class="keputusan">
+                      <a href="<?=site_url("admin/upload_doc/{$doc->document_id}") ?>" class="btn btn-success">
+                        <i class="fas fa-check"></i>
+                      </a>
+                      <a href="javascript:void(0)" data-id-doc="<?=$doc->document_id ?>" data-url="<?=site_url("admin/tolak_doc/{$doc->document_id}") ?>" data-name="<?=$doc->document_name ?>" class="btn btn-danger delete_doc mr-3">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach; ?>
+          </div>
+          <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+            <?php $i = 1; foreach ($pending_documents as $doc): ?>
+            <?php
+            $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+            ?>
+            <div class="card p-2">
+              <div class="row">
+                <div class="col-sm-3 d-flex align-items-center">
+                  <img src="<?=assets_dashboard() ?>images/thumbnail/<?=$extension ?>.jpg" width="100%" class="rounded">
+                </div>
+                <div class="col-sm-9 p-3 pb-5 position-relative">
+                  <h4 class="my-0 text-uppercase d-inline"><?=$doc->document_name ?></h4>
+                  <small class="text-muted ms-2">.PowerPoint</small>
+                  <br>
+                  <?php if ($doc->document_status == 'pending'): ?>
+                  <span class="badge badge-warning">
+                    <i class="fas fa-info mr-2"></i>
+                    Dokumen Butuh Perizinan
+                  </span>
+                  <?php elseif ($doc->document_status == 'setuju'): ?>
+                  <span class="badge badge-success">
+                    <i class="fas fa-check mr-2"></i>
+                    Dukument Telah Disetujui
+                  </span>
+                  <?php elseif ($doc->document_status == 'tolak'): ?>
+                  <span class="badge badge-danger">
+                    <i class="fas fa-times mr-2"></i>
+                    Dokumen Tidak Disetujui
+                  </span>
+                  <?php endif; ?>
+                  <div class="my-3">
+                    <p class="text-muted my-0">
+                      Meminta Perizinan Pada : <?=date('d-m-Y', strtotime($doc->created_at)); ?>
+                    </p>
+                    <p class="text-muted mt-0 mb-3">
+                      Direspon Pada :
+                      <?php if ($doc->responsed_at == '0000-00-00 00:00:00'): ?>
+                      <i>Belum Direspon</i>
+                      <?php else : ?>
+                      <?=date('d-m-Y', strtotime($doc->responsed_at)); ?>
+                      <?php endif; ?>
+                    </p>
+                  </div>
+                  <div class="position-absolute w-100 bottom-0 d-flex align-items-center justify-content-between p-3" style="bottom: 0;padding-left: 0 !important;">
+                    <a href="<?=site_url("uploads/$doc->document_file") ?>" class="btn btn-info">
+                      <i class="fas fa-download"></i>
+                    </a>
+                    <div class="keputusan">
+                      <a href="<?=site_url("admin/upload_doc/{$doc->document_id}") ?>" class="btn btn-success">
+                        <i class="fas fa-check"></i>
+                      </a>
+                      <a href="javascript:void(0)" data-id-doc="<?=$doc->document_id ?>" data-url="<?=site_url("admin/tolak_doc/{$doc->document_id}") ?>" data-name="<?=$doc->document_name ?>" class="btn btn-danger delete_doc mr-3">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach; ?>
+          </div>
+          <div class="tab-pane fade" id="nav-reject" role="tabpanel" aria-labelledby="nav-reject-tab">
+            <?php $i = 1; foreach ($reject_documents as $doc): ?>
+            <?php
+            $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+            ?>
+            <div class="card p-2">
+              <div class="row">
+                <div class="col-sm-3 d-flex align-items-center">
+                  <img src="<?=assets_dashboard() ?>images/thumbnail/<?=$extension ?>.jpg" width="100%" class="rounded">
+                </div>
+                <div class="col-sm-9 p-3 pb-5 position-relative">
+                  <h4 class="my-0 text-uppercase d-inline"><?=$doc->document_name ?></h4>
+                  <small class="text-muted ms-2">.PowerPoint</small>
+                  <br>
+                  <?php if ($doc->document_status == 'pending'): ?>
+                  <span class="badge badge-warning">
+                    <i class="fas fa-info mr-2"></i>
+                    Dokumen Butuh Perizinan
+                  </span>
+                  <?php elseif ($doc->document_status == 'setuju'): ?>
+                  <span class="badge badge-success">
+                    <i class="fas fa-check mr-2"></i>
+                    Dukument Telah Disetujui
+                  </span>
+                  <?php elseif ($doc->document_status == 'tolak'): ?>
+                  <span class="badge badge-danger">
+                    <i class="fas fa-times mr-2"></i>
+                    Dokumen Tidak Disetujui
+                  </span>
+                  <?php endif; ?>
+                  <div class="my-3">
+                    <p class="text-muted my-0">
+                      Meminta Perizinan Pada : <?=date('d-m-Y', strtotime($doc->created_at)); ?>
+                    </p>
+                    <p class="text-muted mt-0 mb-3">
+                      Direspon Pada :
+                      <?php if ($doc->responsed_at == '0000-00-00 00:00:00'): ?>
+                      <i>Belum Direspon</i>
+                      <?php else : ?>
+                      <?=date('d-m-Y', strtotime($doc->responsed_at)); ?>
+                      <?php endif; ?>
+                    </p>
+                  </div>
+                  <div class="position-absolute w-100 bottom-0 d-flex align-items-center justify-content-between p-3" style="bottom: 0;padding-left: 0 !important;">
+                    <a href="<?=site_url("uploads/$doc->document_file") ?>" class="btn btn-info">
+                      <i class="fas fa-download"></i>
+                    </a>
+                    <div class="keputusan">
+                      <a href="<?=site_url("admin/upload_doc/{$doc->document_id}") ?>" class="btn btn-success">
+                        <i class="fas fa-check"></i>
+                      </a>
+                      <a href="javascript:void(0)" data-id-doc="<?=$doc->document_id ?>" data-url="<?=site_url("admin/tolak_doc/{$doc->document_id}") ?>" data-name="<?=$doc->document_name ?>" class="btn btn-danger delete_doc mr-3">
+                        <i class="fas fa-exclamation-triangle"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <?php endforeach; ?>
+          </div>
+
+          <div class="tab-pane fade" id="nav-list-table" role="tabpanel" aria-labelledby="nav-contact-tab">
             <div class="card">
               <div class="card-body">
-
-                <h4 class="mt-0 header-title">Pengajuan Dokumen</h4>
                 <div class="table-responsive">
                   <table class="table table-bordered mb-0 table-centered">
                     <thead>
@@ -75,8 +327,13 @@
               </div>
               <!--end card-body-->
             </div>
-            <!--end card-->
           </div>
+        </div>
+        <div class="mb-5 mt-3 text-end w-100">
+          <a href="" class="btn btn-danger">
+            <i class="fas fa-trash-alt mr-3"></i>
+            Format Semua Dokumen (kecuali document yang belum di respon)
+          </a>
         </div>
       </div>
       <!-- container -->
@@ -123,7 +380,7 @@
       `${title}.`,
       'success'
     )
-  }
+  }.
 
 </script>
 
