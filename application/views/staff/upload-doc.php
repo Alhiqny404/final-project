@@ -14,21 +14,23 @@
           <div class="col-xl-6">
             <div class="card">
               <div class="card-body">
-                <h4 class="mt-0 header-title">Upload Document</h4>
+                <h4 class="mt-0 header-title">Kirim Document</h4>
                 <p class="text-muted mb-4">
-                  ini adalah teks lorem buatan sendiri
+                  Kirim document yang membutuhkan persetujuan atasan,.
                 </p>
                 <form action="" enctype="multipart/form-data" method="post">
                   <div class="form-group">
-                    <label for="doc_name">Document Name</label>
+                    <label for="doc_name">Nama Dokumen</label>
                     <input type="text" id="doc_name" class="form-control" name="doc_name" required="" />
                   </div>
                   <div class="form-group">
-                    <label for="doc_file">Document</label>
+                    <label for="doc_file">
+                      File Dokumen
+                    </label>
                     <input type="file" id="input-file-now" class="dropify" name="doc_file" required="" />
                   </div>
-                  <div class="form-group">
-                    <button class="btn btn-primary" type="submit" name="submit">Submit Now</button>
+                  <div class="form-group mt-3">
+                    <button class="btn btn-primary px-3" type="submit" name="submit">Kirim Dokumen</button>
                   </div>
                 </form>
               </div>

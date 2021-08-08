@@ -7,7 +7,7 @@
     <div class="topbar-left">
       <a href="index.html" class="logo">
         <span>
-          <img src="<?=assets_dashboard() ?>images/logo-sm.png" alt="logo-small" class="logo-sm">
+          <img src="<?=assets_dashboard() ?>images/logo.png" alt="logo-bps" class="logo-sm">
         </span>
         <span>
           <img src="<?=assets_dashboard() ?>images/logo-dark.png" alt="logo-large" class="logo-lg">

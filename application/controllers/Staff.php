@@ -19,6 +19,9 @@ class Staff extends CI_Controller {
   public function list_doc() {
     $data['title'] = 'List Pengajuan Dokumen';
     $data['documents'] = $this->db->get('document')->result();
+    $data['success_documents'] = $this->db->get_where('document', ['document_status' => 'setuju'])->result();
+    $data['pending_documents'] = $this->db->get_where('document', ['document_status' => 'pending'])->result();
+    $data['reject_documents'] = $this->db->get_where('document', ['document_status' => 'tolak'])->result();
     view('staff/list-doc', $data);
   }
 
