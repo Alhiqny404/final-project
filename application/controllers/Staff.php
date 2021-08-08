@@ -7,21 +7,20 @@ class Staff extends CI_Controller {
     parent::__Construct();
     isLogin();
     isStaff();
+    model('Document_model', 'document');
   }
 
   public function dashboard() {
-
     $data['title'] = 'Dashboard';
-    $data['staff'] = $this->db->get_where('user', ['role' => 'staff'])->num_rows();
     view('staff/dashboard', $data);
   }
 
   public function list_doc() {
     $data['title'] = 'List Pengajuan Dokumen';
-    $data['documents'] = $this->db->get('document')->result();
-    $data['success_documents'] = $this->db->get_where('document', ['document_status' => 'setuju'])->result();
-    $data['pending_documents'] = $this->db->get_where('document', ['document_status' => 'pending'])->result();
-    $data['reject_documents'] = $this->db->get_where('document', ['document_status' => 'tolak'])->result();
+    $data['documents'] = $this->document->getAll();
+    $data['success_documents'] = $this->document->getWhere(['document_status' => 'setuju']);
+    $data['pending_documents'] = $this->document->getWhere(['document_status' => 'pending']);
+    $data['reject_documents'] = $this->document->getWhere(['document_status' => 'tolak']);
     view('staff/list-doc', $data);
   }
 

@@ -24,7 +24,7 @@
           <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
             <?php $i = 1; foreach ($documents as $doc): ?>
             <?php
-            $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+            $extension = extension($doc->document_file);
             ?>
             <div class="card p-2">
               <div class="row">
@@ -146,7 +146,7 @@
           <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
             <?php $i = 1; foreach ($pending_documents as $doc): ?>
             <?php
-            $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+            $extension = extension($doc->document_file);
             ?>
             <div class="card p-2">
               <div class="row">
@@ -286,7 +286,7 @@
                     <tbody>
                       <?php $i = 1; foreach ($documents as $doc): ?>
                       <?php
-                      $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+                      $extension = extension($doc->document_file);
                       ?>
                       <tr>
                         <td><?=$i++ ?></td>
@@ -330,7 +330,7 @@
           </div>
         </div>
         <div class="mb-5 mt-3 text-end w-100">
-          <a href="" class="btn btn-danger">
+          <a href="javascript:void(0)" class="btn btn-danger format_doc">
             <i class="fas fa-trash-alt mr-3"></i>
             Format Semua Dokumen (kecuali document yang belum di respon)
           </a>
@@ -351,28 +351,50 @@
 
 <script type="text/javascript" charset="utf-8">
 
-  //Warning Message
-  $('.delete_doc').click(function () {
-    let id = $(this).data('id-doc');
-    let url = $(this).data('url');
-    let name = $(this).data('name');
-    console.log(id)
-    console.log(url)
-    console.log(name)
-    Swal.fire({
-      title: 'Apakah kamu yakin?',
-      text: `Akan menolak pengajuan dokumen ${name}!`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, Tentu saja!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = url
-      }
-    })
-  });
+  $(document).ready(function() {
+
+    $('.delete_doc').click(function () {
+      let id = $(this).data('id-doc');
+      let url = $(this).data('url');
+      let name = $(this).data('name');
+      console.log(id);
+      console.log(url);
+      console.log(name);
+      Swal.fire({
+        title: 'Apakah kamu yakin?',
+        text: `Akan menolak pengajuan dokumen ${name}!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Tentu saja!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = url;
+        }
+      })
+    });
+
+
+    $('.format_doc').click(function () {
+      let url = "<?=site_url('admin/format_doc') ?>";
+      Swal.fire({
+        title: 'Apakah anda yakin ingin menghapus semua data?',
+        text: `Semua data dokumen akan dihapus permanent kecuali data yang belum direspon`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya, Tentu saja!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = url;
+        }
+      })
+    });
+
+  })
+
 
   function swalSuccess(title) {
     Swal.fire(
@@ -380,7 +402,7 @@
       `${title}.`,
       'success'
     )
-  }.
+  }
 
 </script>
 

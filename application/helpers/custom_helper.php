@@ -21,6 +21,10 @@ function ayeuna() {
   return date('Y-m-d H:i:s');
 }
 
+function extension($file) {
+  return pathinfo($file, PATHINFO_EXTENSION);
+}
+
 function tendang($role = '') {
   if ($role == 'admin') {
     return redirect(site_url('admin/dashboard'));
@@ -38,6 +42,10 @@ function uri($segment = null) {
   return $ci->uri->segment($segment);
 }
 
+function model($model, $alias) {
+  $ci = get_instance();
+  return $ci->load->model($model, $alias);
+}
 
 
 function isLogin() {

@@ -15,7 +15,7 @@
                 <nav>
                   <div class="nav nav-tabs d-flex align-items-center justify-content-center" id="nav-tab" role="tablist">
                     <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all">Semua Dokumen</button>
-                    <button class="nav-link" id="nav-success-tab" data-bs-toggle="tab" data-bs-target="#nav-success-doc">Dukumen Diizinkan</button>
+                    <button class="nav-link" id="nav-success-tab" data-bs-toggle="tab" data-bs-target="#nav-success">Dukumen Diizinkan</button>
                     <button class="nav-link" id="nav-pending-tab" data-bs-toggle="tab" data-bs-target="#nav-pending">Dokumen Butuh Perizinan</button>
                     <button class="nav-link" id="nav-reject-tab" data-bs-toggle="tab" data-bs-target="#nav-reject">Dokumen Ditolak</button>
                     <button class="nav-link ml-auto" id="nav-list-table-tab" data-bs-toggle="tab" data-bs-target="#nav-list-table">Lihat Sebagai Table</button>
@@ -25,7 +25,7 @@
                   <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
                     <?php $i = 1; foreach ($documents as $doc): ?>
                     <?php
-                    $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+                    $extension = extension($doc->document_file);
                     ?>
                     <div class="card p-2">
                       <div class="row">
@@ -78,7 +78,7 @@
                   <div class="tab-pane fade" id="nav-success" role="tabpanel" aria-labelledby="nav-success-tab">
                     <?php $i = 1; foreach ($success_documents as $doc): ?>
                     <?php
-                    $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+                    $extension = extension($doc->document_file);
                     ?>
                     <div class="card p-2">
                       <div class="row">
@@ -131,7 +131,7 @@
                   <div class="tab-pane fade" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
                     <?php $i = 1; foreach ($pending_documents as $doc): ?>
                     <?php
-                    $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+                    $extension = extension($doc->document_file);
                     ?>
                     <div class="card p-2">
                       <div class="row">
@@ -184,7 +184,7 @@
                   <div class="tab-pane fade" id="nav-reject" role="tabpanel" aria-labelledby="nav-reject-tab">
                     <?php $i = 1; foreach ($reject_documents as $doc): ?>
                     <?php
-                    $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+                    $extension = extension($doc->document_file);
                     ?>
                     <div class="card p-2">
                       <div class="row">
@@ -248,13 +248,12 @@
                                 <th>Status</th>
                                 <th>Tanggal Upload</th>
                                 <th>Tanggal Respon</th>
-                                <th>Action</th>
                               </tr>
                             </thead>
                             <tbody>
                               <?php $i = 1; foreach ($documents as $doc): ?>
                               <?php
-                              $extension = pathinfo($doc->document_file, PATHINFO_EXTENSION);
+                              $extension = extension($doc->document_file);
                               ?>
                               <tr>
                                 <td><?=$i++ ?></td>
@@ -274,17 +273,6 @@
                                 <?php else : ?>
                                 <td><?=date('d-m-Y', strtotime($doc->responsed_at)); ?></td>
                                 <?php endif; ?>
-                                <td>
-                                  <div class="dropdown d-inline-block float-right">
-                                    <a class="nav-link dropdown-toggle arrow-none" id="dLabel8" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                      <i class="fas fa-ellipsis-v font-20 text-muted"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dLabel8">
-                                      <a class="dropdown-item" href="<?=site_url("admin/upload_doc/{$doc->document_id}") ?>">Setujui</a>
-                                      <a class="dropdown-item delete_doc" href="javascript:void(0)" data-id-doc="<?=$doc->document_id ?>" data-url="<?=site_url("admin/tolak_doc/{$doc->document_id}") ?>" data-name="<?=$doc->document_name ?>">Tolak</a>
-                                    </div>
-                                  </div>
-                                </td>
                               </tr>
                               <?php endforeach; ?>
                             </tbody>

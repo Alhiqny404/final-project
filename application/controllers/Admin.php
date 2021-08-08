@@ -7,21 +7,21 @@ class Admin extends CI_Controller {
     parent::__Construct();
     isLogin();
     isAdmin();
+    model('Document_model', 'document');
   }
 
   public function dashboard() {
-
     $data['title'] = 'Dashboard';
-    $data['staff'] = $this->db->get_where('user', ['role' => 'staff'])->num_rows();
     view('admin/dashboard', $data);
   }
 
   public function list_doc() {
     $data['title'] = 'List Pengajuan Dokumen';
+    $this->db->order_by('created_at', 'desc');
     $data['documents'] = $this->db->get('document')->result();
-    $data['success_documents'] = $this->db->get_where('document', ['document_status' => 'setuju'])->result();
-    $data['pending_documents'] = $this->db->get_where('document', ['document_status' => 'pending'])->result();
-    $data['reject_documents'] = $this->db->get_where('document', ['document_status' => 'tolak'])->result();
+    $data['success_documents'] = $this->document->getWhere(['document_status' => 'setuju']);
+    $data['pending_documents'] = $this->document->getWhere(['document_status' => 'pending']);
+    $data['reject_documents'] = $this->document->getWhere(['document_status' => 'tolak']);
     view('admin/list-doc', $data);
   }
 
@@ -88,6 +88,19 @@ class Admin extends CI_Controller {
     $this->db->update('document', ['document_status' => 'tolak'], ['document_id' => $id]);
     $this->session->set_flashdata('success', 'dokumen telah ditolak');
     return ke('admin/list_doc');
+  }
+
+  public function format_doc() {
+    $doc = $this->db->get_where('document', ['document_status != ' => 'pending'])->result();
+    foreach ($doc as $val) {
+      if (file_exists($val->document_file)) {
+        unlink(FCPATH."/uploads/{$val->document_file}");
+      }
+    }
+    $this->db->delete('document', ['document_status !=' => 'pending']);
+    $this->session->set_flashdata('success', 'dokumen telah diformat');
+    return ke('admin/list_doc');
+
   }
 
 

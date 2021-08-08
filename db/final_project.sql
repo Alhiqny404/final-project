@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 07 Agu 2021 pada 10.40
+-- Waktu pembuatan: 08 Agu 2021 pada 22.32
 -- Versi server: 5.6.38
 -- Versi PHP: 7.4.3
 
@@ -41,12 +41,9 @@ CREATE TABLE `document` (
 --
 
 INSERT INTO `document` (`document_id`, `document_name`, `document_file`, `document_status`, `created_at`, `responsed_at`) VALUES
-(1, 'izin bacok', 'izin_bacok_1628262187_1628264519.xlsx', 'setuju', '2021-08-06 22:03:07', '2021-08-06 22:41:59'),
-(2, 'izin bolos', 'izin_bolos_1628262205_1628296920.xlsx', 'tolak', '2021-08-06 22:03:25', '2021-08-07 07:42:00'),
-(3, 'Coba aja', 'Coba_aja_1628262234.xlsx', 'tolak', '2021-08-06 22:03:54', '0000-00-00 00:00:00'),
-(4, 'dokumen baru', 'dokumen_baru_1628300067.xlsx', 'pending', '2021-08-07 08:34:27', '0000-00-00 00:00:00'),
-(5, 'izin mati', 'izin_mati_1628300095.xlsx', 'tolak', '2021-08-07 08:34:55', '0000-00-00 00:00:00'),
-(6, 'Dokumen Dua', 'Dokumen_Dua_1628306565_1628306648.xlsx', 'setuju', '2021-08-07 10:22:45', '2021-08-07 10:24:08');
+(1, 'example document reject', 'example_document_reject_1628436259.xlsx', 'tolak', '2021-08-08 22:24:20', '0000-00-00 00:00:00'),
+(2, 'example document approved', 'example_document_approved_1628436396_1628436521.xlsx', 'setuju', '2021-08-08 22:26:36', '2021-08-08 22:28:41'),
+(3, 'example document pending', 'example_document_pending_1628436423.xlsx', 'pending', '2021-08-08 22:27:03', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -94,7 +91,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `document`
 --
 ALTER TABLE `document`
-  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `document_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
