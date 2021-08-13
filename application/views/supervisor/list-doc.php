@@ -27,9 +27,6 @@
                       <br>
                       <div class="my-3">
                         <p class="text-muted my-0">
-                          Diupload Oleh : <?=$doc->fullname; ?>
-                        </p>
-                        <p class="text-muted my-0">
                           Diupload pada : <?=date('d-m-Y', strtotime($doc->created_at)); ?>
                         </p>
                       </div>

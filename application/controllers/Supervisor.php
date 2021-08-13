@@ -1,25 +1,28 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Supervisor extends CI_Controller {
 
   public function __construct() {
     parent::__Construct();
     isLogin();
-    isAdmin();
+    harus('supervisor');
     model('Document_model', 'document');
   }
 
   public function dashboard() {
     $data['title'] = 'Dashboard';
-    view('admin/dashboard', $data);
+    view('supervisor/dashboard', $data);
   }
 
   public function list_doc() {
-    $data['title'] = 'List Pengajuan Dokumen';
+    $data['title'] = 'List Laporan';
     $this->db->order_by('created_at', 'desc');
-    $data['documents'] = $this->document->getJoinUser();
-    view('admin/list-doc', $data);
+    $data['documents'] = $this->db->get('document')->result();
+    $data['success_documents'] = $this->document->getWhere(['document_status' => 'setuju']);
+    $data['pending_documents'] = $this->document->getWhere(['document_status' => 'pending']);
+    $data['reject_documents'] = $this->document->getWhere(['document_status' => 'tolak']);
+    view('supervisor/list-doc', $data);
   }
 
 

@@ -54,9 +54,13 @@ function isLogin() {
 
 
 function notLogin() {
-  if (sud('user_id')) return tendang(sud('role'));
+  $role = sud('role');
+  if (sud('user_id')) return ke("$role/dashboard");
 }
 
+function harus($role = '') {
+  if (sud('role') != $role) return ke('login');
+}
 
 function isAdmin() {
   if (sud('role') != 'admin') return redirect(site_url('login'));
@@ -64,6 +68,15 @@ function isAdmin() {
 
 function isStaff() {
   if (sud('role') != 'staff') return redirect(site_url('login'));
+}
+
+
+function isSuperVisor() {
+  if (sud('role') != 'supervisor') return redirect(site_url('login'));
+}
+
+function isPegawai() {
+  if (sud('role') != 'pegawai') return redirect(site_url('login'));
 }
 
 

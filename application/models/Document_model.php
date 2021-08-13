@@ -25,4 +25,11 @@ class Document_model extends CI_Model {
     return $this->db->get($this->table)->result();
   }
 
+  public function getJoinUser() {
+    $this->db->select("document.*,user.fullname");
+    $this->db->from($this->table);
+    $this->db->join('user', 'document.user_id = user.id');
+    return $this->db->get()->result();
+  }
+
 }

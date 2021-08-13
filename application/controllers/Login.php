@@ -28,16 +28,13 @@ class Login extends CI_Controller {
     if ($user) {
       if (password_verify($password, $user->password)) {
         $session = [
+          'fullname' => $user->fullname,
           'user_id' => $user->id,
           'username' => $username,
           'role' => $user->role
         ];
         $this->session->set_userdata($session);
-        if ($user->role == 'admin') {
-          return redirect('admin/dashboard');
-        } elseif ($user->role == 'staff') {
-          return redirect('staff/dashboard');
-        }
+        return ke("{$user->role}/dashboard");
       } else {
         $this->session->set_flashdata('error', 'Password anda salah');
         return redirect(site_url('login'));

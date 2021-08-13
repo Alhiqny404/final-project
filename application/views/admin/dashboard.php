@@ -52,6 +52,85 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="card">
+              <div class="card-body new-user order-list">
+                <h4 class="header-title mt-0 mb-3">Selesai</h4>
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0">
+                    <thead class="thead-light">
+                      <tr>
+                        <th class="border-top-0">No</th>
+                        <th class="border-top-0">Nama pegawai</th>
+                        <th class="border-top-0">Tanggal</th>
+                        <th class="border-top-0">Opsi</th>
+                      </tr><!--end tr-->
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          1
+                        </td>
+                        <td>
+                          Beg
+                        </td>
+                        <td>13-08-2021</td>
+                        <td>
+                          <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
+                        </td>
+                      </tr><!--end tr-->
+                    </tbody>
+                  </table>
+                  <!--end table-->
+                </div>
+                <!--end /div-->
+              </div>
+              <!--end card-body-->
+            </div>
+            <!--end card-->
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <div class="card-body new-user order-list">
+                <h4 class="header-title mt-0 mb-3">Belum</h4>
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0">
+                    <thead class="thead-light">
+                      <tr>
+                        <th class="border-top-0">No</th>
+                        <th class="border-top-0">Nama pegawai</th>
+                        <th class="border-top-0">Tanggal</th>
+                        <th class="border-top-0">Opsi</th>
+                      </tr><!--end tr-->
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          1
+                        </td>
+                        <td>
+                          Beg
+                        </td>
+                        <td> - </td>
+                        <td>
+                          <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
+                        </td>
+                      </tr><!--end tr-->
+                    </tbody>
+                  </table>
+                  <!--end table-->
+                </div>
+                <!--end /div-->
+              </div>
+              <!--end card-body-->
+            </div>
+            <!--end card-->
+          </div>
+          <!--end col-->
+        </div>
+        <!--end row-->
       </div>
       <!-- container -->
 
