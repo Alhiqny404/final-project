@@ -11,6 +11,13 @@ class Admin extends CI_Controller {
   }
 
   public function dashboard() {
+
+    $this->db->select('document.*,user.id,fullname');
+    $this->db->from('document');
+    $this->db->join('user', 'user.id = document.user_id', 'right');
+    $this->db->where('role', 'pegawai');
+    $data['docs'] = $this->db->get()->result();
+
     $data['title'] = 'Dashboard';
     view('admin/dashboard', $data);
   }

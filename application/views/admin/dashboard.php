@@ -69,18 +69,22 @@
                       </tr><!--end tr-->
                     </thead>
                     <tbody>
+                      <?php $no = 1; foreach ($docs as $val): ?>
+                      <?php if (!empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
                       <tr>
                         <td>
-                          1
+                          <?=$no++ ?>
                         </td>
                         <td>
-                          Beg
+                          <?=$val->fullname ?>
                         </td>
-                        <td>13-08-2021</td>
+                        <td><?=time_ago($val->created_at) ?></td>
                         <td>
                           <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
                         </td>
-                      </tr><!--end tr-->
+                      </tr>
+                      <?php endif; ?>
+                      <?php endforeach; ?>
                     </tbody>
                   </table>
                   <!--end table-->
@@ -106,18 +110,22 @@
                       </tr><!--end tr-->
                     </thead>
                     <tbody>
+                      <?php $no = 1; foreach ($docs as $val): ?>
+                      <?php if (empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
                       <tr>
                         <td>
-                          1
+                          <?=$no++ ?>
                         </td>
                         <td>
-                          Beg
+                          <?=$val->fullname ?>
                         </td>
                         <td> - </td>
                         <td>
                           <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
                         </td>
-                      </tr><!--end tr-->
+                      </tr>
+                      <?php endif; ?>
+                      <?php endforeach; ?>
                     </tbody>
                   </table>
                   <!--end table-->

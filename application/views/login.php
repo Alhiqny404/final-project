@@ -53,7 +53,7 @@
                 </div>
 
                 <form class="form-horizontal my-4" action="" method="post">
-
+                  <?=csrf() ?>
                   <div class="form-group">
                     <label for="username">Username</label>
                     <div class="input-group mb-3">

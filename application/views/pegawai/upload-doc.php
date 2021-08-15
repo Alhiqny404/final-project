@@ -11,6 +11,20 @@
       <div class="container-fluid">
 
         <div class="row">
+          <?php if ($this->session->flashdata('success')): ?>
+          <div class="col">
+            <div class="alert alert-success">
+              <h3 class="text-center"><?=$this->session->flashdata('success') ?></h3>
+            </div>
+          </div>
+          <?php endif; ?>
+          <?php if ($doc > 0 && empty($this->session->flashdata('success'))): ?>
+          <div class="col">
+            <div class="alert alert-success">
+              <h3 class="text-center">Laporan bulan ini telah anda kirim sebelumnya!</h3>
+            </div>
+          </div>
+          <?php elseif ($doc == 0) : ?>
           <div class="col-xl-6">
             <div class="card">
               <div class="card-body">
@@ -19,6 +33,7 @@
                   Kirim document yang membutuhkan persetujuan atasan,.
                 </p>
                 <form action="" enctype="multipart/form-data" method="post">
+                  <?=csrf() ?>
                   <div class="form-group">
                     <label for="doc_name">Nama Dokumen</label>
                     <input type="text" id="doc_name" class="form-control" name="doc_name" required="" />
@@ -38,7 +53,8 @@
             </div>
             <!--end card-->
           </div>
-          <!--end col-->
+          <?php endif; ?>
+
         </div>
       </div>
       <!-- container -->

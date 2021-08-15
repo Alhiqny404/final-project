@@ -58,23 +58,3 @@
 </div>
 <!-- end page-wrapper -->
 <?php view('_layouts/end'); ?>
-
-
-<script type="text/javascript" charset="utf-8">
-
-  function swalSuccess(title) {
-    Swal.fire(
-      'Berhasil!',
-      `${title}.`,
-      'success'
-    )
-  }
-
-</script>
-
-
-<?php if ($this->session->flashdata('success')): ?>
-<script>
-  swalSuccess("<?=$this->session->flashdata('success') ?>");
-</script>
-<?php endif; ?>

@@ -37,6 +37,13 @@ function ke($url = '') {
   return redirect(site_url($url));
 }
 
+function dd($data) {
+  echo '<pre>';
+  print_r($data);
+  echo '</pre>';
+  die;
+}
+
 function uri($segment = null) {
   $ci = get_instance();
   return $ci->uri->segment($segment);
@@ -77,6 +84,20 @@ function isSuperVisor() {
 
 function isPegawai() {
   if (sud('role') != 'pegawai') return redirect(site_url('login'));
+}
+
+function csrf() {
+  $ci = get_instance();
+  $csrf = array(
+    'name' => $ci->security->get_csrf_token_name(),
+    'hash' => $ci->security->get_csrf_hash()
+  );
+  return '<input type="hidden" name="'.$csrf['name'].'" value="'.$csrf['hash'].'" />';
+}
+
+function xss($str = '') {
+  $ci = get_instance();
+  return $ci->security->xss_clean($str);
 }
 
 
