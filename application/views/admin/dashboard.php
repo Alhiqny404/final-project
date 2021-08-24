@@ -150,6 +150,7 @@
   <!--end page-wrapper-inner -->
 </div>
 <!-- end page-wrapper -->
+<?php view('_layouts/js'); ?>
 <?php view('_layouts/end'); ?>
 
 <script type="text/javascript" charset="utf-8">

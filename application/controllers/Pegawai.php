@@ -12,7 +12,7 @@ class Pegawai extends CI_Controller {
 
   public function dashboard() {
     $data['title'] = 'Dashboard';
-    view('staff/dashboard', $data);
+    view('pegawai/dashboard', $data);
   }
 
   public function list_doc() {
@@ -36,7 +36,7 @@ class Pegawai extends CI_Controller {
 
 
       //DEKLARASI VARIABLES
-      $name = htmlspecialchars(strtolower($this->input->post('doc_name')), ENT_COMPAT, true);
+      $name = htmlspecialchars(strtolower($this->input->post('doc_name')), true);
       $doc_name = str_replace(' ', '_', trim($name));
       $image = $_FILES['doc_file']['name'];
       $extension = pathinfo($_FILES['doc_file']['name'], PATHINFO_EXTENSION);

@@ -1,8 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+* Controller Login
+*
+* @author	Pertiwi Team
+* @copyright	Copyright (c) 2021
+*/
 class Login extends CI_Controller {
 
+  /**
+  * Method Index
+  * Halaman login user
+  *
+  * @return view
+  */
   public function index() {
     notLogin();
     $data['title'] = 'Login';
@@ -14,35 +26,43 @@ class Login extends CI_Controller {
 
   }
 
+
+  /**
+  * Action Logout
+  *
+  * @return redirect halaman login
+  */
   public function logout() {
     $this->session->sess_destroy();
     $this->session->set_flashdata('success', 'berhasil logout');
-    return redirect(site_url('login'));
+    return redirect('login');
   }
 
   private function _login() {
-    $username = htmlspecialchars($this->input->post('username'), true);
+    $nip = htmlspecialchars($this->input->post('nip'), true);
     $password = htmlspecialchars($this->input->post('password'), true);
 
-    $user = $this->db->get_where('user', ['username' => $username])->row();
+    $user = $this->db->get_where('user', ['nip' => $nip])->row();
     if ($user) {
       if (password_verify($password, $user->password)) {
         $session = [
-          'fullname' => $user->fullname,
+          'nama_lengkap' => $user->nama_lengkap,
           'user_id' => $user->id,
-          'username' => $username,
+          'nip' => $nip,
           'role' => $user->role
         ];
         $this->session->set_userdata($session);
         return ke("{$user->role}/dashboard");
+        exit();
       } else {
         $this->session->set_flashdata('error', 'Password anda salah');
         return redirect(site_url('login'));
-
+        exit();
       }
     } else {
-      $this->session->set_flashdata('error', 'username tidak ditemukan');
+      $this->session->set_flashdata('error', 'nip tidak ditemukan');
       return redirect(site_url('login'));
+      exit();
     }
 
   }
