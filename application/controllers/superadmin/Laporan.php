@@ -25,6 +25,7 @@ class Laporan extends CI_Controller {
   public function __construct() {
     parent::__Construct();
     isLogin();
+    isSuperadmin();
     model('Jabatan_model', 'jabatan');
     model('Pangkat_model', 'pangkat');
     model('Laporan_model', 'laporan');

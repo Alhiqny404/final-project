@@ -58,11 +58,6 @@ $prefix_page = 'superadmin/laporan/';
                         <td><?=$val->tgl_respon == '0000-00-00 00:00:00' ? '-' : $val->tgl_respon; ?></td>
                         <td>
                           <center>
-                            <button type="button" class="btn btn-sm btn-success mr-2 edit-table"
-                              data-id="<?=$val->id ?>"
-                              data-judul="<?=$val->judul ?>"
-                              data-status="<?=$val->status ?>"
-                              ><i class="fas fa-edit"></i></button>
                             <a href="<?=base_url('uploads/laporan/'.$val->file) ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i></a>
                           </center>
                         </td>

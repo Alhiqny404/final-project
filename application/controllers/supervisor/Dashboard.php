@@ -18,7 +18,7 @@ class Dashboard extends CI_Controller {
   public function __construct() {
     parent::__Construct();
     isLogin();
-    isUser();
+    isSupervisor();
     model('Document_model', 'document');
   }
 

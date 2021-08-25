@@ -10,11 +10,11 @@ class Api extends CI_Controller {
   public function corona() {
     $url = 'https://api.kawalcorona.com/indonesia/';
 
-    $ch = curl_init(); //  Initiate curl
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Will return the response, if false it print the response
-    curl_setopt($ch, CURLOPT_URL, $url); // Set the url
-    $result = curl_exec($ch); // Execute
-    curl_close($ch); // Closing
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    $result = curl_exec($ch);
+    curl_close($ch);
 
     echo $result;
 

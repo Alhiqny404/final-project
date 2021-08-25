@@ -20,9 +20,17 @@ $prefix_page = 'user/laporan/';
     <!-- Page Content-->
     <div class="page-content">
       <div class="container-fluid">
-        <?php if ($laporan_bulan_ini): ?>
+        <?php if ($laporan_bulan_ini && $laporan_bulan_ini->status == 'pending'): ?>
         <div class="alert alert-success border-0" role="alert">
-          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Kamu telah mengirim laporan bulan ini - <?=$laporan_bulan_ini->tgl_upload ?>.
+          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu dalam tahap Pengecekap (PENDING).
+        </div>
+        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'accept'): ?>
+        <div class="alert alert-success border-0" role="alert">
+          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> LAporanmu telah diterima.
+        </div>
+        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'reject'): ?>
+        <div class="alert alert-danger border-0" role="alert">
+          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu ditolak - <?= $laporan_bulan_ini->catatan ?>.
         </div>
         <?php else : ?>
         <div class="alert alert-danger border-0" role="alert">
@@ -67,7 +75,7 @@ $prefix_page = 'user/laporan/';
                           <?php endif; ?>
                         </td>
                         <td><?=$val->tgl_upload; ?></td>
-                        <td><?=$val->tgl_respon; ?></td>
+                        <td><?=$val->tgl_respon == '0000-00-00 00:00:00' ? '-' : $val->tgl_respon; ?></td>
                         <td>
                           <center>
                             <?php if ($val->status != 'accept'): ?>
@@ -79,12 +87,12 @@ $prefix_page = 'user/laporan/';
                             <?php endif; ?>
                             <a href="<?=base_url('uploads/laporan/'.$val->file) ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i></a>
                             <!--
-                                                                                                                                                                                                                                                                                                                                                                                                        <button type="button" class="btn btn-sm btn-danger delete-table"
-                                                                                                                                                                                                                                                                                                                                                                                                          data-id="<?=$val->id ?>"
-                                                                                                                                                                                                                                                                                                                                                                                                          data-judul="<?=$val->judul ?>"
-                                                                                                                                                                                                                                                                                                                                                                                                          data-file="<?=$val->file ?>"
-                                                                                                                                                                                                                                                                                                                                                                                                          ><i class="fas fa-trash-alt"></i></button>
-                                                                                                                                                                                                                                                                                                                                                                                                      -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <button type="button" class="btn btn-sm btn-danger delete-table"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          data-id="<?=$val->id ?>"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          data-judul="<?=$val->judul ?>"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          data-file="<?=$val->file ?>"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ><i class="fas fa-trash-alt"></i></button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      -->
                           </center>
                         </td>
                       </tr>

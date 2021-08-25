@@ -1,6 +1,7 @@
 <?php
 
 $prefix_superadmin = 'superadmin/';
+$prefix_supervisor = 'supervisor/';
 $prefix_admin = 'admin/';
 $prefix_user = 'user/';
 $prefix_kelola = 'admin/kelola/';
@@ -23,26 +24,10 @@ $prefix_kelola = 'admin/kelola/';
         <li><a href="<?=site_url($prefix_superadmin.'laporan') ?>">List Laporan</a></li>
       </ul>
     </li>
-
-    <li>
-      <a href="javascript: void(0);"><i class="mdi mdi-poll"></i><span>Kelola Data</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
-      <ul class="nav-second-level" aria-expanded="false">
-        <li><a href="<?=site_url($prefix_kelola.'user') ?>">User</a></li>
-        <li><a href="<?=site_url($prefix_kelola.'jabatan') ?>">Jabatan</a></li>
-        <li><a href="<?=site_url($prefix_kelola.'pangkat') ?>">Pangkat</a></li>
-      </ul>
-    </li>
     <?php elseif (sud('role') == 'admin'): ?>
     <li>
       <a href="<?=site_url($prefix_admin.'dashboard') ?>"><i class="mdi mdi-monitor"></i><span>Dashboard</span></a>
     </li>
-    <li>
-      <a href="javascript: void(0);"><i class="mdi mdi-book"></i><span>Laporan</span></a>
-      <ul class="nav-second-level" aria-expanded="false">
-        <li><a href="<?=site_url($prefix_admin.'list_doc') ?>">List Laporan</a></li>
-      </ul>
-    </li>
-
     <li>
       <a href="javascript: void(0);"><i class="mdi mdi-poll"></i><span>Kelola Data</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
       <ul class="nav-second-level" aria-expanded="false">
@@ -53,12 +38,12 @@ $prefix_kelola = 'admin/kelola/';
     </li>
     <?php elseif (sud('role') == 'supervisor'): ?>
     <li>
-      <a href="<?=site_url('supervisor/dashboard') ?>"><i class="mdi mdi-monitor"></i><span>Dashboard</span></a>
+      <a href="<?=site_url($prefix_supervisor.'dashboard') ?>"><i class="mdi mdi-monitor"></i><span>Dashboard</span></a>
     </li>
     <li>
       <a href="javascript: void(0);"><i class="mdi mdi-book"></i><span>Laporan</span></a>
       <ul class="nav-second-level" aria-expanded="false">
-        <li><a href="<?=site_url('supervisor/list_doc') ?>">List Laporan</a></li>
+        <li><a href="<?=site_url($prefix_supervisor.'laporan') ?>">List Laporan</a></li>
       </ul>
     </li>
     <?php elseif (sud('role') == 'user'): ?>

@@ -14,7 +14,8 @@ class Superadmin_model extends CI_Model {
     $dataForm = $this->input->post();
     $data = [
       'status' => htmlspecialchars($dataForm['status'], true),
-      'catatan' => htmlspecialchars($dataForm['catatan'], true)
+      'catatan' => htmlspecialchars($dataForm['catatan'], true),
+      'tgl_respon' => ayeuna()
     ];
     $where = [
       'id' => $dataForm['id']

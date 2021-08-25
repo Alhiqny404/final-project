@@ -73,8 +73,8 @@ function isAdmin() {
   if (sud('role') != 'admin') return redirect(site_url('login'));
 }
 
-function isStaff() {
-  if (sud('role') != 'staff') return redirect(site_url('login'));
+function isSuperadmin() {
+  if (sud('role') != 'superadmin') return redirect(site_url('login'));
 }
 
 
@@ -82,8 +82,8 @@ function isSuperVisor() {
   if (sud('role') != 'supervisor') return redirect(site_url('login'));
 }
 
-function isPegawai() {
-  if (sud('role') != 'pegawai') return redirect(site_url('login'));
+function isUser() {
+  if (sud('role') != 'user') return redirect(site_url('login'));
 }
 
 function csrf() {
