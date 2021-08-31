@@ -20,31 +20,32 @@ $prefix_page = 'user/laporan/';
     <!-- Page Content-->
     <div class="page-content">
       <div class="container-fluid">
-        <?php if ($laporan_bulan_ini && $laporan_bulan_ini->status == 'pending'): ?>
-        <div class="alert alert-success border-0" role="alert">
-          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu dalam tahap Pengecekap (PENDING).
-        </div>
-        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'accept'): ?>
-        <div class="alert alert-success border-0" role="alert">
-          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> LAporanmu telah diterima.
-        </div>
-        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'reject'): ?>
-        <div class="alert alert-danger border-0" role="alert">
-          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu ditolak - <?= $laporan_bulan_ini->catatan ?>.
-        </div>
-        <?php else : ?>
-        <div class="alert alert-danger border-0" role="alert">
-          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Kamu belum mengirim laporan bulan ini.
-        </div>
-        <?php endif; ?>
-
+        <!--
+                                                                                                                                                        <?php if ($laporan_bulan_ini && $laporan_bulan_ini->status == 'pending'): ?>
+                                                                                                                                                        <div class="alert alert-success border-0" role="alert">
+                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu dalam tahap Pengecekap (PENDING).
+                                                                                                                                                        </div>
+                                                                                                                                                        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'approve'): ?>
+                                                                                                                                                        <div class="alert alert-success border-0" role="alert">
+                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> LAporanmu telah diterima.
+                                                                                                                                                        </div>
+                                                                                                                                                        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'reject'): ?>
+                                                                                                                                                        <div class="alert alert-danger border-0" role="alert">
+                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu ditolak - <?= $laporan_bulan_ini->catatan ?>.
+                                                                                                                                                        </div>
+                                                                                                                                                        <?php else : ?>
+                                                                                                                                                        <div class="alert alert-danger border-0" role="alert">
+                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Kamu belum mengirim laporan bulan ini.
+                                                                                                                                                        </div>
+                                                                                                                                                        <?php endif; ?>
+                                                                                                                                                -->
 
         <div class="row">
           <div class="col-lg-12 col-sm-12">
             <div class="card">
               <div class="card-body table-responsive">
                 <div class="text-right">
-                  <?php if (!$laporan_bulan_ini): ?>
+                  <?php if (count($jenis_laporan) > 0): ?>
                   <a href="javascript:void(0)" class="btn btn-primary waves-effect text-right mb-4 tambah-data"><i class="fa fa-plus"></i></a>
                   <?php endif; ?>
                 </div>
@@ -54,6 +55,7 @@ $prefix_page = 'user/laporan/';
                       <tr>
                         <th>No</th>
                         <th>Judul</th>
+                        <th>Jenis Laporan</th>
                         <th>Status</th>
                         <th>Diupload</th>
                         <th>Direspon</th>
@@ -65,10 +67,11 @@ $prefix_page = 'user/laporan/';
                       <tr>
                         <td><?=$no++ ?></td>
                         <td><?=$val->judul; ?></td>
+                        <td><?=$val->nama_laporan ?></td>
                         <td>
                           <?php if ($val->status == 'pending'): ?>
                           <span class="badge badge-warning"><?=$val->status; ?></span>
-                          <?php elseif ($val->status == 'accept'): ?>
+                          <?php elseif ($val->status == 'approve'): ?>
                           <span class="badge badge-success"><?=$val->status; ?></span>
                           <?php elseif ($val->status == 'reject'): ?>
                           <span class="badge badge-danger"><?=$val->status; ?></span>
@@ -78,21 +81,16 @@ $prefix_page = 'user/laporan/';
                         <td><?=$val->tgl_respon == '0000-00-00 00:00:00' ? '-' : $val->tgl_respon; ?></td>
                         <td>
                           <center>
-                            <?php if ($val->status != 'accept'): ?>
+                            <?php if ($val->status != 'approve'): ?>
                             <button type="button" class="btn btn-sm btn-success mr-2 edit-table"
                               data-id="<?=$val->id ?>"
                               data-judul="<?=$val->judul ?>"
                               data-file="<?=$val->file ?>"
+                              data-jenis-laporan-id="<?=$val->jenis_laporan_id ?>"
+                              data-jenis-laporan="<?=$val->nama_laporan ?>"
                               ><i class="fas fa-edit"></i></button>
                             <?php endif; ?>
                             <a href="<?=base_url('uploads/laporan/'.$val->file) ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i></a>
-                            <!--
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <button type="button" class="btn btn-sm btn-danger delete-table"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          data-id="<?=$val->id ?>"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          data-judul="<?=$val->judul ?>"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          data-file="<?=$val->file ?>"
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ><i class="fas fa-trash-alt"></i></button>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      -->
                           </center>
                         </td>
                       </tr>
@@ -138,7 +136,7 @@ $prefix_page = 'user/laporan/';
 
   $(document).ready(function() {
 
-
+    $('.jenis-laporan-hide').hide();
     // Basic
     $('.dropify').dropify();
 
@@ -157,7 +155,8 @@ $prefix_page = 'user/laporan/';
         let url = "<?=site_url($prefix_page.'add') ?>";
 
         $('.custom-modal-title').html('Tambah Data Laporan');
-        $('#form').attr('action', url)
+        $('#form').attr('action', url);
+        $('.jenis-laporan-select').show();
         modalku('#custom-modal', 'fadein');
       });
 
@@ -168,6 +167,8 @@ $prefix_page = 'user/laporan/';
         let id = $(this).data('id');
         let judul = $(this).data('judul');
         let file = $(this).data('file');
+        let jenis_laporan_id = $(this).data('jenis-laporan-id');
+        let jenis_laporan = $(this).data('jenis-laporan');
         $('[name=file]').removeAttr('required');
 
         $('.custom-modal-title').html('Edit Data Laporan');
@@ -175,6 +176,10 @@ $prefix_page = 'user/laporan/';
         $('[name=id]').val(id);
         $('[name=judul]').val(judul);
         $('[name=file_lama]').val(file);
+        $('.jenis-laporan-hide').show();
+        $('.jenis-laporan-select').hide();
+        $('[name=jenis_laporan]').val(jenis_laporan);
+        $('[name=jenis_laporan_id_hidden]').val(jenis_laporan_id);
         //  $('[name=file]').val(file);
         modalku('#custom-modal', 'fadein');
       })
@@ -231,9 +236,23 @@ $prefix_page = 'user/laporan/';
         <?=csrf() ?>
         <input type="hidden" name="id">
         <input type="hidden" name="file_lama">
+        <input type="hidden" name="jenis_laporan_id_hidden">
         <div class="form-group">
           <label>Judul</label>
           <input type="text" class="form-control" required placeholder="Isi Judul" name="judul" required />
+        </div>
+        <div class="form-group jenis-laporan-hide">
+          <label>Judul</label>
+          <input type="text" class="form-control" required readonly="" name="jenis_laporan" required />
+        </div>
+        <div class="form-group jenis-laporan-select">
+          <label>Jenis Laporan</label>
+          <select name="jenis_laporan_id" id="jenis_laporan_id" class="form-control">
+            <option value="" selected disabled="">--- Belum Dipilih ---</option>
+            <?php foreach ($jenis_laporan as $val): ?>
+            <option value="<?=$val->id ?>"><?=$val->nama_laporan ?></option>
+            <?php endforeach; ?>
+          </select>
         </div>
         <div class="form-group">
           <label for="file">

@@ -33,6 +33,7 @@ $prefix_page = 'superadmin/laporan/';
                         <th>No</th>
                         <th>Judul</th>
                         <th>Pegawai</th>
+                        <th>Jenis Laporan</th>
                         <th>Status</th>
                         <th>Diupload</th>
                         <th>Direspon</th>
@@ -45,16 +46,21 @@ $prefix_page = 'superadmin/laporan/';
                         <td><?=$no++ ?></td>
                         <td><?=$val->judul; ?></td>
                         <td><?=$val->nama_lengkap; ?></td>
+                        <td><?=$val->nama_laporan; ?></td>
                         <td>
                           <?php if ($val->status == 'pending'): ?>
                           <span class="badge badge-warning"><?=$val->status; ?></span>
-                          <?php elseif ($val->status == 'accept'): ?>
+                          <?php elseif ($val->status == 'approve'): ?>
                           <span class="badge badge-success"><?=$val->status; ?></span>
                           <?php elseif ($val->status == 'reject'): ?>
                           <span class="badge badge-danger"><?=$val->status; ?></span>
                           <?php endif; ?>
                         </td>
-                        <td><?=$val->tgl_upload; ?></td>
+                        <?php if (time() - strtotime($val->tgl_upload) <= (86400 * 2)): ?>
+                        <td><?= time_ago($val->tgl_upload) ?></td>
+                        <?php else : ?>
+                        <td><?= $val->tgl_upload ?></td>
+                        <?php endif; ?>
                         <td><?=$val->tgl_respon == '0000-00-00 00:00:00' ? '-' : $val->tgl_respon; ?></td>
                         <td>
                           <center>
@@ -139,7 +145,7 @@ $prefix_page = 'superadmin/laporan/';
         let id = $(this).data('id');
         let status = $(this).data('status');
         console.log(status)
-        if (status == 'accept') {
+        if (status == 'approve') {
           status = 2;
         } else if (status == 'reject') {
           status = 3;

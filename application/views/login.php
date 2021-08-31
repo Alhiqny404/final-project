@@ -55,12 +55,12 @@
                 <form class="form-horizontal my-4" action="" method="post">
                   <?=csrf() ?>
                   <div class="form-group">
-                    <label for="nip">NIP</label>
+                    <label for="nip">Username</label>
                     <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1"><i class="mdi mdi-account-outline font-16"></i></span>
                       </div>
-                      <input type="text" class="form-control" id="nip" name="nip" placeholder="Masukan NIP" required autofocus="1">
+                      <input type="text" class="form-control" id="username" name="username" placeholder="Masukan Username" required autofocus="1">
                     </div>
                   </div>
 

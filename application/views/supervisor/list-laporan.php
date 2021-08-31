@@ -54,7 +54,11 @@ $prefix_page = 'superadmin/laporan/';
                           <span class="badge badge-danger"><?=$val->status; ?></span>
                           <?php endif; ?>
                         </td>
-                        <td><?=$val->tgl_upload; ?></td>
+                        <?php if (time() - strtotime($val->tgl_upload) <= (86400 * 2)): ?>
+                        <td><?= time_ago($val->tgl_upload) ?></td>
+                        <?php else : ?>
+                        <td><?= $val->tgl_upload ?></td>
+                        <?php endif; ?>
                         <td><?=$val->tgl_respon == '0000-00-00 00:00:00' ? '-' : $val->tgl_respon; ?></td>
                         <td>
                           <center>

@@ -34,6 +34,7 @@ $prefix_kelola = 'admin/kelola/';
         <li><a href="<?=site_url($prefix_kelola.'user') ?>">User</a></li>
         <li><a href="<?=site_url($prefix_kelola.'jabatan') ?>">Jabatan</a></li>
         <li><a href="<?=site_url($prefix_kelola.'pangkat') ?>">Pangkat</a></li>
+        <li><a href="<?=site_url($prefix_kelola.'jenis_laporan') ?>">Jenis Laporan</a></li>
       </ul>
     </li>
     <?php elseif (sud('role') == 'supervisor'): ?>

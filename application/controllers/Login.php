@@ -39,16 +39,16 @@ class Login extends CI_Controller {
   }
 
   private function _login() {
-    $nip = htmlspecialchars($this->input->post('nip'), true);
+    $username = htmlspecialchars($this->input->post('username'), true);
     $password = htmlspecialchars($this->input->post('password'), true);
 
-    $user = $this->db->get_where('user', ['nip' => $nip])->row();
+    $user = $this->db->get_where('user', ['username' => $username])->row();
     if ($user) {
       if (password_verify($password, $user->password)) {
         $session = [
           'nama_lengkap' => $user->nama_lengkap,
           'user_id' => $user->id,
-          'nip' => $nip,
+          'username' => $username,
           'role' => $user->role
         ];
         $this->session->set_userdata($session);
@@ -60,7 +60,7 @@ class Login extends CI_Controller {
         exit();
       }
     } else {
-      $this->session->set_flashdata('error', 'nip tidak ditemukan');
+      $this->session->set_flashdata('error', 'Username tidak ditemukan');
       return redirect(site_url('login'));
       exit();
     }

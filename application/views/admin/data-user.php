@@ -24,11 +24,21 @@ $prefix_page = 'admin/kelola/user/';
           <div class="col-lg-12 col-sm-12">
             <div class="card">
               <div class="card-body table-responsive">
+                <div class="row">
+                  <form class="form-inline" method="post" enctype="multipart/form-data" action="<?=site_url($prefix_page.'import_excel') ?>">
+                    <?=csrf() ?>
+                    <div class="form-group mb-2">
+                      <label for="fileimport" class="sr-only">Import Excel</label>
+                      <input type="file" class="form-control" name="fileimport" id="fileimport">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Import</button>
+                  </form>
+                </div>
                 <div class="text-right">
                   <a href="javascript:void(0)" class="btn btn-primary waves-effect text-right mb-4 tambah-data"><i class="fa fa-plus"></i></a>
                 </div>
                 <div class="table-responsive">
-                  <table id="datatable" class="table table-hover" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                  <table id="datatable" class="table table-hover table-sm" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                       <tr>
                         <th>No</th>
@@ -36,7 +46,12 @@ $prefix_page = 'admin/kelola/user/';
                         <th>Nama Lengkap</th>
                         <th>Jabatan</th>
                         <th>Pangkat</th>
+                        <th>JK</th>
+                        <th>Email</th>
+                        <th>No Hp</th>
+                        <th>Alamat</th>
                         <th>Role</th>
+                        <th>Username</th>
                         <th><center>Action</center></th>
                       </tr>
                     </thead>
@@ -48,7 +63,17 @@ $prefix_page = 'admin/kelola/user/';
                         <td><?=$val->nama_lengkap; ?></td>
                         <td><?=$val->nama_jabatan; ?></td>
                         <td><?=$val->nama_pangkat; ?></td>
+                        <?php if (!empty($val->jenis_kelamin)): ?>
+                        <td><?=$val->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan'; ?></td>
+                        <?php else : ?>
+                        <td> - </td>
+                        <?php endif; ?>
+
+                        <td><?=$val->email; ?></td>
+                        <td><?=$val->no_hp; ?></td>
+                        <td><?=$val->alamat; ?></td>
                         <td><?=$val->role; ?></td>
+                        <td><?=$val->username ?></td>
                         <td>
                           <center>
                             <button type="button" class="btn btn-sm btn-success mr-2 edit-table"
@@ -133,6 +158,7 @@ $prefix_page = 'admin/kelola/user/';
       let jabatan = $(this).data('jabatan-id');
       let pangkat = $(this).data('pangkat-id');
       let role = $(this).data('role');
+      let username = $(this).data('username');
       console.log(role)
       if (role == 'superadmin') {
         role = '1';
@@ -143,7 +169,7 @@ $prefix_page = 'admin/kelola/user/';
       } else if (role == 'user') {
         role = '4';
       }
-
+      console.log(1)
       $('.custom-modal-title').html('Edit Data User');
       $('#form').attr('action', url);
       $('[name=id]').val(id);
@@ -233,16 +259,38 @@ $prefix_page = 'admin/kelola/user/';
           </select>
         </div>
         <div class="form-group">
+          <label>Jenis Kelamin</label>
+          <select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
+            <option value="" selected="">Belum Dipilih</option>
+            <option value="l">Laki-laki</option>
+            <option value="p">Perempuan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" required placeholder="Isi alamat email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label>Nomor Handphone</label>
+          <input type="text" class="form-control" required placeholder="Isi nomor hp" name="no_hp" required />
+        </div>
+        <div class="form-group">
+          <label>Alamat</label>
+          <textarea name="alamat" id="alamat" cols="30" rows="4" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
           <label>Role</label>
           <select name="role" id="role" class="form-control" required>
             <option value="" selected="">Belum Dipilih</option>
-            <optgroup label="---- ROLE ----">
-              <option value="1">Super Admin</option>
-              <option value="2">Admin</option>
-              <option value="3">Supervisor</option>
-              <option value="4">User</option>
-            </optgroup>
+            <option value="1">Super Admin</option>
+            <option value="2">Admin</option>
+            <option value="3">Supervisor</option>
+            <option value="4">User</option>
           </select>
+        </div>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" required class="form-control" required placeholder="Isi Username" name="username" />
         </div>
         <div class="form-group">
           <label>Password</label>

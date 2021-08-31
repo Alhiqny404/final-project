@@ -2,19 +2,19 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
-* Controller Laporan
+* Controller Jenis_laporan
 *
 * @author	Pertiwi Team
 * @copyright	Copyright (c) 2021
 */
-class Laporan extends CI_Controller {
+class Jenis_laporan extends CI_Controller {
 
   /**
   * Prefix url controller ini
   *
   * @var	string
   */
-  private $prefix = 'superadmin/laporan';
+  private $prefix = 'admin/kelola/jenis_laporan';
 
   /**
   * Class constructor
@@ -25,51 +25,49 @@ class Laporan extends CI_Controller {
   public function __construct() {
     parent::__Construct();
     isLogin();
-    isSuperadmin();
-    model('Jabatan_model', 'jabatan');
-    model('Pangkat_model', 'pangkat');
-    model('Laporan_model', 'laporan');
-    model('Superadmin_model', 'superadmin');
+    isAdmin();
+    model('Jenis_laporan_model', 'jenis_laporan');
   }
 
   /**
   * Method Index
-  * Halaman untuk mengelola data laporan
-  * Data parsing : judul halaman, semua data laporan
+  * Halaman untuk mengelola data jenis_laporan
+  * Data parsing : judul halaman, semua data jenis_laporan
   *
   * @return view
   */
   public function index() {
-    $this->db->order_by('tgl_upload', 'desc');
-    $data['laporan'] = $this->laporan->getAll();
-    $data['jabatan'] = $this->jabatan->getAll();
-    $data['pangkat'] = $this->pangkat->getAll();
-    //$data['laporan_bulan_ini'] = $this->laporan->bulanIni();
-    $data['title'] = 'List Data laporan';
-
-    view('superadmin/list-laporan', $data);
+    $data['jenis_laporan'] = $this->jenis_laporan->getAll();
+    $data['title'] = 'Management User';
+    view('admin/data-jenis-laporan', $data);
   }
 
-
-  public function respon() {
-    if ($this->superadmin->respon_laporan() > 0) {
-      $this->session->set_flashdata('success', 'Telah direspon');
+  /**
+  * Method add
+  * Action saat melakukan penambahan data jenis_laporan
+  * Data parsing : session flashdata
+  *
+  * @return redirect ke prefix ini
+  */
+  public function add() {
+    if ($this->jenis_laporan->add() > 0) {
+      $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
       redirect($this->prefix);
     } else {
-      $this->session->set_flashdata('error', 'Gagal direspon');
+      $this->session->set_flashdata('error', 'Data gagal ditambahkan');
       redirect($this->prefix);
     }
   }
 
   /**
   * Method edit
-  * Action saat melakukan pengeditan data laporan
+  * Action saat melakukan pengeditan data jenis_laporan
   * Data parsing : session flashdata
   *
   * @return redirect ke prefix ini
   */
   public function edit() {
-    if ($this->laporan->edit() > 0) {
+    if ($this->jenis_laporan->edit() > 0) {
       $this->session->set_flashdata('success', 'Data Berhasil Diupdate');
       redirect($this->prefix);
     } else {
@@ -82,13 +80,13 @@ class Laporan extends CI_Controller {
 
   /**
   * Method delete
-  * Action saat melakukan penghapusan data laporan
+  * Action saat melakukan penghapusan data jenis_laporan
   * Data parsing : session flashdata
   *
   * @return redirect ke prefix ini
   */
   public function delete() {
-    if ($this->laporan->delete() > 0) {
+    if ($this->jenis_laporan->delete() > 0) {
       $this->session->set_flashdata('success', 'Data Berhasil Dihapus');
       redirect($this->prefix);
     } else {

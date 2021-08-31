@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
 /**
 * Controller User
 *
@@ -55,6 +56,17 @@ class User extends CI_Controller {
   */
   public function add() {
     if ($this->user->add() > 0) {
+      $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+      redirect($this->prefix);
+    } else {
+      $this->session->set_flashdata('error', 'Data gagal ditambahkan');
+      redirect($this->prefix);
+    }
+  }
+
+
+  public function import_excel() {
+    if ($this->user->import_excel() > 0) {
       $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
       redirect($this->prefix);
     } else {

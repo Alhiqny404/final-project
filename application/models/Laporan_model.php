@@ -35,16 +35,29 @@ class Laporan_model extends CI_Model {
   * @return	array object
   */
   public function getAll() {
-    $this->db->select('user.nama_lengkap,laporan.*');
+    $this->db->select('user.nama_lengkap,jenis_laporan.nama_laporan,laporan.*');
     $this->db->from($this->table);
     $this->db->join('user', 'user.id = laporan.user_id', 'left outher');
+    $this->db->join('jenis_laporan', 'jenis_laporan.id = laporan.jenis_laporan_id', 'left outher');
     return $this->db->get()->result();
   }
 
 
   public function getMe() {
+    $this->db->select('jenis_laporan.nama_laporan,laporan.*');
+    $this->db->from($this->table);
+    $this->db->join('jenis_laporan', 'jenis_laporan.id = laporan.jenis_laporan_id', 'left outher');
     $this->db->where('user_id', sud('user_id'));
-    return $this->db->get($this->table)->result();
+    return $this->db->get()->result();
+  }
+
+  public function getWhere($where) {
+    $this->db->select('user.nama_lengkap,jenis_laporan.nama_laporan,laporan.*');
+    $this->db->from($this->table);
+    $this->db->join('user', 'user.id = laporan.user_id', 'left outher');
+    $this->db->join('jenis_laporan', 'jenis_laporan.id = laporan.jenis_laporan_id', 'left outher');
+    $this->db->where($where);
+    return $this->db->get()->result();
   }
 
 
@@ -63,7 +76,8 @@ class Laporan_model extends CI_Model {
     if ($this->_uploadFile($nama_file) > 0) {
       $data = [
         'user_id' => sud('user_id'),
-        'judul' => htmlspecialchars($dataForm['judul']),
+        'jenis_laporan_id' => htmlspecialchars($dataForm['jenis_laporan_id'], true),
+        'judul' => htmlspecialchars($dataForm['judul'], true),
         'file' => $nama_file,
         'status' => 1
       ];
@@ -132,13 +146,17 @@ class Laporan_model extends CI_Model {
   }
 
 
-  public function bulanIni() {
+  public function MebulanIni() {
+    $this->db->select('jenis_laporan.nama_laporan,laporan.*');
+    $this->db->from($this->table);
+    $this->db->join('jenis_laporan', 'jenis_laporan.id = laporan.jenis_laporan_id', 'left outher');
     $where = [
       'tgl_upload >=' => date('Y-m-01 00:00:00'),
       'tgl_upload <=' => date('Y-m-t 23:59:59'),
       'user_id' => sud('user_id')
     ];
-    return $this->db->get_where($this->table, $where)->row();
+    $this->db->where($where);
+    return $this->db->get()->result();
   }
 
 
