@@ -21,24 +21,24 @@ $prefix_page = 'user/laporan/';
     <div class="page-content">
       <div class="container-fluid">
         <!--
-                                                                                                                                                        <?php if ($laporan_bulan_ini && $laporan_bulan_ini->status == 'pending'): ?>
-                                                                                                                                                        <div class="alert alert-success border-0" role="alert">
-                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu dalam tahap Pengecekap (PENDING).
-                                                                                                                                                        </div>
-                                                                                                                                                        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'approve'): ?>
-                                                                                                                                                        <div class="alert alert-success border-0" role="alert">
-                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> LAporanmu telah diterima.
-                                                                                                                                                        </div>
-                                                                                                                                                        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'reject'): ?>
-                                                                                                                                                        <div class="alert alert-danger border-0" role="alert">
-                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu ditolak - <?= $laporan_bulan_ini->catatan ?>.
-                                                                                                                                                        </div>
-                                                                                                                                                        <?php else : ?>
-                                                                                                                                                        <div class="alert alert-danger border-0" role="alert">
-                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Kamu belum mengirim laporan bulan ini.
-                                                                                                                                                        </div>
-                                                                                                                                                        <?php endif; ?>
-                                                                                                                                                -->
+                                                                                                                                                                                        <?php if ($laporan_bulan_ini && $laporan_bulan_ini->status == 'pending'): ?>
+                                                                                                                                                                                        <div class="alert alert-success border-0" role="alert">
+                                                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu dalam tahap Pengecekap (PENDING).
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'approve'): ?>
+                                                                                                                                                                                        <div class="alert alert-success border-0" role="alert">
+                                                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> LAporanmu telah diterima.
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'reject'): ?>
+                                                                                                                                                                                        <div class="alert alert-danger border-0" role="alert">
+                                                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu ditolak - <?= $laporan_bulan_ini->catatan ?>.
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <?php else : ?>
+                                                                                                                                                                                        <div class="alert alert-danger border-0" role="alert">
+                                                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Kamu belum mengirim laporan bulan ini.
+                                                                                                                                                                                        </div>
+                                                                                                                                                                                        <?php endif; ?>
+                                                                                                                                                                                -->
 
         <div class="row">
           <div class="col-lg-12 col-sm-12">
@@ -153,7 +153,6 @@ $prefix_page = 'user/laporan/';
       function(e) {
         resetForm('#form');
         let url = "<?=site_url($prefix_page.'add') ?>";
-
         $('.custom-modal-title').html('Tambah Data Laporan');
         $('#form').attr('action', url);
         $('.jenis-laporan-select').show();
@@ -243,7 +242,7 @@ $prefix_page = 'user/laporan/';
         </div>
         <div class="form-group jenis-laporan-hide">
           <label>Judul</label>
-          <input type="text" class="form-control" required readonly="" name="jenis_laporan" required />
+          <input type="text" class="form-control" readonly="" name="jenis_laporan" />
         </div>
         <div class="form-group jenis-laporan-select">
           <label>Jenis Laporan</label>
