@@ -46,12 +46,6 @@ $prefix_page = 'admin/kelola/user/';
                         <th>Nama Lengkap</th>
                         <th>Jabatan</th>
                         <th>Pangkat</th>
-                        <th>JK</th>
-                        <th>Email</th>
-                        <th>No Hp</th>
-                        <th>Alamat</th>
-                        <th>Role</th>
-                        <th>Username</th>
                         <th><center>Action</center></th>
                       </tr>
                     </thead>
@@ -63,17 +57,6 @@ $prefix_page = 'admin/kelola/user/';
                         <td><?=$val->nama_lengkap; ?></td>
                         <td><?=$val->nama_jabatan; ?></td>
                         <td><?=$val->nama_pangkat; ?></td>
-                        <?php if (!empty($val->jenis_kelamin)): ?>
-                        <td><?=$val->jenis_kelamin == 'l' ? 'Laki-laki' : 'Perempuan'; ?></td>
-                        <?php else : ?>
-                        <td> - </td>
-                        <?php endif; ?>
-
-                        <td><?=$val->email; ?></td>
-                        <td><?=$val->no_hp; ?></td>
-                        <td><?=$val->alamat; ?></td>
-                        <td><?=$val->role; ?></td>
-                        <td><?=$val->username ?></td>
                         <td>
                           <center>
                             <button type="button" class="btn btn-sm btn-success mr-2 edit-table"
