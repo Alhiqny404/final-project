@@ -18,7 +18,18 @@
   <link href="<?=assets_dashboard() ?>css/metismenu.min.css" rel="stylesheet" type="text/css" />
   <link href="<?=assets_dashboard() ?>css/style.css" rel="stylesheet" type="text/css" />
 
-
+  <style>
+    .tableHide {
+      display: block;
+      cursor: pointer;
+    }
+    .tableHide.hidden {
+      display: none !important;
+    }
+    .sticky-top {
+      z-index: 1 !important;
+    }
+  </style>
 
 
 </head>
