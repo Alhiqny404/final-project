@@ -516,19 +516,131 @@
     </div>
     <!-- end page-wrapper -->
     <?php view('_layouts/js'); ?>
+    <script src="<?=assets_dashboard() ?>plugins/chartjs/chart.min.js"></script>
     <?php view('_layouts/end'); ?>
-    <script type="text/javascript" charset="utf-8">
-      $.getJSON("<?=site_url('api/corona') ?>", function(data) {
-        console.log(data[0].name)
-        $('.corona-meninggal').html(data[0].meninggal);
-        $('.corona-sembuh').html(data[0].sembuh);
-        $('.corona-positif').html(data[0].positif);
-      });
 
 
-      var myModal = document.getElementById('myModal')
-      var myInput = document.getElementById('myInput')
-      myModal.addEventListener('shown.bs.modal', function () {
-        myInput.focus()
-      });
-    </script>
+
+    <script>
+      const male = document.querySelector('.male');
+      const female = document.querySelector('.female');
+      const male_female = document.querySelector('.male_female');
+      const showTable = ($table)=> {
+        if ($table == 'male') {
+          male.classList.remove('hidden')
+          female.classList.add('hidden')
+          male_female.classList.add('hidden')
+        } else if ($table == 'female') {
+          female.classList.remove('hidden')
+          male.classList.add('hidden')
+          male_female.classList.add('hidden')
+        } else {
+          male_female.classList.remove('hidden')
+          male.classList.add('hidden')
+          female.classList.add('hidden')
+        }
+      }
+
+
+
+      !function($) {
+        "use strict";
+
+        var ChartJs = function() {};
+
+        ChartJs.prototype.respChart = function(selector, type, data, options) {
+          // get selector by context
+          var ctx = selector.get(0).getContext("2d");
+          // pointing parent container to make chart js inherit its width
+          var container = $(selector).parent();
+
+          // enable resizing matter
+          //   $(window).resize(generateChart);
+
+          // this function produce the responsive Chart JS
+          function generateChart() {
+            // make chart width fit with its container
+            var ww = selector.attr('width', $(container).width());
+            switch (type) {
+              case 'Doughnut':
+                new Chart(ctx, {
+                  type: 'doughnut', data: data, options: options
+                });
+                break;
+            }
+            // Initiate new chart or Redraw
+
+          };
+          // run function - render chart at first load
+          generateChart();
+        },
+
+        //init
+        ChartJs.prototype.init = function() {
+          //creating lineChart
+
+          //donut chart
+          var donutChart = {
+            labels: [
+              "Bitcoin",
+              "Ethereum",
+              "Litecoin",
+              "Dashcoin",
+            ],
+            datasets: [{
+              data: [80,
+                50,
+                100,
+                121],
+              backgroundColor: [
+                "#f7931a",
+                "#1ecab8",
+                "#e3eaef",
+                "#1c75bc",
+              ],
+              hoverBackgroundColor: [
+                "#f7931a",
+                "#1ecab8",
+                "#e3eaef",
+                "#1c75bc",
+              ],
+              hoverBorderColor: "#fff"
+          }]
+        };
+        this.respChart($("#doughnut"), 'Doughnut', donutChart);
+
+
+      },
+      $.ChartJs = new ChartJs,
+      $.ChartJs.Constructor = ChartJs
+
+    }(window.jQuery),
+
+    //initializing
+    function($) {
+      "use strict";
+      $.ChartJs.init()
+    }(window.jQuery);
+
+
+
+
+
+
+
+  </script>
+  <script type="text/javascript" charset="utf-8">
+    $.getJSON("<?=site_url('api/corona') ?>", function(data) {
+      console.log(data[0].name)
+      $('.corona-meninggal').html(data[0].meninggal);
+      $('.corona-sembuh').html(data[0].sembuh);
+      $('.corona-positif').html(data[0].positif);
+    });
+
+
+    var myModal = document.getElementById('myModal')
+    var myInput = document.getElementById('myInput')
+    myModal.addEventListener('shown.bs.modal', function () {
+      myInput.focus()
+    });
+  </script>
