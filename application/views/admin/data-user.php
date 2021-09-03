@@ -43,6 +43,7 @@ $prefix_page = 'admin/kelola/user/';
                       <tr>
                         <th>No</th>
                         <th>NIP</th>
+                        <th>Username</th>
                         <th>Nama Lengkap</th>
                         <th>Jabatan</th>
                         <th>Pangkat</th>
@@ -54,6 +55,7 @@ $prefix_page = 'admin/kelola/user/';
                       <tr>
                         <td><?=$no++ ?></td>
                         <td><?=$val->nip; ?></td>
+                        <td><?=$val->username; ?></td>
                         <td><?=$val->nama_lengkap; ?></td>
                         <td><?=$val->nama_jabatan; ?></td>
                         <td><?=$val->nama_pangkat; ?></td>
@@ -71,6 +73,11 @@ $prefix_page = 'admin/kelola/user/';
                             <button type="button" class="btn btn-sm btn-danger delete-table"
                               data-id="<?=$val->id ?>"
                               data-nama="<?=$val->nama_lengkap ?>"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm  btn-primary" onclick="detailUser(
+                              '<?=$val->nip ?>','<?=$val->nama_lengkap ?>','<?=$val->nama_jabatan ?>','<?=$val->nama_pangkat ?>','<?=$val->no_hp ?>','<?=$val->email ?>','<?=$val->username ?>','<?=$val->alamat ?>'
+                              )">
+                              <i class="fas fa-eye"></i>
+                            </button>
                           </center>
                         </td>
                       </tr>
@@ -197,11 +204,24 @@ $prefix_page = 'admin/kelola/user/';
       })
   });
 
+  function detailUser(nip, nama, jabatan, pangkat, no_hp, email, username, alamat) {
+    $('#modal_detail').modal('show');
+    $('.show-nip').html(nip);
+    $('.show-nama').html(nama);
+    $('.show-jabatan').html(jabatan);
+    $('.show-pangkat').html(pangkat);
+    $('.show-no_hpt').html(no_hp);
+    $('.show-email').html(email);
+    $('.show-username').html(username);
+    $('.show-alamat').html(alamat);
+  }
+
+
 </script>
 
 
 
-<div id="custom-modal" class="modal-demo">
+<div id="custom-modal" class="modal-dialog-scrollable">
   <button type="button" class="close" onclick="Custombox.modal.close();">
     <span>&times;</span><span class="sr-only">Close</span>
   </button>
@@ -250,6 +270,10 @@ $prefix_page = 'admin/kelola/user/';
           </select>
         </div>
         <div class="form-group">
+          <label>Tanggal Lahir</label>
+          <input type="date" class="form-control" required name="tgl_lahir" required />
+        </div>
+        <div class="form-group">
           <label>Email</label>
           <input type="text" class="form-control" required placeholder="Isi alamat email" name="email" required />
         </div>
@@ -292,7 +316,99 @@ $prefix_page = 'admin/kelola/user/';
     </div>
   </div>
 
+
+
+
 </div>
+
+
+
+
+<!-- modal -->
+<div class="modal fade" id="modal_detail" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Detail Pegawai</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center">Foto Profile</h5>
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+            <tr>
+              <td>
+                NIP
+              </td>
+              <td class="show-nip">
+                123456
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Nama
+              </td>
+              <td class="show-nama">
+                Ilham Hafidz
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Pangkat
+              </td>
+              <td class="show-pangkat">
+                Ilham Hafidz
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Jabatan
+              </td>
+              <td class="show-jabatan">
+                Ilham Hafidz
+              </td>
+            </tr>
+            <tr>
+              <td>
+                No. Telp
+              </td>
+              <td class="show-no_hp">
+                0974567809753
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Email
+              </td>
+              <td class="show-email">
+                0974567809753
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Username
+              </td>
+              <td class="show-username">
+                0974567809753
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Alamat
+              </td>
+              <td class="show-alamat">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ipsa quibusdam, do odio illum at consectetur labore quaerat dolore et, necessitatibus!
+              </td>
+            </tr>
+          </table>
+          <!--end table-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 
 <?php if ($this->session->flashdata('success')): ?>
 <script>

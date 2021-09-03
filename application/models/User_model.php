@@ -63,6 +63,7 @@ class User_model extends CI_Model {
       'jabatan_id' => htmlspecialchars($dataForm['jabatan_id'], true),
       'pangkat_id' => htmlspecialchars($dataForm['pangkat_id'], true),
       'jenis_kelamin' => htmlspecialchars($dataForm['jenis_kelamin'], true),
+      'tgl_lahir' => $dataForm['tgl_lahir'],
       'email' => htmlspecialchars($dataForm['email'], true),
       'no_hp' => htmlspecialchars($dataForm['no_hp'], true),
       'alamat' => htmlspecialchars($dataForm['alamat'], true),
@@ -92,17 +93,20 @@ class User_model extends CI_Model {
       $sheetData = $spreadsheet->getActiveSheet()->toArray();
 
       for ($i = 1; $i < count($sheetData); $i++) {
+        $tgl_exp = explode('/', $sheetData[$i]['5']);
+        $tgl_lahir = $tgl_exp[2].'-'.$tgl_exp[1].'-'.$tgl_exp[0];
         $data = [
           'nip' => htmlspecialchars($sheetData[$i]['0'], true),
           'nama_lengkap' => htmlspecialchars($sheetData[$i]['1'], true),
           'jabatan_id' => htmlspecialchars($sheetData[$i]['2'], true),
           'pangkat_id' => htmlspecialchars($sheetData[$i]['3'], true),
           'jenis_kelamin' => htmlspecialchars($sheetData[$i]['4'], true),
-          'email' => htmlspecialchars($sheetData[$i]['5'], true),
-          'no_hp' => htmlspecialchars($sheetData[$i]['6'], true),
-          'alamat' => htmlspecialchars($sheetData[$i]['7'], true),
-          'role' => htmlspecialchars($sheetData[$i]['8'], true),
-          'username' => $sheetData[$i]['9'],
+          'tgl_lahir' => $tgl_lahir,
+          'email' => htmlspecialchars($sheetData[$i]['6'], true),
+          'no_hp' => htmlspecialchars($sheetData[$i]['7'], true),
+          'alamat' => htmlspecialchars($sheetData[$i]['8'], true),
+          'role' => htmlspecialchars($sheetData[$i]['9'], true),
+          'username' => $sheetData[$i]['10'],
           'password' => password_hash(12345678, PASSWORD_BCRYPT)
         ];
 
@@ -128,6 +132,7 @@ class User_model extends CI_Model {
       'jabatan_id' => htmlspecialchars($dataForm['jabatan_id'], true),
       'pangkat_id' => htmlspecialchars($dataForm['pangkat_id'], true),
       'jenis_kelamin' => htmlspecialchars($dataForm['jenis_kelamin'], true),
+      'tgl_lahir' => $dataForm['tgl_lahir'],
       'email' => htmlspecialchars($dataForm['email'], true),
       'no_hp' => htmlspecialchars($dataForm['no_hp'], true),
       'alamat' => htmlspecialchars($dataForm['alamat'], true),
