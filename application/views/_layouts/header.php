@@ -19,6 +19,12 @@
   <link href="<?=assets_dashboard() ?>css/style.css" rel="stylesheet" type="text/css" />
 
   <style>
+    .tableHideToggle {
+      border-left: 3px solid transparent;
+    }
+    .tableHideToggle.active {
+      border-color: #333;
+    }
     .tableHide {
       display: block;
       cursor: pointer;

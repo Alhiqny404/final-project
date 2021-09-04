@@ -210,13 +210,13 @@
               <div class="accordion-body">
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="card sticky-top ">
+                    <div class="card sticky-top p-0">
                       <div class="card-header">
                         Pegawai Menurut Jenis Kelamin
                       </div>
-                      <div class="card-body p-3">
-                        <div class="d-flex justify-content-between align-items-center mb-2 pt-3" onclick="showTable('male')">
-                          <h5 class="text-primary">
+                      <div class="card-body p-0">
+                        <div class="d-flex justify-content-between align-items-center mb-2 pt-3 px-3 tableHideToggle" onclick="showTable('male')">
+                          <h5 class="text-primary" style="cursor:pointer;">
                             <i class="fas fa-male me-2"></i>
                             Laki-Laki
                           </h5>
@@ -227,8 +227,8 @@
                             <h6 class="my-0">7</h6>
                           </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2" onclick="showTable('female')">
-                          <h5 class="text-danger">
+                        <div class="d-flex justify-content-between align-items-center mb-2 px-3 tableHideToggle" onclick="showTable('female')">
+                          <h5 class="text-danger" style="cursor:pointer;">
                             <i class="fas fa-female me-2"></i>
                             Perempuan
                           </h5>
@@ -239,9 +239,9 @@
                             <h6 class="my-0">7</h6>
                           </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center mb-2" onclick="showTable('male_female')">
-                          <h5 class="text-success">
-                            <i class="fas fa-users me-2"></i>
+                        <div class="d-flex justify-content-between align-items-center mb-2 tableHideToggle px-3" onclick="showTable('male_female')">
+                          <h5 class="text-success" style="cursor: pointer;">
+                            <i class="fas fa-users me-2" style="cursor:pointer;"></i>
                             Seluruh Pegawai
                           </h5>
                           <div>
@@ -428,129 +428,158 @@
                     <div class="card p-3">
                       <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">< 20th</button>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">20-30 th</button>
-                          </li>
-                          <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">>30 th</button>
-                          </li>
-                        </ul>
-                        <div class="tab-content" id="myTabContent">
-                          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                            <div class="table-responsive">
-                              <table class="table table-hover mb-0">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th class="border-top-0">No</th>
-                                    <th class="border-top-0">NIP</th>
-                                    <th class="border-top-0">Nama</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      1
-                                    </td>
-                                    <td>
-                                      125543345667
-                                    </td>
-                                    <td>
-                                      ilham
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      1
-                                    </td>
-                                    <td>
-                                      125543345667
-                                    </td>
-                                    <td>
-                                      ilham
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      1
-                                    </td>
-                                    <td>
-                                      125543345667
-                                    </td>
-                                    <td>
-                                      ilham
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td>
-                                      1
-                                    </td>
-                                    <td>
-                                      125543345667
-                                    </td>
-                                    <td>
-                                      ilham
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <!--end table-->
-                            </div>
+                          <button class="nav-link active" id="muda-tab" data-bs-toggle="tab" data-bs-target="#muda" type="button"> &lt;30th </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="menengah-tab" data-bs-toggle="tab" data-bs-target="#menengah" type="button">30-40 th</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#matang" type="button">40-50 th</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#menjelang-pensiun" type="button">&gt;50 th</button>
+                        </li>
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="muda">
+                          <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                              <thead class="thead-light">
+                                <tr>
+                                  <th class="border-top-0">No</th>
+                                  <th class="border-top-0">NIP</th>
+                                  <th class="border-top-0">Nama</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    1
+                                  </td>
+                                  <td>
+                                    125543345667
+                                  </td>
+                                  <td>
+                                    ilham
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    1
+                                  </td>
+                                  <td>
+                                    125543345667
+                                  </td>
+                                  <td>
+                                    ilham
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    1
+                                  </td>
+                                  <td>
+                                    125543345667
+                                  </td>
+                                  <td>
+                                    ilham
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    1
+                                  </td>
+                                  <td>
+                                    125543345667
+                                  </td>
+                                  <td>
+                                    ilham
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!--end table-->
                           </div>
-                          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="table-responsive">
-                              <table class="table table-hover mb-0">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th class="border-top-0">No</th>
-                                    <th class="border-top-0">NIP</th>
-                                    <th class="border-top-0">Nama</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      1
-                                    </td>
-                                    <td>
-                                      125543345667
-                                    </td>
-                                    <td>
-                                      ilham
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <!--end table-->
-                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="menengah">
+                          <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                              <thead class="thead-light">
+                                <tr>
+                                  <th class="border-top-0">No</th>
+                                  <th class="border-top-0">NIP</th>
+                                  <th class="border-top-0">Nama</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    1
+                                  </td>
+                                  <td>
+                                    125543345667
+                                  </td>
+                                  <td>
+                                    ilham menengah
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!--end table-->
                           </div>
-                          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                            <div class="table-responsive">
-                              <table class="table table-hover mb-0">
-                                <thead class="thead-light">
-                                  <tr>
-                                    <th class="border-top-0">No</th>
-                                    <th class="border-top-0">NIP</th>
-                                    <th class="border-top-0">Nama</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      1
-                                    </td>
-                                    <td>
-                                      125543345667
-                                    </td>
-                                    <td>
-                                      ilham
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                              <!--end table-->
-                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="matang">
+                          <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                              <thead class="thead-light">
+                                <tr>
+                                  <th class="border-top-0">No</th>
+                                  <th class="border-top-0">NIP</th>
+                                  <th class="border-top-0">Nama</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    1
+                                  </td>
+                                  <td>
+                                    125543345667
+                                  </td>
+                                  <td>
+                                    ilham matang
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!--end table-->
+                          </div>
+                        </div>
+                        <div class="tab-pane fade" id="menjelang-pensiun">
+                          <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                              <thead class="thead-light">
+                                <tr>
+                                  <th class="border-top-0">No</th>
+                                  <th class="border-top-0">NIP</th>
+                                  <th class="border-top-0">Nama</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    1
+                                  </td>
+                                  <td>
+                                    125543345667
+                                  </td>
+                                  <td>
+                                    ilham menjelang
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                            <!--end table-->
                           </div>
                         </div>
                       </div>
@@ -560,172 +589,180 @@
               </div>
             </div>
           </div>
-          <!-- container -->
+        </div>
+        <!-- container -->
 
-          <!-- modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Nama Pegawai</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <h5 class="text-center">Foto Profile</h5>
-                  <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                      <tr>
-                        <td>
-                          NIP
-                        </td>
-                        <td>
-                          123456
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Nama
-                        </td>
-                        <td>
-                          Ilham Hafidz
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          No. Telp
-                        </td>
-                        <td>
-                          0974567809753
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          Alamat
-                        </td>
-                        <td>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ipsa quibusdam, do odio illum at consectetur labore quaerat dolore et, necessitatibus!
-                        </td>
-                      </tr>
-                    </table>
-                    <!--end table-->
-                  </div>
+        <!-- modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nama Pegawai</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h5 class="text-center">Foto Profile</h5>
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0">
+                    <tr>
+                      <td>
+                        NIP
+                      </td>
+                      <td>
+                        123456
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Nama
+                      </td>
+                      <td>
+                        Ilham Hafidz
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        No. Telp
+                      </td>
+                      <td>
+                        0974567809753
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        Alamat
+                      </td>
+                      <td>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ipsa quibusdam, do odio illum at consectetur labore quaerat dolore et, necessitatibus!
+                      </td>
+                    </tr>
+                  </table>
+                  <!--end table-->
                 </div>
               </div>
             </div>
           </div>
-
-
-          <?php view('_layouts/footer'); ?>
-
         </div>
-        <!-- end page content -->
+
+
+        <?php view('_layouts/footer'); ?>
+
       </div>
-      <!--end page-wrapper-inner -->
+      <!-- end page content -->
     </div>
-    <!-- end page-wrapper -->
-    <?php view('_layouts/js'); ?>
-    <script src="<?=assets_dashboard() ?>plugins/chartjs/chart.min.js"></script>
-    <?php view('_layouts/end'); ?>
+    <!--end page-wrapper-inner -->
+  </div>
+  <!-- end page-wrapper -->
+  <?php view('_layouts/js'); ?>
+  <script src="<?=assets_dashboard() ?>plugins/chartjs/chart.min.js"></script>
+  <?php view('_layouts/end'); ?>
 
 
 
-    <script>
-      const male = document.querySelector('.male');
-      const female = document.querySelector('.female');
-      const male_female = document.querySelector('.male_female');
-      const showTable = ($table)=> {
-        if ($table == 'male') {
-          male.classList.remove('hidden')
-          female.classList.add('hidden')
-          male_female.classList.add('hidden')
-        } else if ($table == 'female') {
-          female.classList.remove('hidden')
-          male.classList.add('hidden')
-          male_female.classList.add('hidden')
-        } else {
-          male_female.classList.remove('hidden')
-          male.classList.add('hidden')
-          female.classList.add('hidden')
-        }
+  <script>
+    const male = document.querySelector('.male');
+    const female = document.querySelector('.female');
+    const male_female = document.querySelector('.male_female');
+    const tableHideToggle = document.querySelectorAll('.tableHideToggle')
+    const showTable = ($table)=> {
+      tableHideToggle.forEach(tableToggle=> {
+        tableToggle.classList.remove('active')
+        tableToggle.addEventListener('click', ()=> {
+          tableToggle.classList.add('active')
+        })
+      })
+      if ($table == 'male') {
+        male.classList.remove('hidden')
+        female.classList.add('hidden')
+        male_female.classList.add('hidden')
+      } else if ($table == 'female') {
+        female.classList.remove('hidden')
+        male.classList.add('hidden')
+        male_female.classList.add('hidden')
+      } else {
+        male_female.classList.remove('hidden')
+        male.classList.add('hidden')
+        female.classList.add('hidden')
       }
+    }
 
 
 
-      !function($) {
-        "use strict";
-
-        var ChartJs = function() {};
-
-        ChartJs.prototype.respChart = function(selector, type, data, options) {
-          // get selector by context
-          var ctx = selector.get(0).getContext("2d");
-          // pointing parent container to make chart js inherit its width
-          var container = $(selector).parent();
-
-          // enable resizing matter
-          //   $(window).resize(generateChart);
-
-          // this function produce the responsive Chart JS
-          function generateChart() {
-            // make chart width fit with its container
-            var ww = selector.attr('width', $(container).width());
-            switch (type) {
-              case 'Doughnut':
-                new Chart(ctx, {
-                  type: 'doughnut', data: data, options: options
-                });
-                break;
-            }
-            // Initiate new chart or Redraw
-
-          };
-          // run function - render chart at first load
-          generateChart();
-        },
-
-        //init
-        ChartJs.prototype.init = function() {
-          //creating lineChart
-
-          //donut chart
-          var donutChart = {
-            labels: [
-              "Kurang dari 20 th",
-              "Antara 20-30 th",
-              "Lebih dari 30 th",
-            ],
-            datasets: [{
-              data: [80,
-                50,
-                100,
-              ],
-              backgroundColor: [
-                "#008ed6",
-                "#e4851a",
-                "#65b32d",
-              ],
-              hoverBackgroundColor: [
-                "#008ed6",
-                "#e4851a",
-                "#65b32d",
-              ],
-              hoverBorderColor: "#fff"
-          }]
-        };
-        this.respChart($("#doughnut"), 'Doughnut', donutChart);
-
-
-      },
-      $.ChartJs = new ChartJs,
-      $.ChartJs.Constructor = ChartJs
-
-    }(window.jQuery),
-
-    //initializing
-    function($) {
+    !function($) {
       "use strict";
-      $.ChartJs.init()
-    }(window.jQuery);
+
+      var ChartJs = function() {};
+
+      ChartJs.prototype.respChart = function(selector, type, data, options) {
+        // get selector by context
+        var ctx = selector.get(0).getContext("2d");
+        // pointing parent container to make chart js inherit its width
+        var container = $(selector).parent();
+
+        // enable resizing matter
+        //   $(window).resize(generateChart);
+
+        // this function produce the responsive Chart JS
+        function generateChart() {
+          // make chart width fit with its container
+          var ww = selector.attr('width', $(container).width());
+          switch (type) {
+            case 'Doughnut':
+              new Chart(ctx, {
+                type: 'doughnut', data: data, options: options
+              });
+              break;
+          }
+          // Initiate new chart or Redraw
+
+        };
+        // run function - render chart at first load
+        generateChart();
+      },
+
+      //init
+      ChartJs.prototype.init = function() {
+        //creating lineChart
+
+        //donut chart
+        var donutChart = {
+          labels: [
+            "Kurang dari 20 th",
+            "Antara 20-30 th",
+            "Lebih dari 30 th",
+          ],
+          datasets: [{
+            data: [80,
+              50,
+              100,
+            ],
+            backgroundColor: [
+              "#008ed6",
+              "#e4851a",
+              "#65b32d",
+            ],
+            hoverBackgroundColor: [
+              "#008ed6",
+              "#e4851a",
+              "#65b32d",
+            ],
+            hoverBorderColor: "#fff"
+        }]
+      };
+      this.respChart($("#doughnut"), 'Doughnut', donutChart);
+
+
+    },
+    $.ChartJs = new ChartJs,
+    $.ChartJs.Constructor = ChartJs
+
+  }(window.jQuery),
+
+  //initializing
+  function($) {
+    "use strict";
+    $.ChartJs.init()
+  }(window.jQuery);
 
 
 
@@ -733,19 +770,19 @@
 
 
 
-  </script>
-  <script type="text/javascript" charset="utf-8">
-    $.getJSON("<?=site_url('api/corona') ?>", function(data) {
-      console.log(data[0].name)
-      $('.corona-meninggal').html(data[0].meninggal);
-      $('.corona-sembuh').html(data[0].sembuh);
-      $('.corona-positif').html(data[0].positif);
-    });
+</script>
+<script type="text/javascript" charset="utf-8">
+  $.getJSON("<?=site_url('api/corona') ?>", function(data) {
+    console.log(data[0].name)
+    $('.corona-meninggal').html(data[0].meninggal);
+    $('.corona-sembuh').html(data[0].sembuh);
+    $('.corona-positif').html(data[0].positif);
+  });
 
 
-    var myModal = document.getElementById('myModal')
-    var myInput = document.getElementById('myInput')
-    myModal.addEventListener('shown.bs.modal', function () {
-      myInput.focus()
-    });
-  </script>
+  var myModal = document.getElementById('myModal')
+  var myInput = document.getElementById('myInput')
+  myModal.addEventListener('shown.bs.modal', function () {
+    myInput.focus()
+  });
+</script>
