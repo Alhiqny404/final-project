@@ -47,6 +47,13 @@ class User extends CI_Controller {
     view('admin/data-user', $data);
   }
 
+  public function add() {
+    $data['jabatan'] = $this->jabatan->getAll();
+    $data['pangkat'] = $this->pangkat->getAll();
+    $data['title'] = 'Add Data User';
+    view('admin/add-user', $data);
+  }
+
   /**
   * Method add
   * Action saat melakukan penambahan data user
@@ -54,7 +61,7 @@ class User extends CI_Controller {
   *
   * @return redirect ke prefix ini
   */
-  public function add() {
+  public function insert() {
     if ($this->user->add() > 0) {
       $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
       redirect($this->prefix);

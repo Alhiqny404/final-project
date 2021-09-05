@@ -30,7 +30,7 @@ $prefix_page = 'admin/kelola/user/';
                     <i class="fa fa-file-import me-2"></i>
                     Import Excel
                   </a>
-                  <a href="" class="btn btn-primary waves-effect text-right mb-4 tambah-data">
+                  <a href="<?=site_url($prefix_page.'add') ?>" class="btn btn-primary waves-effect text-right mb-4 tambah-data">
                     <i class="fa fa-user-plus me-2"></i>
                     Tambah Pegawai
                   </a>
@@ -100,8 +100,8 @@ $prefix_page = 'admin/kelola/user/';
               <h5 class="modal-title" id="exampleModalLabel">Import Data User</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              <form method="post" enctype="multipart/form-data" action="<?=site_url($prefix_page.'import_excel') ?>">
+            <form method="post" enctype="multipart/form-data" action="<?=site_url($prefix_page.'import_excel') ?>">
+              <div class="modal-body">
                 <?=csrf() ?>
                 <div class="form-group">
                   <label for="doc_file">
@@ -109,14 +109,15 @@ $prefix_page = 'admin/kelola/user/';
                   </label>
                   <input type="file" id="input-file-now" class="dropify" required="" name="fileimport" id="fileimport" />
                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">
-                <i class="fas fa-file-import me-2"></i> Import
-              </button>
-            </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-file-import me-2"></i> Import
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -372,13 +373,13 @@ $prefix_page = 'admin/kelola/user/';
 
 <?php if ($this->session->flashdata('success')): ?>
 <script>
-  alertCenter('Berhasil', "<?=$this->session->flashdata('success') ?>", 'success');
+  alertCenter('Berhasil', "<?=$this->session->flashdata('success'); unset($_SESSION['success']); ?>", 'success');
 </script>
 <?php endif; ?>
 
 <?php if ($this->session->flashdata('error')): ?>
 <script>
-  alertCenter('Gagal', "<?=$this->session->flashdata('error') ?>", 'error');
+  alertCenter('Gagal', "<?=$this->session->flashdata('error'); unset($_SESSION['error']); ?>", 'error');
 </script>
 <?php endif; ?>
 
