@@ -29,12 +29,16 @@ $prefix_kelola = 'admin/kelola/';
       <a href="<?=site_url($prefix_admin.'dashboard') ?>"><i class="mdi mdi-monitor"></i><span>Dashboard</span></a>
     </li>
     <li>
+      <a href="<?=site_url($prefix_admin.'beban') ?>"><i class="mdi mdi-monitor"></i><span>Beban Kerja Pegawai</span></a>
+    </li>
+    <li>
       <a href="javascript: void(0);"><i class="mdi mdi-poll"></i><span>Kelola Data</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
       <ul class="nav-second-level" aria-expanded="false">
         <li><a href="<?=site_url($prefix_kelola.'user') ?>">User</a></li>
         <li><a href="<?=site_url($prefix_kelola.'jabatan') ?>">Jabatan</a></li>
         <li><a href="<?=site_url($prefix_kelola.'pangkat') ?>">Pangkat</a></li>
         <li><a href="<?=site_url($prefix_kelola.'jenis_laporan') ?>">Jenis Laporan</a></li>
+        <li><a href="<?=site_url($prefix_kelola.'seksi') ?>">Seksi</a></li>
       </ul>
     </li>
     <?php elseif (sud('role') == 'supervisor'): ?>

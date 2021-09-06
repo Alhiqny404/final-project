@@ -47,6 +47,16 @@ class User_model extends CI_Model {
 
   }
 
+  public function getWhere($where) {
+    return $this->db->get_where($this->table, $where)->result();
+  }
+
+
+  public function getCountWhere($where) {
+    return $this->db->get_where($this->table, $where)->num_rows();
+  }
+
+
 
 
   /**
@@ -146,6 +156,7 @@ class User_model extends CI_Model {
     $this->db->update($this->table, $data, $where);
     return $this->db->affected_rows();
   }
+
 
 
   /**

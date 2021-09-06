@@ -16,6 +16,7 @@ $prefix_page = 'admin/kelola/user/';
     <div class="page-content">
       <div class="container-fluid">
         <div class="card">
+          <h3 class="p-3">Tambah User</h3>
           <div class="card-body">
             <form action="<?=site_url($prefix_page.'insert') ?>" method="post" class="needs-validation" novalidate>
               <?=csrf() ?>
@@ -75,7 +76,7 @@ $prefix_page = 'admin/kelola/user/';
                 </div>
                 <div class="col-md-12 mb-3">
                   <label for="alamat" class="form-label">Alamat Lengkap</label>
-                  <textarea name="alamat" id="alamat" cols="5" class="form-control valtextar" placeholder="Alamat..." required=""></textarea>
+                  <textarea name="alamat" id="alamat" rows="4" class="form-control valtextar" placeholder="Alamat..." required=""></textarea>
                   <div class="invalid-feedback">
                     inputan harus diisi
                   </div>
@@ -140,11 +141,15 @@ $prefix_page = 'admin/kelola/user/';
                 <div class="col-md-12 mt-4">
                   <div class="d-flex justify-content-between">
                     <a href="<?=site_url($prefix_page) ?>" class="btn btn-danger">
-                      Kembali
+                      <i class="fas fa-door-open me-2"></i> Kembali
                     </a>
                     <div>
-                      <button type="reset" class="btn btn-warning">Reset</button>
-                      <button class="btn btn-primary px-5" type="submit">Submit</button>
+                      <button type="reset" class="btn btn-warning">
+                        <i class="fas fa-sync-alt"></i> Reset
+                        </button>
+                      <button class="btn btn-primary px-5" type="submit">
+                        <i class="fas fa-save me-2"></i> Submit
+                        </button>
                     </div>
                   </div>
                 </div>

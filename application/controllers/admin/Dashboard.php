@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller {
     parent::__Construct();
     isLogin();
     isAdmin();
-    model('Document_model', 'document');
+    model('User_model', 'user');
   }
 
   /**
@@ -30,12 +30,24 @@ class Dashboard extends CI_Controller {
   * @return view
   */
   public function index() {
+    $data['user'] = $this->user->getWhere(['role' => 'user']);
+    $data['user_l'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'l']);
+    $data['user_p'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'p']);
 
-    $this->db->select('document.*,user.id,nama_lengkap');
-    $this->db->from('document');
-    $this->db->join('user', 'user.id = document.user_id', 'right');
-    $this->db->where('role', 'pegawai');
-    $data['docs'] = $this->db->get()->result();
+    $data['userUK30'] = null;
+    $data['userUK40'] = null;
+    $data['userUK50'] = null;
+    $data['userUL50'] = null;
+
+    foreach ($data['user'] as $val) {
+      $thn_lahir = substr($val->tgl_lahir, 0, 4);
+      $year_now = date('Y');
+      $umur = $year_now - $thn_lahir;
+      if ($umur < 30) $data['userUK30'] += 1;
+      if ($umur >= 30 && $umur < 40) $data['userUK40'] += 1;
+      if ($umur >= 40 && $umur < 50) $data['userUK50'] += 1;
+      if ($umur >= 50) $data['userUL50'] += 1;
+    }
 
     $data['title'] = 'Dashboard';
     view('admin/dashboard', $data);
