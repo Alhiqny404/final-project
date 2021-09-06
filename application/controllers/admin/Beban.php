@@ -9,6 +9,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 class Beban extends CI_Controller {
 
+
+  /**
+  * Prefix url controller ini
+  *
+  * @var	string
+  */
+  private $prefix = 'admin/beban';
+
+
   /**
   * Class constructor
   * Akan selalu dijalankan ketika masuk pada controller ini
@@ -20,6 +29,8 @@ class Beban extends CI_Controller {
     isLogin();
     isAdmin();
     model('User_model', 'user');
+    model('Seksi_model', 'seksi');
+    model('Beban_kerja_model', 'beban');
   }
 
   /**
@@ -33,6 +44,33 @@ class Beban extends CI_Controller {
     $data['title'] = 'Dashboard';
     view('admin/beban-kerja', $data);
   }
+
+  public function create() {
+    $data['title'] = 'Dashboard';
+    $data['user'] = $this->user->getWhere(['role' => 'user']);
+    $data['seksi'] = $this->seksi->getAll();
+    view('admin/create-beban-kerja', $data);
+  }
+
+
+
+  /**
+  * Method add
+  * Action saat melakukan penambahan data jabatan
+  * Data parsing : session flashdata
+  *
+  * @return redirect ke prefix ini
+  */
+  public function insert() {
+    if ($this->beban->add() > 0) {
+      $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
+      redirect($this->prefix);
+    } else {
+      $this->session->set_flashdata('error', 'Data gagal ditambahkan');
+      redirect($this->prefix);
+    }
+  }
+
 
 
 }

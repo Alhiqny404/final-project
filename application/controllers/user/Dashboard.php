@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller {
     parent::__Construct();
     isLogin();
     isUser();
-    model('Document_model', 'document');
+    model('User_model', 'user');
   }
 
   /**
@@ -31,11 +31,9 @@ class Dashboard extends CI_Controller {
   */
   public function index() {
 
-    $this->db->select('document.*,user.id,nama_lengkap');
-    $this->db->from('document');
-    $this->db->join('user', 'user.id = document.user_id', 'right');
-    $this->db->where('role', 'pegawai');
-    $data['docs'] = $this->db->get()->result();
+    $data['user'] = $this->user->getWhere(['role' => 'user']);
+    $data['user_l'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'l']);
+    $data['user_p'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'p']);
 
     $data['title'] = 'Dashboard';
     view('admin/dashboard', $data);

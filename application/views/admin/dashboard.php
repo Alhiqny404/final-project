@@ -16,9 +16,9 @@
                   <i class="dripicons-user-group font-24 text-secondary"></i>
                 </div>
                 <span class="badge badge-danger text-uppercase">TOTAL Pegawai</span>
-                <h3 class="font-weight-bold"><?=count($user)?></h3>
+                <h3 class="font-weight-bold"><?=count($user) ?></h3>
                 <p class="mb-0 text-muted text-truncate">
-                 INFO DATA PEGAWAI
+                  INFO DATA PEGAWAI
                 </p>
               </div>
             </div>
@@ -30,9 +30,9 @@
                   <i class="dripicons-user-group font-24 text-secondary"></i>
                 </div>
                 <span class="badge badge-info text-uppercase">TOTAL Pegawai Perempuan</span>
-                <h3 class="font-weight-bold"><?=count($user_p)?></h3>
+                <h3 class="font-weight-bold"><?=count($user_p) ?></h3>
                 <p class="mb-0 text-muted text-truncate">
-                 INFO DATA PEGAWAI
+                  INFO DATA PEGAWAI
                 </p>
               </div>
             </div>
@@ -44,7 +44,7 @@
                   <i class="dripicons-user-group font-24 text-secondary"></i>
                 </div>
                 <span class="badge badge-warning text-uppercase">TOTAL Pegawai Laki-laki</span>
-                <h3 class="font-weight-bold"><?=count($user_l)?></h3>
+                <h3 class="font-weight-bold"><?=count($user_l) ?></h3>
                 <p class="mb-0 text-muted text-truncate">
                   INFO DATA PEGAWAI
                 </p>
@@ -56,143 +56,144 @@
         <div class="accordion" id="accordionExample">
 
           <!--
-                                        <div class="accordion-item">
-                                          <h2 class="accordion-header" id="headingOne">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                              Umum
-                                            </button>
-                                          </h2>
-                                          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                            <div class="accordion-body">
-                                              <div class="row">
-                                                <div class="col-md-12">
-                                                  <div class="card">
-                                                    <div class="card-header">
-                                                      Progres Pekerjaan Karyawan
-                                                    </div>
-                                                    <div class="card-body p-3">
-                                                      <div class="table-responsive">
-                                                        <table class="table table-hover mb-0">
-                                                          <thead class="thead-light">
-                                                            <tr>
-                                                              <th class="border-top-0">Nama</th>
-                                                              <th class="border-top-0">WFH</th>
-                                                              <th class="border-top-0">KCO</th>
-                                                            </tr>
-                                                          </thead>
-                                                          <tbody>
-                                                            <tr>
-                                                              <td>
-                                                                Ilham
-                                                              </td>
-                                                              <td>
-                                                                <span class="badge bg-success">selesai</span>
-                                                              </td>
-                                                              <td>
-                                                                <span class="badge bg-danger">belum selesai</span>
-                                                              </td>
-                                                            </tr>
-                                                            <tr>
-                                                              <td>
-                                                                ilham Hafidz
-                                                              </td>
-                                                              <td>
-                                                                <span class="badge bg-success">selesai</span>
-                                                              </td>
-                                                              <td>
-                                                                <span class="badge bg-danger">belum selesai</span>
-                                                              </td>
-                                                            </tr>
-                                                          </tbody>
-                                                        </table>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
+                                                            <div class="accordion-item">
+                                                              <h2 class="accordion-header" id="headingOne">
+                                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                  Umum
+                                                                </button>
+                                                              </h2>
+                                                              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                                <div class="accordion-body">
+                                                                  <div class="row">
+                                                                    <div class="col-md-12">
+                                                                      <div class="card">
+                                                                        <div class="card-header">
+                                                                          Progres Pekerjaan Karyawan
+                                                                        </div>
+                                                                        <div class="card-body p-3">
+                                                                          <div class="table-responsive">
+                                                                            <table class="table table-hover mb-0">
+                                                                              <thead class="thead-light">
+                                                                                <tr>
+                                                                                  <th class="border-top-0">Nama</th>
+                                                                                  <th class="border-top-0">WFH</th>
+                                                                                  <th class="border-top-0">KCO</th>
+                                                                                </tr>
+                                                                              </thead>
+                                                                              <tbody>
+                                                                                <tr>
+                                                                                  <td>
+                                                                                    Ilham
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <span class="badge bg-success">selesai</span>
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <span class="badge bg-danger">belum selesai</span>
+                                                                                  </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                  <td>
+                                                                                    ilham Hafidz
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <span class="badge bg-success">selesai</span>
+                                                                                  </td>
+                                                                                  <td>
+                                                                                    <span class="badge bg-danger">belum selesai</span>
+                                                                                  </td>
+                                                                                </tr>
+                                                                              </tbody>
+                                                                            </table>
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
 
-                                                <div class="card p-3 shadow-sm">
-                                                  <div class="row">
-                                                    <div class="col-md-6">
-                                                      <div class="card">
-                                                        <div class="card-body new-user order-list">
-                                                          <h4 class="header-title mt-0 mb-3">Selesai</h4>
-                                                          <div class="table-responsive">
-                                                            <table class="table table-hover mb-0">
-                                                              <thead class="thead-light">
-                                                                <tr>
-                                                                  <th class="border-top-0">No</th>
-                                                                  <th class="border-top-0">Nama pegawai</th>
-                                                                  <th class="border-top-0">Tanggal</th>
-                                                                  <th class="border-top-0">Opsi</th>
-                                                                </tr>
-                                                              </thead>
-                                                              <tbody>
-                                                                <?php $no = 1; foreach ($docs as $val): ?>
-                                                                <?php if (!empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
-                                                                <tr>
-                                                                  <td>
-                                                                    <?=$no++ ?>
-                                                                  </td>
-                                                                  <td>
-                                                                    <?=$val->fullname ?>
-                                                                  </td>
-                                                                  <td><?=time_ago($val->created_at) ?></td>
-                                                                  <td>
-                                                                    <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
-                                                                  </td>
-                                                                </tr>
-                                                                <?php endif; ?>
-                                                                <?php endforeach; ?>
-                                                              </tbody>
-                                                            </table>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                      <div class="card">
-                                                        <div class="card-body new-user order-list">
-                                                          <h4 class="header-title mt-0 mb-3">Belum</h4>
-                                                          <div class="table-responsive">
-                                                            <table class="table table-hover mb-0">
-                                                              <thead class="thead-light">
-                                                                <tr>
-                                                                  <th class="border-top-0">No</th>
-                                                                  <th class="border-top-0">Nama pegawai</th>
-                                                                  <th class="border-top-0">Tanggal</th>
-                                                                  <th class="border-top-0">Opsi</th>
-                                                                </tr
-                                                              </thead>
-                                                              <tbody>
-                                                                <?php $no = 1; foreach ($docs as $val): ?>
-                                                                <?php if (empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
-                                                                <tr>
-                                                                  <td>
-                                                                    <?=$no++ ?>
-                                                                  </td>
-                                                                  <td>
-                                                                    <?=$val->fullname ?>
-                                                                  </td>
-                                                                  <td> - </td>
-                                                                  <td>
-                                                                    <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
-                                                                  </td>
-                                                                </tr>
-                                                                <?php endif; ?>
-                                                                <?php endforeach; ?>
-                                                              </tbody>
-                                                            </table>
-                                                          </div>
-                                                        </div>
-                                                      </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                        -->
+                                                                    <div class="card p-3 shadow-sm">
+                                                                      <div class="row">
+                                                                        <div class="col-md-6">
+                                                                          <div class="card">
+                                                                            <div class="card-body new-user order-list">
+                                                                              <h4 class="header-title mt-0 mb-3">Selesai</h4>
+                                                                              <div class="table-responsive">
+                                                                                <table class="table table-hover mb-0">
+                                                                                  <thead class="thead-light">
+                                                                                    <tr>
+                                                                                      <th class="border-top-0">No</th>
+                                                                                      <th class="border-top-0">Nama pegawai</th>
+                                                                                      <th class="border-top-0">Tanggal</th>
+                                                                                      <th class="border-top-0">Opsi</th>
+                                                                                    </tr>
+                                                                                  </thead>
+                                                                                  <tbody>
+                                                                                    <?php $no = 1; foreach ($docs as $val): ?>
+                                                                                    <?php if (!empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
+                                                                                    <tr>
+                                                                                      <td>
+                                                                                        <?=$no++ ?>
+                                                                                      </td>
+                                                                                      <td>
+                                                                                        <?=$val->fullname ?>
+                                                                                      </td>
+                                                                                      <td><?=time_ago($val->created_at) ?></td>
+                                                                                      <td>
+                                                                                        <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
+                                                                                      </td>
+                                                                                    </tr>
+                                                                                    <?php endif; ?>
+                                                                                    <?php endforeach; ?>
+                                                                                  </tbody>
+                                                                                </table>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                          <div class="card">
+                                                                            <div class="card-body new-user order-list">
+                                                                              <h4 class="header-title mt-0 mb-3">Belum</h4>
+                                                                              <div class="table-responsive">
+                                                                                <table class="table table-hover mb-0">
+                                                                                  <thead class="thead-light">
+                                                                                    <tr>
+                                                                                      <th class="border-top-0">No</th>
+                                                                                      <th class="border-top-0">Nama pegawai</th>
+                                                                                      <th class="border-top-0">Tanggal</th>
+                                                                                      <th class="border-top-0">Opsi</th>
+                                                                                    </tr
+                                                                                  </thead>
+                                                                                  <tbody>
+                                                                                    <?php $no = 1; foreach ($docs as $val): ?>
+                                                                                    <?php if (empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
+                                                                                    <tr>
+                                                                                      <td>
+                                                                                        <?=$no++ ?>
+                                                                                      </td>
+                                                                                      <td>
+                                                                                        <?=$val->fullname ?>
+                                                                                      </td>
+                                                                                      <td> - </td>
+                                                                                      <td>
+                                                                                        <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
+                                                                                      </td>
+                                                                                    </tr>
+                                                                                    <?php endif; ?>
+                                                                                    <?php endforeach; ?>
+                                                                                  </tbody>
+                                                                                </table>
+                                                                              </div>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            -->
+          <?php if (sud('role') == 'admin' || sud('supervisor')): ?>
 
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
@@ -277,7 +278,7 @@
                                   <?=$val->nama_lengkap ?>
                                 </td>
                                 <td>
-                                  <button type="button" class="btnbtn-sm  btn-primary" data-bs-toggle="modal" onclick="detailUser(<?=$val->nip?>,'<?=$val->nama_lengkap?>','<?=$val->no_hp?>','<?=$val->alamat?>')" data-bs-target="#exampleModal">
+                                  <button type="button" class="btnbtn-sm  btn-primary" data-bs-toggle="modal" onclick="detailUser(<?=$val->nip ?>,'<?=$val->nama_lengkap ?>','<?=$val->no_hp ?>','<?=$val->alamat ?>')" data-bs-target="#exampleModal">
                                     <i class="fas fa-eye"></i>
                                   </button>
                                 </td>
@@ -320,7 +321,7 @@
                                   <?=$val->nama_lengkap ?>
                                 </td>
                                 <td>
-                                  <button type="button" class="btnbtn-sm  btn-primary" onclick="detailUser(<?=$val->nip?>,'<?=$val->nama_lengkap?>','<?=$val->no_hp?>','<?=$val->alamat?>')" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  <button type="button" class="btnbtn-sm  btn-primary" onclick="detailUser(<?=$val->nip ?>,'<?=$val->nama_lengkap ?>','<?=$val->no_hp ?>','<?=$val->alamat ?>')" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     <i class="fas fa-eye"></i>
                                   </button>
                                 </td>
@@ -354,10 +355,10 @@
                               ?>
                               <tr>
                                 <td>
-                                  <?= isset($user_l[$i])  ? $user_l[$i]->nama_lengkap : ' - '?>
+                                  <?= isset($user_l[$i])  ? $user_l[$i]->nama_lengkap : ' - ' ?>
                                 </td>
                                 <td>
-                                  <?= isset($user_p[$i])  ? $user_p[$i]->nama_lengkap : ' - '?>
+                                  <?= isset($user_p[$i])  ? $user_p[$i]->nama_lengkap : ' - ' ?>
                                 </td>
                               </tr>
                               <?php
@@ -550,6 +551,8 @@
               </div>
             </div>
           </div>
+          <?php endif; ?>
+
         </div>
         <!-- container -->
 
@@ -621,16 +624,16 @@
 
 
   <script>
-  
-  
-  function detailUser(nip,nama,no_hp,alamat){
-    $('.show_nip').html(nip);
-    $('.show_nama').html(nama);
-    $('.show_no_hp').html(no_hp);
-    $('.show_alamat').html(alamat);
-  }
-  
-  
+
+
+    function detailUser(nip, nama, no_hp, alamat) {
+      $('.show_nip').html(nip);
+      $('.show_nama').html(nama);
+      $('.show_no_hp').html(no_hp);
+      $('.show_alamat').html(alamat);
+    }
+
+
     const male = document.querySelector('.male');
     const female = document.querySelector('.female');
     const male_female = document.querySelector('.male_female');

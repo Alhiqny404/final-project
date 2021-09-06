@@ -146,10 +146,10 @@ $prefix_page = 'admin/kelola/user/';
                     <div>
                       <button type="reset" class="btn btn-warning">
                         <i class="fas fa-sync-alt"></i> Reset
-                        </button>
+                      </button>
                       <button class="btn btn-primary px-5" type="submit">
                         <i class="fas fa-save me-2"></i> Submit
-                        </button>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -170,32 +170,6 @@ $prefix_page = 'admin/kelola/user/';
 <!-- end page-wrapper -->
 <?php view('_layouts/js'); ?>
 
-<script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function () {
-    'use strict'
-
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-    .forEach(function (form) {
-      form.addEventListener('submit', function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-        if ($('.valtextar').val() == '') {
-          $('.valtextar').addClass('is-invalid')
-        }
-
-        form.classList.add('was-validated')
-      },
-        false)
-    })
-  })()
-</script>
 
 
 <?php if ($this->session->flashdata('success')): ?>
