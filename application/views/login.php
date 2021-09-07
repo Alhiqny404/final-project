@@ -15,7 +15,21 @@
   <link href="<?=assets_dashboard(); ?>css/icons.css" rel="stylesheet" type="text/css" />
   <link href="<?=assets_dashboard(); ?>css/metismenu.min.css" rel="stylesheet" type="text/css" />
   <link href="<?=assets_dashboard(); ?>css/style.css" rel="stylesheet" type="text/css" />
-
+  <style>
+    .line {
+      width: calc(100%/3);
+      height: 13px;
+    }
+    .biru {
+      background-color: blue;
+    }
+    .hijau {
+      background-color: green;
+    }
+    .orange {
+      background-color: orange;
+    }
+  </style>
 </head>
 
 <body class="account-body bg-light">
@@ -97,6 +111,11 @@
     </div>
   </div>
   <!-- End Log In page -->
+  <div class="lines d-flex justify-content-between">
+    <div class="line biru"></div>
+    <div class="line hijau"></div>
+    <div class="line orange"></div>
+  </div>
 
 
   <!-- jQuery  -->

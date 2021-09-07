@@ -1,6 +1,38 @@
 <?php view('_layouts/header'); ?>
-<?php  view('_layouts/topbar'); ?>
-<?php view('_layouts/wrapper-img'); ?>
+
+<style>
+  .exKerja {
+    width: 50px;
+    height: 50px;
+  }
+  .kerja {
+    width: 35px;
+    height: 6px;
+  }
+  .abu {
+    background: #cfcfc4;
+  }
+  .biru {
+    background-color: #93CAED;
+  }
+  .orange {
+    background-color: #FF7E47;
+  }
+  .hijau {
+    background-color: #ACD1AF;
+  }
+  .ungu {
+    background-color: #9B9BEE;
+  }
+  .kuning {
+    background-color: #EEEE9B;
+  }
+</style>
+
+<?php  view('_layouts/topbar');
+?>
+<?php view('_layouts/wrapper-img');
+?>
 <div class="page-wrapper">
   <div class="page-wrapper-inner">
 
@@ -56,143 +88,512 @@
         <div class="accordion" id="accordionExample">
 
           <!--
-                                                            <div class="accordion-item">
-                                                              <h2 class="accordion-header" id="headingOne">
-                                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                                  Umum
-                                                                </button>
-                                                              </h2>
-                                                              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                                                                <div class="accordion-body">
-                                                                  <div class="row">
-                                                                    <div class="col-md-12">
-                                                                      <div class="card">
-                                                                        <div class="card-header">
-                                                                          Progres Pekerjaan Karyawan
-                                                                        </div>
-                                                                        <div class="card-body p-3">
-                                                                          <div class="table-responsive">
-                                                                            <table class="table table-hover mb-0">
-                                                                              <thead class="thead-light">
-                                                                                <tr>
-                                                                                  <th class="border-top-0">Nama</th>
-                                                                                  <th class="border-top-0">WFH</th>
-                                                                                  <th class="border-top-0">KCO</th>
-                                                                                </tr>
-                                                                              </thead>
-                                                                              <tbody>
-                                                                                <tr>
-                                                                                  <td>
-                                                                                    Ilham
-                                                                                  </td>
-                                                                                  <td>
-                                                                                    <span class="badge bg-success">selesai</span>
-                                                                                  </td>
-                                                                                  <td>
-                                                                                    <span class="badge bg-danger">belum selesai</span>
-                                                                                  </td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                  <td>
-                                                                                    ilham Hafidz
-                                                                                  </td>
-                                                                                  <td>
-                                                                                    <span class="badge bg-success">selesai</span>
-                                                                                  </td>
-                                                                                  <td>
-                                                                                    <span class="badge bg-danger">belum selesai</span>
-                                                                                  </td>
-                                                                                </tr>
-                                                                              </tbody>
-                                                                            </table>
-                                                                          </div>
-                                                                        </div>
-                                                                      </div>
-                                                                    </div>
+                                                                                                                                                                                                                                                                              <div class="accordion-item">
+                                                                                                                                                                                                                                                                                <h2 class="accordion-header" id="headingOne">
+                                                                                                                                                                                                                                                                                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                                                                                                                                                                                                                                                    Umum
+                                                                                                                                                                                                                                                                                  </button>
+                                                                                                                                                                                                                                                                                </h2>
+                                                                                                                                                                                                                                                                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                                                                                                                                                                                                                                                                  <div class="accordion-body">
+                                                                                                                                                                                                                                                                                    <div class="row">
+                                                                                                                                                                                                                                                                                      <div class="col-md-12">
+                                                                                                                                                                                                                                                                                        <div class="card">
+                                                                                                                                                                                                                                                                                          <div class="card-header">
+                                                                                                                                                                                                                                                                                            Progres Pekerjaan Karyawan
+                                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                                          <div class="card-body p-3">
+                                                                                                                                                                                                                                                                                            <div class="table-responsive">
+                                                                                                                                                                                                                                                                                              <table class="table table-hover mb-0">
+                                                                                                                                                                                                                                                                                                <thead class="thead-light">
+                                                                                                                                                                                                                                                                                                  <tr>
+                                                                                                                                                                                                                                                                                                    <th class="border-top-0">Nama</th>
+                                                                                                                                                                                                                                                                                                    <th class="border-top-0">WFH</th>
+                                                                                                                                                                                                                                                                                                    <th class="border-top-0">KCO</th>
+                                                                                                                                                                                                                                                                                                  </tr>
+                                                                                                                                                                                                                                                                                                </thead>
+                                                                                                                                                                                                                                                                                                <tbody>
+                                                                                                                                                                                                                                                                                                  <tr>
+                                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                                      Ilham
+                                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                                      <span class="badge bg-success">selesai</span>
+                                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                                      <span class="badge bg-danger">belum selesai</span>
+                                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                                  </tr>
+                                                                                                                                                                                                                                                                                                  <tr>
+                                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                                      ilham Hafidz
+                                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                                      <span class="badge bg-success">selesai</span>
+                                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                                    <td>
+                                                                                                                                                                                                                                                                                                      <span class="badge bg-danger">belum selesai</span>
+                                                                                                                                                                                                                                                                                                    </td>
+                                                                                                                                                                                                                                                                                                  </tr>
+                                                                                                                                                                                                                                                                                                </tbody>
+                                                                                                                                                                                                                                                                                              </table>
+                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                      </div>
 
-                                                                    <div class="card p-3 shadow-sm">
-                                                                      <div class="row">
-                                                                        <div class="col-md-6">
-                                                                          <div class="card">
-                                                                            <div class="card-body new-user order-list">
-                                                                              <h4 class="header-title mt-0 mb-3">Selesai</h4>
-                                                                              <div class="table-responsive">
-                                                                                <table class="table table-hover mb-0">
-                                                                                  <thead class="thead-light">
-                                                                                    <tr>
-                                                                                      <th class="border-top-0">No</th>
-                                                                                      <th class="border-top-0">Nama pegawai</th>
-                                                                                      <th class="border-top-0">Tanggal</th>
-                                                                                      <th class="border-top-0">Opsi</th>
-                                                                                    </tr>
-                                                                                  </thead>
-                                                                                  <tbody>
-                                                                                    <?php $no = 1; foreach ($docs as $val): ?>
-                                                                                    <?php if (!empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        <?=$no++ ?>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <?=$val->fullname ?>
-                                                                                      </td>
-                                                                                      <td><?=time_ago($val->created_at) ?></td>
-                                                                                      <td>
-                                                                                        <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <?php endif; ?>
-                                                                                    <?php endforeach; ?>
-                                                                                  </tbody>
-                                                                                </table>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                          <div class="card">
-                                                                            <div class="card-body new-user order-list">
-                                                                              <h4 class="header-title mt-0 mb-3">Belum</h4>
-                                                                              <div class="table-responsive">
-                                                                                <table class="table table-hover mb-0">
-                                                                                  <thead class="thead-light">
-                                                                                    <tr>
-                                                                                      <th class="border-top-0">No</th>
-                                                                                      <th class="border-top-0">Nama pegawai</th>
-                                                                                      <th class="border-top-0">Tanggal</th>
-                                                                                      <th class="border-top-0">Opsi</th>
-                                                                                    </tr
-                                                                                  </thead>
-                                                                                  <tbody>
-                                                                                    <?php $no = 1; foreach ($docs as $val): ?>
-                                                                                    <?php if (empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
-                                                                                    <tr>
-                                                                                      <td>
-                                                                                        <?=$no++ ?>
-                                                                                      </td>
-                                                                                      <td>
-                                                                                        <?=$val->fullname ?>
-                                                                                      </td>
-                                                                                      <td> - </td>
-                                                                                      <td>
-                                                                                        <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
-                                                                                      </td>
-                                                                                    </tr>
-                                                                                    <?php endif; ?>
-                                                                                    <?php endforeach; ?>
-                                                                                  </tbody>
-                                                                                </table>
-                                                                              </div>
-                                                                            </div>
-                                                                          </div>
-                                                                        </div>
-                                                                      </div>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                              </div>
-                                                            </div>
-                                                            -->
+                                                                                                                                                                                                                                                                                      <div class="card p-3 shadow-sm">
+                                                                                                                                                                                                                                                                                        <div class="row">
+                                                                                                                                                                                                                                                                                          <div class="col-md-6">
+                                                                                                                                                                                                                                                                                            <div class="card">
+                                                                                                                                                                                                                                                                                              <div class="card-body new-user order-list">
+                                                                                                                                                                                                                                                                                                <h4 class="header-title mt-0 mb-3">Selesai</h4>
+                                                                                                                                                                                                                                                                                                <div class="table-responsive">
+                                                                                                                                                                                                                                                                                                  <table class="table table-hover mb-0">
+                                                                                                                                                                                                                                                                                                    <thead class="thead-light">
+                                                                                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                                                                                        <th class="border-top-0">No</th>
+                                                                                                                                                                                                                                                                                                        <th class="border-top-0">Nama pegawai</th>
+                                                                                                                                                                                                                                                                                                        <th class="border-top-0">Tanggal</th>
+                                                                                                                                                                                                                                                                                                        <th class="border-top-0">Opsi</th>
+                                                                                                                                                                                                                                                                                                      </tr>
+                                                                                                                                                                                                                                                                                                    </thead>
+                                                                                                                                                                                                                                                                                                    <tbody>
+                                                                                                                                                                                                                                                                                                      <?php $no = 1; foreach ($docs as $val): ?>
+                                                                                                                                                                                                                                                                                                      <?php if (!empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
+                                                                                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                          <?=$no++ ?>
+                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                          <?=$val->fullname ?>
+                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                        <td><?=time_ago($val->created_at) ?></td>
+                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                          <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
+                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                      </tr>
+                                                                                                                                                                                                                                                                                                      <?php endif; ?>
+                                                                                                                                                                                                                                                                                                      <?php endforeach; ?>
+                                                                                                                                                                                                                                                                                                    </tbody>
+                                                                                                                                                                                                                                                                                                  </table>
+                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                                          <div class="col-md-6">
+                                                                                                                                                                                                                                                                                            <div class="card">
+                                                                                                                                                                                                                                                                                              <div class="card-body new-user order-list">
+                                                                                                                                                                                                                                                                                                <h4 class="header-title mt-0 mb-3">Belum</h4>
+                                                                                                                                                                                                                                                                                                <div class="table-responsive">
+                                                                                                                                                                                                                                                                                                  <table class="table table-hover mb-0">
+                                                                                                                                                                                                                                                                                                    <thead class="thead-light">
+                                                                                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                                                                                        <th class="border-top-0">No</th>
+                                                                                                                                                                                                                                                                                                        <th class="border-top-0">Nama pegawai</th>
+                                                                                                                                                                                                                                                                                                        <th class="border-top-0">Tanggal</th>
+                                                                                                                                                                                                                                                                                                        <th class="border-top-0">Opsi</th>
+                                                                                                                                                                                                                                                                                                      </tr
+                                                                                                                                                                                                                                                                                                    </thead>
+                                                                                                                                                                                                                                                                                                    <tbody>
+                                                                                                                                                                                                                                                                                                      <?php $no = 1; foreach ($docs as $val): ?>
+                                                                                                                                                                                                                                                                                                      <?php if (empty($val->document_file && $val->created_at >= date("Y-m-01 00:00:00") && $val->created_at <= date('Y-m-t 23:59:59'))): ?>
+                                                                                                                                                                                                                                                                                                      <tr>
+                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                          <?=$no++ ?>
+                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                          <?=$val->fullname ?>
+                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                        <td> - </td>
+                                                                                                                                                                                                                                                                                                        <td>
+                                                                                                                                                                                                                                                                                                          <a href="javascript:void(0)" class="btn btn-primary">Detail</a>
+                                                                                                                                                                                                                                                                                                        </td>
+                                                                                                                                                                                                                                                                                                      </tr>
+                                                                                                                                                                                                                                                                                                      <?php endif; ?>
+                                                                                                                                                                                                                                                                                                      <?php endforeach; ?>
+                                                                                                                                                                                                                                                                                                    </tbody>
+                                                                                                                                                                                                                                                                                                  </table>
+                                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                                                                          </div>
+                                                                                                                                                                                                                                                                                        </div>
+                                                                                                                                                                                                                                                                                      </div>
+                                                                                                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                                                                                                  </div>
+                                                                                                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                                                                                              -->
+          <div class="accordion-item active">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kinerja" aria-expanded="false" aria-controls="collapseTwo">
+                Kinerja Pegawai
+              </button>
+            </h2>
+            <div id="kinerja" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="card p-3">
+                  <table class="table table-stripped table-hover">
+                    <thead>
+                      <tr>
+                        <th>Nama Pegawai</th>
+                        <th>Sudah</th>
+                        <th>Belum</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Ilham Hafidz</td>
+                        <td>
+                          <span class="badge bg-success">WFH</span>
+                          <span class="badge bg-success">WFo</span>
+                        </td>
+                        <td>
+                          <span class="badge bg-danger">KCO</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Arradhea</td>
+                        <td>
+                          <span class="badge bg-success">WFH</span>
+                          <span class="badge bg-success">WFo</span>
+                          <span class="badge bg-success">KCO</span>
+                        </td>
+                        <td>
+                          -
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Alhiqny</td>
+                        <td>
+                          -
+                        </td>
+                        <td>
+                          <span class="badge bg-danger">WFH</span>
+                          <span class="badge bg-danger">WFo</span>
+                          <span class="badge bg-danger">KCO</span>
+                          -
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#beban" aria-expanded="false" aria-controls="collapseTwo">
+                Beban Kerja Pegawai
+              </button>
+            </h2>
+            <div id="beban" class="accordion-collapse collapse" aria-labelledby="headingTwo">
+              <div class="accordion-body">
+                <div class="card p-3">
+                  <button type="button" class="btn btn-primary mb-4 w-25" data-bs-toggle="modal" data-bs-target="#colorCode">
+ Lihat Kode Warna
+</button>
+                  <table class="table table-striped table-hover table-responsive">
+                    <thead>
+                      <tr>
+                        <th rowspan="2" style="white-space: nowrap;" class="bg-info text-white">
+                          <h6 class="mb-4 mx-3"> Nama Pegawai</h6>
+                        </th>
+                        <th colspan="12" class="text-center bg-success text-white">Beban Kerja</th>
+                      </tr>
+                      <tr>
+                        <td class="text-center">Jan</td>
+                        <td class="text-center">Feb</td>
+                        <td class="text-center">Mar</td>
+                        <td class="text-center">Apr</td>
+                        <td class="text-center">Mei</td>
+                        <td class="text-center">Jun</td>
+                        <td class="text-center">Jul</td>
+                        <td class="text-center">Agt</td>
+                        <td class="text-center">Sep</td>
+                        <td class="text-center">Okt</td>
+                        <td class="text-center">Nov</td>
+                        <td class="text-center">Des</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Ilham</td>
+                        <td scope="januari">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="februari">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="maret">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="april">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="mei">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="juni">
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="juli">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="agustus">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                        </td>
+                        <td scope="september">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="oktober">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                        </td>
+                        <td scope="november">
+                          <div class="kerja abu"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="desember">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Ilham</td>
+                        <td scope="januari">
+                          <div class="kerja abu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="februari">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="maret">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="april">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="mei">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="juni">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="juli">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="agustus">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="september">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="oktober">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="november">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                        <td scope="desember">
+                          <div class="kerja abu"></div>
+                          <div class="kerja biru"></div>
+                          <div class="kerja orange"></div>
+                          <div class="kerja hijau"></div>
+                          <div class="kerja ungu"></div>
+                          <div class="kerja kuning"></div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div class="modal fade" id="colorCode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Kode Warna Seksi</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="d-flex justify-content-between mb-3">
+                            <div style="width: 70px" class="me-2">
+                              <div class="abu exKerja rounded m-auto"></div>
+                            </div>
+                            <div style="width: 250px">
+                              <h4 class="mb-0 text-dark">Umum</h4>
+                              <h6 class="text-muted my-0">Abu-abu</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+
+                          <div class="d-flex justify-content-between mb-3">
+                            <div style="width: 70px" class="me-2">
+                              <div class="biru exKerja rounded m-auto"></div>
+                            </div>
+                            <div style="width: 250px">
+                              <h4 class="mb-0 text-dark">Sosial</h4>
+                              <h6 class="text-muted my-0">Biru</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+
+                          <div class="d-flex justify-content-between mb-3">
+                            <div style="width: 70px" class="me-2">
+                              <div class="orange exKerja rounded m-auto"></div>
+                            </div>
+                            <div style="width: 250px">
+                              <h4 class="mb-0 text-dark">Distribusi</h4>
+                              <h6 class="text-muted my-0">Orange</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+
+                          <div class="d-flex justify-content-between mb-3">
+                            <div style="width: 70px" class="me-2">
+                              <div class="hijau exKerja rounded m-auto"></div>
+                            </div>
+                            <div style="width: 250px">
+                              <h4 class="mb-0 text-dark">Produksi</h4>
+                              <h6 class="text-muted my-0">Hijau</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+
+                          <div class="d-flex justify-content-between mb-3">
+                            <div style="width: 70px" class="me-2">
+                              <div class="ungu exKerja rounded m-auto"></div>
+                            </div>
+                            <div style="width: 250px">
+                              <h4 class="mb-0 text-dark">Nerwilis</h4>
+                              <h6 class="text-muted my-0">Ungu</h6>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="d-flex justify-content-between mb-3">
+                            <div style="width: 70px" class="me-2">
+                              <div class="kuning exKerja rounded m-auto"></div>
+                            </div>
+                            <div style="width: 250px">
+                              <h4 class="mb-0 text-dark">IPDS</h4>
+                              <h6 class="text-muted my-0">Kuning</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+      </div>
+    </div>
+  </div>
+</div>
+              </div>
+            </div>
+          </div>
           <?php if (sud('role') == 'admin' || sud('supervisor')): ?>
 
           <div class="accordion-item">
