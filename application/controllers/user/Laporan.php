@@ -40,6 +40,7 @@ class Laporan extends CI_Controller {
   * @return view
   */
   public function index() {
+
     $this->db->order_by('tgl_upload', 'desc');
     $data['laporan'] = $this->laporan->getMe();
     $data['jabatan'] = $this->jabatan->getAll();

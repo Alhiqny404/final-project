@@ -84,8 +84,8 @@ class Laporan_model extends CI_Model {
       $this->db->insert($this->table, $data);
       return $this->db->insert_id();
     } else {
-      echo   $image_error = $this->upload->display_errors();
-      die;
+      $this->session->set_userdata(['msg_error' => $this->upload->display_errors()]);
+      return FALSE;
     }
 
   }
@@ -94,7 +94,7 @@ class Laporan_model extends CI_Model {
   private function _uploadFile($fileName) {
     $config = [
       'upload_path' => $this->uploadPath,
-      'allowed_types' => 'png|jpg|jpeg|doc|docx|pdf|xls|xlsx',
+      'allowed_types' => 'png|jpg|jpeg|doc|docx|pdf|xls|xlsx|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'max_size' => '10048',
       'file_name' => $fileName
     ];

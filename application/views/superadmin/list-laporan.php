@@ -215,7 +215,7 @@ $prefix_page = 'superadmin/laporan/';
           <label>Respon</label>
           <select class="form-control" name="status" id="status" required>
             <option value="" selected="" disabled="">-- BELUM DIPILIH --</option>
-            <option value="2">Accept</option>
+            <option value="2">Approve</option>
             <option value="3">Reject</option>
           </select>
         </div>
@@ -242,13 +242,13 @@ $prefix_page = 'superadmin/laporan/';
 
 <?php if ($this->session->flashdata('success')): ?>
 <script>
-  alertCenter('Berhasil', "<?=$this->session->flashdata('success') ?>", 'success');
+  alertCenter('Berhasil', "<?=$this->session->flashdata('success'); unset($_SESSION['success']) ?>", 'success');
 </script>
 <?php endif; ?>
 
 <?php if ($this->session->flashdata('error')): ?>
 <script>
-  alertCenter('Gagal', "<?=$this->session->flashdata('error') ?>", 'error');
+  alertCenter('Gagal', "<?=$this->session->flashdata('error'); unset($_SESSION['error']) ?>", 'error');
 </script>
 <?php endif; ?>
 

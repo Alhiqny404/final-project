@@ -44,6 +44,18 @@ function dd($data) {
   die;
 }
 
+function CLBI($user_id,$bool){
+  $ci = get_instance();
+  $jl = $ci->db->get('jenis_laporan')->result();
+  $res = '';
+  $bg = $bool == TRUE ? 'bg-success' : 'bg-danger';
+  foreach ($jl as $val){
+      $cek =$ci->db->get_where('laporan',['user_id'=>$user_id,'jenis_laporan_id'=>$val->id])->num_rows();
+      if($cek == $bool) $res .= '<span class="badge '.$bg.'">'.$val->nama_laporan.'</span> ';
+  }
+  return $res;
+}
+
 function uri($segment = null) {
   $ci = get_instance();
   return $ci->uri->segment($segment);
