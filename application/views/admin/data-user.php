@@ -59,15 +59,7 @@ $prefix_page = 'admin/kelola/user/';
                         <td><?=$val->nama_pangkat; ?></td>
                         <td>
                           <center>
-                            <button type="button" class="btn btn-sm btn-success mr-2 edit-table"
-                              data-id="<?=$val->id ?>"
-                              data-nip="<?=$val->nip ?>"
-                              data-nama="<?=$val->nama_lengkap ?>"
-                              data-jabatan-id="<?=$val->jabatan_id ?>"
-                              data-pangkat-id="<?=$val->pangkat_id ?>"
-                              data-role="<?=$val->role ?>"
-
-                              ><i class="fas fa-edit"></i></button>
+                            <a href="<?=site_url($prefix_page.'edit/'.$val->id) ?>" class="btn btn-sm btn-success mr-2"><i class="fas fa-edit"></i></a>
                             <button type="button" class="btn btn-sm btn-danger delete-table"
                               data-id="<?=$val->id ?>"
                               data-nama="<?=$val->nama_lengkap ?>"><i class="fas fa-trash-alt"></i></button>

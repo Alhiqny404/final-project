@@ -44,30 +44,30 @@ function dd($data) {
   die;
 }
 
-function CLBI($user_id,$bool){
+function CLBI($user_id, $bool) {
   $ci = get_instance();
   $jl = $ci->db->get('jenis_laporan')->result();
   $res = '';
   $bg = $bool == TRUE ? 'bg-success' : 'bg-danger';
-  foreach ($jl as $val){
-      $cek =$ci->db->get_where('laporan',['user_id'=>$user_id,'jenis_laporan_id'=>$val->id])->num_rows();
-      if($cek == $bool) $res .= '<span class="badge '.$bg.'">'.$val->nama_laporan.'</span> ';
+  foreach ($jl as $val) {
+    $cek = $ci->db->get_where('laporan', ['user_id' => $user_id, 'jenis_laporan_id' => $val->id])->num_rows();
+    if ($cek == $bool) $res .= '<span class="badge '.$bg.'">'.$val->nama_laporan.'</span> ';
   }
   return $res;
 }
 
-function BKBI($user_id,$bulan){
-  
+function BKBI($user_id, $bulan) {
+
   $where = [
-  'user_id'=> $user_id,
-  "MONTH(tgl_buat)" => $bulan,
-  "YEAR(tgl_buat)" => date('Y'),
+    'user_id' => $user_id,
+    "MONTH(tgl_buat)" => $bulan,
+    "YEAR(tgl_buat)" => date('Y'),
   ];
-  
+
   $ci = get_instance();
-  $ci->db->select('beban_kerja.*,seksi.warna');
+  $ci->db->select('beban_kerja.*,seksi.warna,seksi.nama_seksi');
   $ci->db->from('beban_kerja');
-  $ci->db->join('seksi','beban_kerja.seksi_id = seksi.id');
+  $ci->db->join('seksi', 'beban_kerja.seksi_id = seksi.id');
   $ci->db->where($where);
   return $ci->db->get()->result();
 }
@@ -77,7 +77,7 @@ function uri($segment = null) {
   return $ci->uri->segment($segment);
 }
 
-function noBulan(){
+function noBulan() {
   return [
     'januari',
     'february',
@@ -91,7 +91,7 @@ function noBulan(){
     'oktober',
     'november',
     'desember'
-    ];
+  ];
 }
 
 function model($model, $alias) {

@@ -44,7 +44,11 @@ class User_model extends CI_Model {
     $this->db->join('pangkat', 'pangkat.id = user.pangkat_id', 'left outer');
     $this->db->order_by('nama_lengkap', 'asc');
     return $this->db->get()->result();
+  }
 
+
+  public function getById($id) {
+    return $this->db->get_where($this->table, ['id' => $id])->row();
   }
 
   public function getWhere($where) {
@@ -126,6 +130,21 @@ class User_model extends CI_Model {
     } else {
       echo 'tidak ada';
     }
+  }
+
+  public function updateInAdmin() {
+    $dataForm = $this->input->post();
+    $data = [
+      'nip' => htmlspecialchars($dataForm['nip'], true),
+      'jabatan_id' => htmlspecialchars($dataForm['jabatan_id'], true),
+      'pangkat_id' => htmlspecialchars($dataForm['pangkat_id'], true),
+      'role' => htmlspecialchars($dataForm['role'], true)
+    ];
+    $where = [
+      $this->primaryKey => $dataForm['id']
+    ];
+    $this->db->update($this->table, $data, $where);
+    return $this->db->affected_rows();
   }
 
   /**

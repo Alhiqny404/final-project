@@ -89,15 +89,23 @@ class User extends CI_Controller {
   *
   * @return redirect ke prefix ini
   */
-  public function edit() {
-    if ($this->user->edit() > 0) {
+  public function edit($id = null) {
+    if ($id == null) return redirect($this->prefix);
+    $data['user'] = $this->user->getById($id);
+    $data['jabatan'] = $this->jabatan->getAll();
+    $data['pangkat'] = $this->pangkat->getAll();
+    $data['title'] = 'Edit Data User';
+    view('admin/edit-user', $data);
+  }
+
+  public function update($id = null) {
+    if ($this->user->updateInAdmin() > 0) {
       $this->session->set_flashdata('success', 'Data Berhasil Diupdate');
       redirect($this->prefix);
     } else {
       $this->session->set_flashdata('error', 'Data Gagal Diupdate');
       redirect($this->prefix);
     }
-
   }
 
 

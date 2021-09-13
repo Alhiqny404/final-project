@@ -20,6 +20,7 @@ class Dashboard extends CI_Controller {
     isLogin();
     isAdmin();
     model('User_model', 'user');
+    model('Seksi_model', 'seksi');
   }
 
   /**
@@ -52,7 +53,7 @@ class Dashboard extends CI_Controller {
     $data['title'] = 'Dashboard';
     view('admin/dashboard', $data);
   }
-  
+
 
 
 }

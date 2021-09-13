@@ -35,7 +35,9 @@
 <?php view('_layouts/wrapper-img');
 ?>
 
-
+<?php
+$prefix_page = 'admin/beban/';
+?>
 
 <div class="page-wrapper">
   <div class="page-wrapper-inner">
@@ -45,15 +47,24 @@
     <div class="page-content">
       <div class="container-fluid">
         <div class="card p-3">
+          <div class="d-flex  mb-4 justify-content-between align-items-center">
+            <h4 class="card-title">Beban Kerja Pegawai</h4>
+            <a href="<?=site_url($prefix_page.'create') ?>" class="btn btn-info w-25 ms-auto">
+              Tambah Beban Kerja
+            </a>
+          </div>
           <table class="table table-striped table-hover table-responsive">
             <thead>
               <tr>
-                <th rowspan="2" style="white-space: nowrap;" class="bg-info text-white">
+                <th rowspan="2" class="text-white" style="background-color: #00ADEF">
+                  <h6 class="mb-4">No.</h6>
+                </th>
+                <th rowspan="2" style="white-space: nowrap; background-color: #8CC63E" class="text-white">
                   <h6 class="mb-4 mx-3"> Nama Pegawai</h6>
                 </th>
-                <th colspan="12" class="text-center bg-success text-white">Beban Kerja</th>
+                <th colspan="12" class="text-center text-light" style="background-color: #F8931F">Beban Kerja</th>
               </tr>
-              <tr>
+              <tr style="background-color: #F8BE2D" class="text-white">
                 <td class="text-center">Jan</td>
                 <td class="text-center">Feb</td>
                 <td class="text-center">Mar</td>
@@ -69,13 +80,14 @@
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($user as $val): ?>
+              <?php $no = 1; foreach ($user as $val): ?>
               <tr>
-                <td><?=$val->nama_lengkap?></td>
+                <td><?=$no++ ?></td>
+                <td><?=$val->nama_lengkap ?></td>
                 <?php foreach (noBulan() as $key => $bln): ?>
-                <td scope="<?=$bln?>">
-                  <?php foreach (BKBI($val->id,sprintf("%'02d", $key+1)) as $bk): ?>
-                  <div class="kerja <?=$bk->warna?>"></div>
+                <td scope="<?=$bln ?>">
+                  <?php foreach (BKBI($val->id, sprintf("%'02d", $key+1)) as $bk): ?>
+                  <div class="kerja<?=" ".$bk->warna ?>"></div>
                   <?php endforeach; ?>
                 </td>
                 <?php endforeach; ?>

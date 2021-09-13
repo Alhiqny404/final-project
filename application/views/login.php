@@ -91,7 +91,7 @@
   </style>
 </head>
 
-<body class="">
+<body class="bg-light">
   <div class="card border-0 shadow my-5 mx-auto overflow-hidden" style='max-width:90%'>
     <div class="row">
       <div class="col-md-7 pr-0 form">
@@ -105,19 +105,25 @@
               <h6 class="text-muted mt-1 apk-name">Si Mba'e Cakep</h6>
             </div>
           </div>
+          <?php if ($this->session->flashdata('error')): ?>
+          <div class="alert alert-danger mt-3" role="alert">
+            <strong><?=$this->session->flashdata('error'); unset($_SESSION['error']) ?></strong>.
+          </div>
+          <?php endif; ?>
           <!--    <h4 class="text-center mt-5 mb-5 heading position-relative">Si Mba'e Cakep</h4> -->
-          <form action="  " class="mt-5 pr-2 form-login">
+          <form action="" method="post" class="mt-5 pr-2 form-login">
+            <?=csrf() ?>
             <div class="input-group mb-3">
               <div class="input-group-text">
                 <i class="mdi mdi-account-outline font-16"></i>
               </div>
-              <input type="text" class="form-control" placeholder="Username">
+              <input required="" type="text" class="form-control" placeholder="Username" name="username">
             </div>
             <div class="input-group mb-3">
               <div class="input-group-text">
                 <i class="mdi mdi-key font-16"></i>
               </div>
-              <input type="password" class="form-control" placeholder="Password">
+              <input required="" type="password" class="form-control" placeholder="Password" name="password">
             </div>
             <button class="btn btn-primary btn-block waves-effect waves-light mt-4" type="submit" name="submit">Login</button>
           </form>
