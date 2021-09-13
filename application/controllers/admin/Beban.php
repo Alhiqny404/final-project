@@ -41,6 +41,7 @@ class Beban extends CI_Controller {
   * @return view
   */
   public function index() {
+    $data['user'] = $this->user->getWhere(['role' => 'user']);
     $data['title'] = 'Dashboard';
     view('admin/beban-kerja', $data);
   }

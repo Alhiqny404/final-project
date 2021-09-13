@@ -56,9 +56,42 @@ function CLBI($user_id,$bool){
   return $res;
 }
 
+function BKBI($user_id,$bulan){
+  
+  $where = [
+  'user_id'=> $user_id,
+  "MONTH(tgl_buat)" => $bulan,
+  "YEAR(tgl_buat)" => date('Y'),
+  ];
+  
+  $ci = get_instance();
+  $ci->db->select('beban_kerja.*,seksi.warna');
+  $ci->db->from('beban_kerja');
+  $ci->db->join('seksi','beban_kerja.seksi_id = seksi.id');
+  $ci->db->where($where);
+  return $ci->db->get()->result();
+}
+
 function uri($segment = null) {
   $ci = get_instance();
   return $ci->uri->segment($segment);
+}
+
+function noBulan(){
+  return [
+    'januari',
+    'february',
+    'maret',
+    'april',
+    'mei',
+    'juni',
+    'juli',
+    'agustus',
+    'september',
+    'oktober',
+    'november',
+    'desember'
+    ];
 }
 
 function model($model, $alias) {
