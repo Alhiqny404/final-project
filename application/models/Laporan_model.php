@@ -51,6 +51,16 @@ class Laporan_model extends CI_Model {
     return $this->db->get()->result();
   }
 
+  public function getMeToMonth() {
+    $this->db->select('jenis_laporan.nama_laporan,laporan.*');
+    $this->db->from($this->table);
+    $this->db->join('jenis_laporan', 'jenis_laporan.id = laporan.jenis_laporan_id', 'left outher');
+    $this->db->where('MONTH(tgl_upload)', date('m'));
+    $this->db->where('YEAR(tgl_upload)', date('Y'));
+    $this->db->where('user_id', sud('user_id'));
+    return $this->db->get()->result();
+  }
+
   public function getWhere($where) {
     $this->db->select('user.nama_lengkap,jenis_laporan.nama_laporan,laporan.*');
     $this->db->from($this->table);

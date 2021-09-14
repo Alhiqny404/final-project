@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 * @author	Pertiwi Team
 * @copyright	Copyright (c) 2021
 */
-class Profile extends CI_Controller {
+class Akun extends CI_Controller {
 
   /**
   * Class constructor
@@ -30,18 +30,10 @@ class Profile extends CI_Controller {
   *
   * @return view
   */
-  public function index() {
-    $data['seksi_kerja'] = BebanKerjaToMonthMe();
-    $data['user'] = $this->user->getById(sud('user_id'));
-    $data['laporan'] = LaporanKuToMonth();
-    $data['title'] = 'Profile User';
-    view('user/profile', $data);
-  }
-
 
   public function edit() {
-    $data['title'] = 'Edit Profile User';
-    view('user/edit-profile', $data);
+    $data['title'] = 'Edit Akun User';
+    view('user/edit-akun', $data);
   }
 
 

@@ -48,7 +48,12 @@ class User_model extends CI_Model {
 
 
   public function getById($id) {
-    return $this->db->get_where($this->table, ['id' => $id])->row();
+    $this->db->select('user.*,jabatan.nama_jabatan,pangkat.nama_pangkat');
+    $this->db->from($this->table);
+    $this->db->join('jabatan', 'jabatan.id = user.jabatan_id', 'left');
+    $this->db->join('pangkat', 'pangkat.id = user.pangkat_id', 'left');
+    $this->db->where('user.id', $id);
+    return $this->db->get()->row();
   }
 
   public function getWhere($where) {

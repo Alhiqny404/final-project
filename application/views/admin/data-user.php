@@ -288,7 +288,9 @@ $prefix_page = 'admin/kelola/user/';
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h5 class="text-center">Foto Profile</h5>
+        <h5 class="text-center">
+          <img src="<?=base_url('uploads/profilepict/default.jpg') ?>" alt="" class="m-auto rounded-circle" style="max-height: 200px; max-width: 200px">
+        </h5>
         <div class="table-responsive">
           <table class="table table-hover mb-0">
             <tr>

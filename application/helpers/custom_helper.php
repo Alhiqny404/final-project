@@ -57,7 +57,6 @@ function CLBI($user_id, $bool) {
 }
 
 function BKBI($user_id, $bulan) {
-
   $where = [
     'user_id' => $user_id,
     "MONTH(tgl_buat)" => $bulan,
@@ -72,12 +71,84 @@ function BKBI($user_id, $bulan) {
   return $ci->db->get()->result();
 }
 
+function LaporanKuToMonth() {
+  $ci = get_instance();
+  $jl = $ci->db->get('jenis_laporan')->result();
+  $res = [];
+  foreach ($jl as $val) {
+    $where = [
+      'user_id' => sud('user_id'),
+      'jenis_laporan_id' => $val->id,
+      'MONTH(tgl_respon)' => date('m'),
+      'YEAR(tgl_respon)' => date('Y'),
+    ];
+    $cek = $ci->db->get_where('laporan', $where)->num_rows();
+    if ($cek) {
+      $dataRes = [
+        'nama_laporan' => $val->nama_laporan,
+        'status' => 'approve'
+      ];
+      array_push($res, $dataRes);
+    } else {
+      $dataRes = [
+        'nama_laporan' => $val->nama_laporan,
+        'status' => 'pending'
+      ];
+      array_push($res, $dataRes);
+    }
+  }
+  return $res;
+}
+
+function ActivitasBebanKerjaKu($seksi_id = '') {
+  $ci = get_instance();
+  $ci->db->select('beban_kerja.*,seksi.nama_seksi');
+  $ci->db->from('beban_kerja');
+  $ci->db->join('seksi', 'beban_kerja.seksi_id = seksi.id');
+  $ci->db->where(['seksi_id' => $seksi_id, 'user_id' => sud('user_id')]);
+  return $ci->db->get()->result();
+}
+
+function BebanKerjaToMonthMe() {
+
+  $ci = get_instance();
+  $seksi = $ci->db->get('seksi')->result();
+  $res = array();
+  foreach ($seksi as $val) {
+    $beban = $ci->db->get_where('beban_kerja', ['user_id' => sud('user_id'), 'seksi_id' => $val->id, 'MONTH(tgl_buat)' => date('m'), 'YEAR(tgl_buat)' => date('Y')]);
+    if ($beban->num_rows() > 0) {
+      array_push($res, (array)$val);
+    }
+  }
+  return $res;
+
+}
+
 function uri($segment = null) {
   $ci = get_instance();
   return $ci->uri->segment($segment);
 }
 
-function noBulan() {
+function monthString($date = '') {
+  $month = date('m', strtotime($date));
+  $string = [
+    'januari',
+    'february',
+    'maret',
+    'april',
+    'mei',
+    'juni',
+    'juli',
+    'agustus',
+    'september',
+    'oktober',
+    'november',
+    'desember'
+  ];
+  return $string[intval($month)];
+}
+
+function noBulan($bulan = '') {
   return [
     'januari',
     'february',

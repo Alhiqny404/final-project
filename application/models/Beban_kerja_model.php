@@ -35,9 +35,9 @@ class Beban_kerja_model extends CI_Model {
   public function getAll() {
     return $this->db->get($this->table)->result();
   }
-  
-  public function getWhere($where){
-    return $this->db->get_where($this->table,$where)->result();
+
+  public function getWhere($where) {
+    return $this->db->get_where($this->table, $where)->result();
   }
 
 
