@@ -180,7 +180,6 @@
             </div>
           </div>
         </div>
-        <?php if (sud('role') == 'admin' || sud('superadmin')): ?>
 
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTwo">
@@ -540,7 +539,7 @@
             </div>
           </div>
         </div>
-        <?php endif; ?>
+
 
       </div>
       <!-- container -->

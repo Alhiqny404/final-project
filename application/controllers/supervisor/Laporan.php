@@ -45,7 +45,6 @@ class Laporan extends CI_Controller {
     $data['laporan'] = $this->laporan->getAll();
     $data['jabatan'] = $this->jabatan->getAll();
     $data['pangkat'] = $this->pangkat->getAll();
-    $data['laporan_bulan_ini'] = $this->laporan->bulanIni();
     $data['title'] = 'List Data laporan';
     view('supervisor/list-laporan', $data);
   }

@@ -51,8 +51,17 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group mb-4">
-                  <label for="tgl_buat" class="form-label">Tanggal Pekerjaan</label>
+                  <label for="tgl_buat" class="form-label">Tanggal Awal</label>
                   <input type="date" id="tgl_buat" name="tgl_buat" class="form-control" required>
+                  <div class="invalid-feedback">
+                    inputan harus diisi
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group mb-4">
+                  <label for="tgl_akhir" class="form-label">Tanggal Akhir</label>
+                  <input type="date" id="tgl_akhir" name="tgl_akhir" class="form-control" required>
                   <div class="invalid-feedback">
                     inputan harus diisi
                   </div>

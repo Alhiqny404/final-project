@@ -32,6 +32,7 @@ class Profile extends CI_Controller {
   */
   public function index() {
     $data['seksi_kerja'] = BebanKerjaToMonthMe();
+
     $data['user'] = $this->user->getById(sud('user_id'));
     $data['laporan'] = LaporanKuToMonth();
     $data['title'] = 'Profile User';

@@ -50,25 +50,40 @@ function CLBI($user_id, $bool) {
   $res = '';
   $bg = $bool == TRUE ? 'bg-success' : 'bg-danger';
   foreach ($jl as $val) {
-    $cek = $ci->db->get_where('laporan', ['user_id' => $user_id, 'jenis_laporan_id' => $val->id])->num_rows();
+    $where = [
+      'user_id' => $user_id,
+      'jenis_laporan_id' => $val->id,
+      "MONTH(tgl_upload)" => date('m'),
+      "YEAR(tgl_upload)" => date('Y'),
+      "status" => "approve"
+    ];
+    $cek = $ci->db->get_where('laporan', $where)->num_rows();
     if ($cek == $bool) $res .= '<span class="badge '.$bg.'">'.$val->nama_laporan.'</span> ';
   }
   return $res;
 }
 
 function BKBI($user_id, $bulan) {
-  $where = [
-    'user_id' => $user_id,
-    "MONTH(tgl_buat)" => $bulan,
-    "YEAR(tgl_buat)" => date('Y'),
-  ];
-
   $ci = get_instance();
-  $ci->db->select('beban_kerja.*,seksi.warna,seksi.nama_seksi');
-  $ci->db->from('beban_kerja');
-  $ci->db->join('seksi', 'beban_kerja.seksi_id = seksi.id');
-  $ci->db->where($where);
-  return $ci->db->get()->result();
+  $res = [];
+  $seksi = $ci->db->get('seksi')->result();
+  foreach ($seksi as $key => $val) {
+    $where = [
+      'user_id' => $user_id,
+      'seksi_id' => $val->id,
+      "MONTH(tgl_buat)" => $bulan,
+      "YEAR(tgl_buat)" => date('Y'),
+    ];
+
+    $ci->db->select('beban_kerja.*,seksi.warna,seksi.nama_seksi');
+    $ci->db->from('beban_kerja');
+    $ci->db->join('seksi', 'beban_kerja.seksi_id = seksi.id');
+    $ci->db->where($where);
+    $bebanKerja = $ci->db->get()->num_rows();
+    if ($bebanKerja > 0) array_push($res, $seksi[$key]);
+  }
+  return $res;
+
 }
 
 function LaporanKuToMonth() {
@@ -110,12 +125,15 @@ function ActivitasBebanKerjaKu($seksi_id = '') {
 }
 
 function BebanKerjaToMonthMe() {
-
   $ci = get_instance();
   $seksi = $ci->db->get('seksi')->result();
   $res = array();
   foreach ($seksi as $val) {
-    $beban = $ci->db->get_where('beban_kerja', ['user_id' => sud('user_id'), 'seksi_id' => $val->id, 'MONTH(tgl_buat)' => date('m'), 'YEAR(tgl_buat)' => date('Y')]);
+    $where = [
+      'user_id' => sud('user_id'),
+      'seksi_id' => $val->id
+    ];
+    $beban = $ci->db->get_where('beban_kerja', $where);
     if ($beban->num_rows() > 0) {
       array_push($res, (array)$val);
     }

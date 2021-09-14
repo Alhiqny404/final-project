@@ -57,7 +57,7 @@
 
                     <div class="col-md-4 mb-3 mb-lg-0">
                       <div class="header-title">
-                        Seksi Pekerjaan
+                        Seksi Pekerjaan<?=sud('user_id') ?>
                       </div>
                       <div class="row">
                         <div class="col-7">
@@ -194,7 +194,6 @@
                 <div class="tab-pane fade" id="profile-activities">
                   <h4 class="mt-0 header-title mb-3">Aktifitas pekerjaan</h4>
                   <?php foreach ($seksi_kerja as $val): ?>
-
                   <div class="activity d-flex justify-content-between mt-4">
                     <div class="<?=$val['warna'] ?>" style="width: 20px; height:20px; width:10%"></div>
                     <div class="time-item " style="width: 90%">
