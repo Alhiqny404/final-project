@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 * @copyright	Copyright (c) 2021
 */
 class Akun extends CI_Controller {
+  private $prefix = 'user/profile/';
 
   /**
   * Class constructor
@@ -32,8 +33,20 @@ class Akun extends CI_Controller {
   */
 
   public function edit() {
+    $data['user'] = $this->user->getById(sud('user_id'));
     $data['title'] = 'Edit Akun User';
     view('user/edit-akun', $data);
+  }
+
+
+  public function update() {
+    if ($this->user->editAkun() > 0) {
+      $this->session->set_flashdata('success', 'Akun Berhasil Diupdate');
+      redirect($this->prefix);
+    } else {
+      $this->session->set_flashdata('error', 'Akun Gagal Diupdate');
+      redirect($this->prefix);
+    }
   }
 
 

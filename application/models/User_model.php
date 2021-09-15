@@ -31,6 +31,8 @@ class User_model extends CI_Model {
   private $primaryKey = 'id';
 
 
+  private $uploadPath = 'uploads/profilepict/';
+
 
   /**
   * Mengambil semua data pada table yang telah ditentukan diatas
@@ -150,6 +152,90 @@ class User_model extends CI_Model {
     ];
     $this->db->update($this->table, $data, $where);
     return $this->db->affected_rows();
+  }
+
+
+  public function editInUser() {
+    $dataForm = $this->input->post();
+    $ext = '.'.pathinfo($_FILES['foto_profile']['name'], PATHINFO_EXTENSION);
+    $nama_file = trim($this->_fileName().$ext);
+    $file_lama = $dataForm['foto_profile_lama'];
+
+
+    if ($_FILES['foto_profile']['name']) {
+      if ($this->_uploadFile($nama_file) > 0) {
+        $dataUpdate['foto_profile'] = $nama_file;
+        if ($file_lama != 'default.jpg');
+        unlink($this->uploadPath.$file_lama);
+      }
+    }
+    $dataUpdate = [
+      'nama_lengkap' => htmlspecialchars($dataForm['nama_lengkap'], true),
+      'jenis_kelamin' => htmlspecialchars($dataForm['jenis_kelamin'], true),
+      'alamat' => htmlspecialchars($dataForm['alamat'], true),
+      'email' => htmlspecialchars($dataForm['email'], true),
+      'no_hp' => htmlspecialchars($dataForm['no_hp'], true)
+    ];
+    $where = [
+      $this->primaryKey => $dataForm['id']
+    ];
+    $this->db->update($this->table, $dataUpdate, $where);
+    $this->session->userdata('nama_lengkap', $dataForm['nama_lengkap']);
+    return $this->db->affected_rows();
+  }
+
+
+  private function _uploadFile($fileName) {
+    $config = [
+      'upload_path' => $this->uploadPath,
+      'allowed_types' => 'png|jpg|jpeg',
+      'max_size' => '10048',
+      'file_name' => $fileName
+    ];
+    $this->load->library('upload', $config);
+    if ($this->upload->do_upload('file')) {
+      return TRUE;
+    }
+  }
+
+
+  private function _fileName() {
+    $nama_user = str_replace(' ', '_', trim($this->session->userdata('nama_lengkap')));
+    //$nama_file = 'laporan-'.$nama_user.'-'.bulan(date('m')).'-'.date('Y');
+    $nama_file = 'profilepict-'.$nama_user.'-'.time();
+    return strtolower($nama_file);
+  }
+
+
+  public function editAkun() {
+    $dataForm = $this->input->post();
+    if (!empty($dataForm['old_pass'])) {
+      $password = $this->db->get_where('user', ['id' => $dataForm['id']])->row()->password;
+      if (password_verify($dataForm['old_pass'], $password)) {
+        echo 'sama'; die;
+        if ($dataForm['new_pass'] == $dataForm['confirm_pass']) {
+          $dataUpdate['password'] = password_hash($dataForm['new_pass'], PASSWORD_BCRYPT);
+        } else {
+          // confirm password tidak sesuai
+          echo 'tidak sesuai'; die;
+          //   return false;
+        }
+      } else {
+        // pasword lama salah
+        echo 'pw lama salah'; die;
+        // return false;
+      }
+    }
+    $dataUpdate = [
+      'username' => htmlspecialchars($dataForm['username'], true)
+    ];
+    $where = [
+      $this->primaryKey => $dataForm['id']
+    ];
+    $this->db->update($this->table, $dataUpdate, $where);
+    $this->session->userdata('username', $dataForm['username']);
+    return $this->db->affected_rows();
+
   }
 
   /**

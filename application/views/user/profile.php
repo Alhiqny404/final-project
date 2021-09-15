@@ -275,4 +275,16 @@
 <?php view('_layouts/js'); ?>
 
 
+<?php if ($this->session->flashdata('success')): ?>
+<script>
+alertCenter('Berhasil', "<?=$this->session->flashdata('success'); unset($_SESSION['success']); ?>", 'success');
+</script>
+<?php endif; ?>
+
+<?php if ($this->session->flashdata('error')): ?>
+<script>
+alertCenter('Gagal', "<?=$this->session->flashdata('error'); unset($_SESSION['error']); ?>", 'error');
+</script>
+<?php endif; ?>
+
 <?php view('_layouts/end'); ?>

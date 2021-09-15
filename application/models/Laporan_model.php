@@ -145,6 +145,7 @@ class Laporan_model extends CI_Model {
         die;
       }
     }
+
     $LaporanLama = $this->db->select('status')->from('laporan')->where('id', $dataForm['id'])->get()->row();
     if ($LaporanLama->status == 'approve') {
       $data['status'] = 'koreksi';
