@@ -54,6 +54,8 @@ $prefix_page = 'superadmin/laporan/';
                           <span class="badge badge-success"><?=$val->status; ?></span>
                           <?php elseif ($val->status == 'reject'): ?>
                           <span class="badge badge-danger"><?=$val->status; ?></span>
+                          <?php elseif ($val->status == 'koreksi'): ?>
+                          <span class="badge badge-danger"><?=$val->status; ?></span>
                           <?php endif; ?>
                         </td>
                         <?php if (time() - strtotime($val->tgl_upload) <= (86400 * 2)): ?>

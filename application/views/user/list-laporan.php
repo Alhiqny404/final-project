@@ -20,26 +20,6 @@ $prefix_page = 'user/laporan/';
     <!-- Page Content-->
     <div class="page-content">
       <div class="container-fluid">
-        <!--
-                                                                                                                                                                                                                        <?php if ($laporan_bulan_ini && $laporan_bulan_ini->status == 'pending'): ?>
-                                                                                                                                                                                                                        <div class="alert alert-success border-0" role="alert">
-                                                                                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu dalam tahap Pengecekap (PENDING).
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'approve'): ?>
-                                                                                                                                                                                                                        <div class="alert alert-success border-0" role="alert">
-                                                                                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> LAporanmu telah diterima.
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <?php elseif ($laporan_bulan_ini && $laporan_bulan_ini->status == 'reject'): ?>
-                                                                                                                                                                                                                        <div class="alert alert-danger border-0" role="alert">
-                                                                                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Laporanmu ditolak - <?= $laporan_bulan_ini->catatan ?>.
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <?php else : ?>
-                                                                                                                                                                                                                        <div class="alert alert-danger border-0" role="alert">
-                                                                                                                                                                                                                          <strong>Hai <?=$this->session->userdata('nama_lengkap'); ?>:) </strong> Kamu belum mengirim laporan bulan ini.
-                                                                                                                                                                                                                        </div>
-                                                                                                                                                                                                                        <?php endif; ?>
-                                                                                                                                                                                                                -->
-
         <div class="row">
           <div class="col-lg-12 col-sm-12">
             <div class="card">
@@ -75,13 +55,14 @@ $prefix_page = 'user/laporan/';
                           <span class="badge badge-success"><?=$val->status; ?></span>
                           <?php elseif ($val->status == 'reject'): ?>
                           <span class="badge badge-danger"><?=$val->status; ?></span>
+                          <?php elseif ($val->status == 'koreksi'): ?>
+                          <span class="badge badge-danger"><?=$val->status; ?></span>
                           <?php endif; ?>
                         </td>
                         <td><?=$val->tgl_upload; ?></td>
                         <td><?=$val->tgl_respon == '0000-00-00 00:00:00' ? '-' : $val->tgl_respon; ?></td>
                         <td>
                           <center>
-                            <?php if ($val->status != 'approve'): ?>
                             <button type="button" class="btn btn-sm btn-success mr-2 edit-table"
                               data-id="<?=$val->id ?>"
                               data-judul="<?=$val->judul ?>"
@@ -89,7 +70,7 @@ $prefix_page = 'user/laporan/';
                               data-jenis-laporan-id="<?=$val->jenis_laporan_id ?>"
                               data-jenis-laporan="<?=$val->nama_laporan ?>"
                               ><i class="fas fa-edit"></i></button>
-                            <?php endif; ?>
+
                             <a href="<?=base_url('uploads/laporan/'.$val->file) ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i></a>
                           </center>
                         </td>

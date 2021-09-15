@@ -248,7 +248,9 @@
                               <th class="border-top-0">No</th>
                               <th class="border-top-0">NIP</th>
                               <th class="border-top-0">Nama</th>
+                              <?php if (sud('role') != 'user' && sud('role') != 'supervisor'): ?>
                               <th class="border-top-0">Lihat</th>
+                              <?php endif; ?>
                             </tr>
                           </thead>
                           <tbody>
@@ -263,11 +265,13 @@
                               <td>
                                 <?=$val->nama_lengkap ?>
                               </td>
+                              <?php if (sud('role') != 'user' && sud('role') != 'supervisor'): ?>
                               <td>
                                 <button type="button" class="btnbtn-sm  btn-primary" data-bs-toggle="modal" onclick="detailUser(<?=$val->nip ?>,'<?=$val->nama_lengkap ?>','<?=$val->no_hp ?>','<?=$val->alamat ?>')" data-bs-target="#exampleModal">
                                   <i class="fas fa-eye"></i>
                                 </button>
                               </td>
+                              <?php endif; ?>
                             </tr>
                             <?php endforeach; ?>
                           </tbody>
@@ -290,11 +294,12 @@
                               <th class="border-top-0">No</th>
                               <th class="border-top-0">NIP</th>
                               <th class="border-top-0">Nama</th>
+                              <?php if (sud('role') != 'user' && sud('role') != 'supervisor'): ?>
                               <th class="border-top-0">Lihat</th>
+                              <?php endif; ?>
                             </tr>
                           </thead>
                           <tbody>
-
                             <?php $no = 1; foreach ($user_p as $val): ?>
                             <tr>
                               <td>
@@ -306,11 +311,13 @@
                               <td>
                                 <?=$val->nama_lengkap ?>
                               </td>
+                              <?php if (sud('role') != 'user' && sud('role') != 'supervisor'): ?>
                               <td>
                                 <button type="button" class="btnbtn-sm  btn-primary" onclick="detailUser(<?=$val->nip ?>,'<?=$val->nama_lengkap ?>','<?=$val->no_hp ?>','<?=$val->alamat ?>')" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                   <i class="fas fa-eye"></i>
                                 </button>
                               </td>
+                              <?php endif; ?>
                             </tr>
                             <?php endforeach; ?>
                           </tbody>
@@ -735,19 +742,8 @@ function($) {
 
 
 
-
-
-
 </script>
 <script type="text/javascript" charset="utf-8">
-$.getJSON("<?=site_url('api/corona') ?>", function(data) {
-console.log(data[0].name)
-$('.corona-meninggal').html(data[0].meninggal);
-$('.corona-sembuh').html(data[0].sembuh);
-$('.corona-positif').html(data[0].positif);
-});
-
-
 var myModal = document.getElementById('myModal')
 var myInput = document.getElementById('myInput')
 myModal.addEventListener('shown.bs.modal', function () {

@@ -96,6 +96,7 @@ function LaporanKuToMonth() {
       'jenis_laporan_id' => $val->id,
       'MONTH(tgl_respon)' => date('m'),
       'YEAR(tgl_respon)' => date('Y'),
+      'status' => 'approve'
     ];
     $cek = $ci->db->get_where('laporan', $where)->num_rows();
     if ($cek) {

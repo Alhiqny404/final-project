@@ -237,7 +237,7 @@
                             <?=$val['nama_laporan'] ?>
                           </td>
                           <td>
-                            <?=$val['status'] == 'approve' ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' ?>
+                            <?=$val['status'] === 'approve' ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' ?>
                           </td>
                         </tr>
                         <?php endforeach; ?>

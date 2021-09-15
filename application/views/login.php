@@ -129,7 +129,7 @@
           </form>
         </div>
         <!-- <br>  <br>  <br>  <br>  <br>  <br> -->
-        <small class='text-center d-block text-muted'> &copy; 2020 BPS KUNINGAN & SMK PERTIWI KUNIGAN </small>
+        <small class='text-center d-block text-muted'> &copy; <?=date('Y') ?> BPS KUNINGAN & SMK PERTIWI KUNIGAN </small>
         <div class="lines d-flex justify-content-between">
           <div class="biru line">
           </div>

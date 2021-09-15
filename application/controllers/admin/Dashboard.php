@@ -34,24 +34,41 @@ class Dashboard extends CI_Controller {
     $data['user'] = $this->user->getWhere(['role' => 'user']);
     $data['user_l'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'l']);
     $data['user_p'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'p']);
+    $umur = $this->_getUmur($data['user']);
+    $data['userUK30'] = $umur['k30'];
+    $data['userUK40'] = $umur['k40'];
+    $data['userUK50'] = $umur['k50'];
+    $data['userUL50'] = $umur['l50'];
+    $data['title'] = 'Dashboard';
+    view('dashboard', $data);
+  }
 
-    $data['userUK30'] = null;
-    $data['userUK40'] = null;
-    $data['userUK50'] = null;
-    $data['userUL50'] = null;
+  private function _getUmur($dataUser) {
 
-    foreach ($data['user'] as $val) {
+    $k30 = null;
+    $k40 = null;
+    $k50 = null;
+    $l50 = null;
+
+    foreach ($dataUser as $val) {
       $thn_lahir = substr($val->tgl_lahir, 0, 4);
       $year_now = date('Y');
       $umur = $year_now - $thn_lahir;
-      if ($umur < 30) $data['userUK30'] += 1;
-      if ($umur >= 30 && $umur < 40) $data['userUK40'] += 1;
-      if ($umur >= 40 && $umur < 50) $data['userUK50'] += 1;
-      if ($umur >= 50) $data['userUL50'] += 1;
+      if ($umur < 30) $k30 += 1;
+      if ($umur >= 30 && $umur < 40) $k40 += 1;
+      if ($umur >= 40 && $umur < 50) $k50 += 1;
+      if ($umur >= 50) $l50 += 1;
     }
 
-    $data['title'] = 'Dashboard';
-    view('admin/dashboard', $data);
+    return [
+      'k30' => $k30,
+      'k40' => $k40,
+      'k50' => $k50,
+      'l50' => $l50
+    ];
+
+
+
   }
 
 
