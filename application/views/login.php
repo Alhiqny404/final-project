@@ -63,13 +63,13 @@
         margin-bottom: 20px;
       }
       .logo {
-        width: 50px;
+        width: 40px;
       }
       .title {
         font-size: 15px;
       }
       .apk-name {
-        font-size: 11px;
+        font-size: 20px;
       }
       html {
         background-image: url(<?=assets_dashboard();
@@ -91,18 +91,18 @@
   </style>
 </head>
 
-<body class="bg-light">
+<body class="bg-transparent">
   <div class="card border-0 shadow my-5 mx-auto overflow-hidden" style='max-width:90%'>
     <div class="row">
       <div class="col-md-7 pr-0 form">
         <div class="m-auto border-0 bg-transparent shadow-0 w-100 p-3" style="max-width: 450px">
-          <div class="d-flex">
-            <img src="<?=assets_dashboard(); ?>images/logo.png" width="55" alt="logo" class="my-3 logo">
+          <div class="d-flex ">
+            <img src="<?=assets_dashboard(); ?>images/logo.png" width="40px" alt="logo" class="my-3 logo">
             <div class="ml-3">
-              <h4 class="mt-3 mb-1 title">
+              <h6 class="mt-3 mb-1 title text-muted ms-1">
                 Badan Pusat Statistik
-              </h4>
-              <h6 class="text-muted mt-1 apk-name">Si Mba'e Cakep</h6>
+              </h6>
+              <h4 class="mt-1 apk-name">Si Mba'e Cakep</h4>
             </div>
           </div>
           <?php if ($this->session->flashdata('error')): ?>
@@ -129,7 +129,7 @@
           </form>
         </div>
         <!-- <br>  <br>  <br>  <br>  <br>  <br> -->
-        <small class='text-center d-block text-muted'> &copy; <?=date('Y') ?> BPS KUNINGAN & SMK PERTIWI KUNIGAN </small>
+        <small class='text-center d-block text-muted'> &copy; IPDS3208 & SMK PERTIWI KUNIGAN </small>
         <div class="lines d-flex justify-content-between">
           <div class="biru line">
           </div>

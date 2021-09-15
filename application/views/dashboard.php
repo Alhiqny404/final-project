@@ -176,6 +176,86 @@
                     </tbody>
                   </table>
                 </div>
+                <div class="card mt-4">
+                  <div class="card-header">
+                    Kode Warna Seksi
+                  </div>
+                  <div class="card-body p-3">
+                    <div class="row">
+                      <div class="col-sm-3">
+                        <div class="d-flex justify-content-between mb-3">
+                          <div style="width: 70px" class="me-2">
+                            <div class="abu exKerja rounded m-auto"></div>
+                          </div>
+                          <div style="width: 250px">
+                            <h4 class="mb-0">Umum</h4>
+                            <h6 class="text-muted my-0">Abu-abu</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+
+                        <div class="d-flex justify-content-between mb-3">
+                          <div style="width: 70px" class="me-2">
+                            <div class="biru exKerja rounded m-auto"></div>
+                          </div>
+                          <div style="width: 250px">
+                            <h4 class="mb-0">Sosial</h4>
+                            <h6 class="text-muted my-0">Biru</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+
+                        <div class="d-flex justify-content-between mb-3">
+                          <div style="width: 70px" class="me-2">
+                            <div class="orange exKerja rounded m-auto"></div>
+                          </div>
+                          <div style="width: 250px">
+                            <h4 class="mb-0">Distribusi</h4>
+                            <h6 class="text-muted my-0">Orange</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+
+                        <div class="d-flex justify-content-between mb-3">
+                          <div style="width: 70px" class="me-2">
+                            <div class="hijau exKerja rounded m-auto"></div>
+                          </div>
+                          <div style="width: 250px">
+                            <h4 class="mb-0">Produksi</h4>
+                            <h6 class="text-muted my-0">Hijau</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+
+                        <div class="d-flex justify-content-between mb-3">
+                          <div style="width: 70px" class="me-2">
+                            <div class="ungu exKerja rounded m-auto"></div>
+                          </div>
+                          <div style="width: 250px">
+                            <h4 class="mb-0">Nerwilis</h4>
+                            <h6 class="text-muted my-0">Ungu</h6>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-3">
+
+                        <div class="d-flex justify-content-between mb-3">
+                          <div style="width: 70px" class="me-2">
+                            <div class="kuning exKerja rounded m-auto"></div>
+                          </div>
+                          <div style="width: 250px">
+                            <h4 class="mb-0">IPDS</h4>
+                            <h6 class="text-muted my-0">Kuning</h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -698,10 +778,10 @@
       //donut chart
       var donutChart = {
         labels: [
-          "Kurang dari 30 th",
-          "Antara 30-40 th",
-          "Antara 40-50 th",
-          "Lebih dari 50 th",
+          "< 30  th",
+          "30-39 th",
+          "40-49 th",
+          "> 50  th",
         ],
         datasets: [{
           data: ["<?=$userUK30 ?>",
