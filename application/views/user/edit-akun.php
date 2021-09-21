@@ -34,7 +34,7 @@ $prefixPage = 'user/akun/';
                 <input type="password" class="form-control" id="confirm_pass" name="confirm_pass">
               </div>
               <div class="my-3 col-md-12 text-end">
-                <a href="" class="btn btn-danger">
+                <a href="<?=site_url('user/profile') ?>" class="btn btn-danger">
                   Kembali
                 </a>
                 <button type="submit" class="btn btn-primary px-4">

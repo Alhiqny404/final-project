@@ -1,7 +1,7 @@
 <div class="page-wrapper-img">
   <div class="page-wrapper-img-inner">
     <div class="sidebar-user media">
-      <img src="<?=assets_dashboard() ?>images/users/user-1.jpg" alt="user" class="rounded-circle img-thumbnail mb-1">
+      <img src="<?=base_url(profilePict()) ?>" alt="user" class="rounded-circle img-thumbnail mb-1">
       <span class="online-icon"><i class="mdi mdi-record text-success"></i></span>
       <div class="media-body">
         <h5 class="text-light">Sebagai <?=sud('role') ?> </h5>

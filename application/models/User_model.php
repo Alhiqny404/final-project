@@ -161,14 +161,6 @@ class User_model extends CI_Model {
     $nama_file = trim($this->_fileName().$ext);
     $file_lama = $dataForm['foto_profile_lama'];
 
-
-    if ($_FILES['foto_profile']['name']) {
-      if ($this->_uploadFile($nama_file) > 0) {
-        $dataUpdate['foto_profile'] = $nama_file;
-        if ($file_lama != 'default.jpg');
-        unlink($this->uploadPath.$file_lama);
-      }
-    }
     $dataUpdate = [
       'nama_lengkap' => htmlspecialchars($dataForm['nama_lengkap'], true),
       'jenis_kelamin' => htmlspecialchars($dataForm['jenis_kelamin'], true),
@@ -176,12 +168,26 @@ class User_model extends CI_Model {
       'email' => htmlspecialchars($dataForm['email'], true),
       'no_hp' => htmlspecialchars($dataForm['no_hp'], true)
     ];
+
+    if ($_FILES['foto_profile']['name']) {
+      if ($this->_uploadFile($nama_file) > 0) {
+        $dataUpdate['foto_profile'] = $nama_file;
+        if ($file_lama != 'default.jpg');
+        if (file_exists($this->uploadPath.$file_lama)) {
+          unlink($this->uploadPath.$file_lama);
+        }
+      }
+    } else {
+      echo 'upload foto bermasalah';
+      exit();
+    }
     $where = [
       $this->primaryKey => $dataForm['id']
     ];
     $this->db->update($this->table, $dataUpdate, $where);
-    $this->session->userdata('nama_lengkap', $dataForm['nama_lengkap']);
+    $this->session->set_userdata('nama_lengkap', $dataForm['nama_lengkap']);
     return $this->db->affected_rows();
+
   }
 
 
@@ -193,8 +199,10 @@ class User_model extends CI_Model {
       'file_name' => $fileName
     ];
     $this->load->library('upload', $config);
-    if ($this->upload->do_upload('file')) {
+    if ($this->upload->do_upload('foto_profile')) {
       return TRUE;
+    } else {
+      return  $err = $this->upload->display_errors();
     }
   }
 
@@ -209,32 +217,33 @@ class User_model extends CI_Model {
 
   public function editAkun() {
     $dataForm = $this->input->post();
+    $dataUpdate = [
+      'username' => htmlspecialchars($dataForm['username'], true)
+    ];
     if (!empty($dataForm['old_pass'])) {
       $password = $this->db->get_where('user', ['id' => $dataForm['id']])->row()->password;
       if (password_verify($dataForm['old_pass'], $password)) {
-        echo 'sama'; die;
         if ($dataForm['new_pass'] == $dataForm['confirm_pass']) {
           $dataUpdate['password'] = password_hash($dataForm['new_pass'], PASSWORD_BCRYPT);
         } else {
           // confirm password tidak sesuai
-          echo 'tidak sesuai'; die;
+          $data['error'] = 'konfirmasi password tidak sesuai';
           //   return false;
         }
       } else {
         // pasword lama salah
-        echo 'pw lama salah'; die;
+        $data['error'] = 'password lama salah';
         // return false;
       }
     }
-    $dataUpdate = [
-      'username' => htmlspecialchars($dataForm['username'], true)
-    ];
+
     $where = [
       $this->primaryKey => $dataForm['id']
     ];
     $this->db->update($this->table, $dataUpdate, $where);
     $this->session->userdata('username', $dataForm['username']);
-    return $this->db->affected_rows();
+    $data['perubahan'] = $this->db->affected_rows();
+    return $data;
 
   }
 

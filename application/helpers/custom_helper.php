@@ -12,6 +12,24 @@ function assets_dashboard() {
   return base_url('assets/dashboard/');
 }
 
+function profilePict() {
+  $ci = get_instance();
+  $pp = $ci->db->select('foto_profile')
+  ->where('id', sud('user_id'))
+  ->get('user')
+  ->row()->foto_profile;
+  $path = 'uploads/profilepict/';
+  if ($pp != 'default.jpg' && $pp != '') {
+    if (file_exists($path.$pp)) {
+      return $path.$pp;
+    } else {
+      return $path.'default.jpg';
+    }
+  } else {
+    return $path.'default.jpg';
+  }
+}
+
 function sud($key = '') {
   $ci = get_instance();
   return $ci->session->userdata($key);

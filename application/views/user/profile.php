@@ -40,7 +40,7 @@
                     <div class="col-md-6 mb-3 mb-lg-0">
                       <div class="fro_profile-main">
                         <div class="fro_profile-main-pic">
-                          <img src="<?=site_url('uploads/profilepict/default.jpg') ?>" alt="foto" class="rounded-circle w-100">
+                          <img src="<?=base_url(profilePict()) ?>" alt="foto" class="rounded-circle w-100">
                           <span class="fro-profile_main-pic-change">
                             <i class="fas fa-camera"></i>
                           </span>

@@ -47,7 +47,7 @@ $prefixPage = 'user/profile/';
                 <input type="number" class="form-control" name="no_hp" value="<?=$user->no_hp ?>">
               </div>
               <div class="my-3 col-md-12 text-end">
-                <a href="" class="btn btn-danger">
+                <a href="<?=site_url('user/profile') ?>" class="btn btn-danger">
                   Kembali
                 </a>
                 <button type="submit" class="btn btn-primary px-5">
