@@ -11,6 +11,9 @@
   <link rel="shortcut icon" href="images/favicon.ico">
 
   <!-- App css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caramel&display=swap" rel="stylesheet">
   <link href="<?=assets_dashboard(); ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="<?=assets_dashboard(); ?>css/icons.css" rel="stylesheet" type="text/css" />
   <link href="<?=assets_dashboard(); ?>css/metismenu.min.css" rel="stylesheet" type="text/css" />
@@ -55,6 +58,10 @@
     .form-login {
       margin-bottom: 90px;
     }
+    .apk-name {
+      font-family: 'Caramel', Sans-Serif;
+      font-size: 25px;
+    }
 @media only screen and (max-width: 500px) {
       .col-md-7.form {
         //padding: 5px;
@@ -92,17 +99,26 @@
 </head>
 
 <body class="bg-transparent">
-  <div class="card border-0 shadow my-5 mx-auto overflow-hidden" style='max-width:90%'>
+  <div class="card border-0 shadow my-5 p-0 mx-auto overflow-hidden position-absolute top-50" style='min-width: 90%; max-width:90%; transform: translate(-50%); left: 50%'>
     <div class="row">
       <div class="col-md-7 pr-0 form">
         <div class="m-auto border-0 bg-transparent shadow-0 w-100 p-3" style="max-width: 450px">
-          <div class="d-flex ">
-            <img src="<?=assets_dashboard(); ?>images/logo.png" width="40px" alt="logo" class="my-3 logo">
-            <div class="ml-3">
-              <h6 class="mt-3 mb-1 title text-muted ms-1">
-                Badan Pusat Statistik
-              </h6>
-              <h4 class="mt-1 apk-name">Si Mba'e Cakep</h4>
+          <div class="row">
+            <div class="col-md-7">
+              <div class="d-flex ">
+                <img src="<?=assets_dashboard(); ?>images/logo.png" width="60px" alt="logo" class="my-3 logo">
+                <div class="ml-3">
+                  <h6 class="mt-3 mb-1 title text-muted ms-1 mb-0 text-primary fw-bold">
+                    Badan Pusat Statistik
+                  </h6>
+                  <h6 class="mt-0 text-primary">Kabupaten Kuningan</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="d-flex align-items-center">
+                <h4 class="mt-4 apk-name text-center">Si Mba'e Cakep</h4>
+              </div>
             </div>
           </div>
           <?php if ($this->session->flashdata('error')): ?>
@@ -129,7 +145,7 @@
           </form>
         </div>
         <!-- <br>  <br>  <br>  <br>  <br>  <br> -->
-        <small class='text-center d-block text-muted'> &copy; IPDS3208 & SMK PERTIWI KUNIGAN </small>
+        <small class='text-center d-block text-muted'> &copy; IPDS3208 & SMK PERTIWI KUNINGAN </small>
         <div class="lines d-flex justify-content-between">
           <div class="biru line">
           </div>
