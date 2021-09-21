@@ -13,7 +13,7 @@
   <!-- App css -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caramel&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
   <link href="<?=assets_dashboard(); ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
   <link href="<?=assets_dashboard(); ?>css/icons.css" rel="stylesheet" type="text/css" />
   <link href="<?=assets_dashboard(); ?>css/metismenu.min.css" rel="stylesheet" type="text/css" />
@@ -59,7 +59,7 @@
       margin-bottom: 90px;
     }
     .apk-name {
-      font-family: 'Caramel', Sans-Serif;
+      font-family: 'Princess Sofia', Sans-Serif;
       font-size: 25px;
     }
 @media only screen and (max-width: 500px) {
@@ -99,12 +99,12 @@
 </head>
 
 <body class="bg-transparent">
-  <div class="card border-0 shadow my-5 p-0 mx-auto overflow-hidden position-absolute top-50" style='min-width: 90%; max-width:90%; transform: translate(-50%); left: 50%'>
+  <div class="card border-0 shadow p-0 mx-auto overflow-hidden position-absolute" style='min-width: 90%; max-width:90%; transform: translate(-50%, -50%); left: 50%; top:50%'>
     <div class="row">
       <div class="col-md-7 pr-0 form">
         <div class="m-auto border-0 bg-transparent shadow-0 w-100 p-3" style="max-width: 450px">
           <div class="row">
-            <div class="col-md-7">
+            <div class="col-7">
               <div class="d-flex ">
                 <img src="<?=assets_dashboard(); ?>images/logo.png" width="60px" alt="logo" class="my-3 logo">
                 <div class="ml-3">
@@ -115,7 +115,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-5">
               <div class="d-flex align-items-center">
                 <h4 class="mt-4 apk-name text-center">Si Mba'e Cakep</h4>
               </div>
