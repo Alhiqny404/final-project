@@ -18,20 +18,16 @@ $prefixPage = 'user/akun/';
             <input type="hidden" name="id" value="<?=$user->id ?>">
             <div class="row">
               <div class="mb-3 col-md-6">
-                <label for="username" class="form-label">username</label>
-                <input type="text" class="form-control" name="username" value="<?=$user->username ?>" required="">
-              </div>
-              <div class="mb-3 col-md-6">
                 <label for="old_pass" class="form-label">Password Lama</label>
-                <input type="password" id="old_pass" class="form-control" name="old_pass">
+                <input required="" type="password" id="old_pass" class="form-control" name="old_pass">
               </div>
               <div class="mb-3 col-md-6">
                 <label for="new_pass" class="form-label">Password Baru</label>
-                <input type="password" class="form-control" id="new_pass" name="new_pass">
+                <input required="" type="password" class="form-control" id="new_pass" name="new_pass">
               </div>
               <div class="mb-3 col-md-6">
                 <label for="confirm_pass" class="form-label">Ulang Password Baru</label>
-                <input type="password" class="form-control" id="confirm_pass" name="confirm_pass">
+                <input required="" type="password" class="form-control" id="confirm_pass" name="confirm_pass">
               </div>
               <div class="my-3 col-md-12 text-end">
                 <a href="<?=site_url('user/profile') ?>" class="btn btn-danger">
@@ -39,7 +35,7 @@ $prefixPage = 'user/akun/';
                 </a>
                 <button type="submit" class="btn btn-primary px-4">
                   <i class="fas fa-save"></i>
-                  Perbaharui Akun
+                  Perbaharui Password
                 </button>
               </div>
             </div>

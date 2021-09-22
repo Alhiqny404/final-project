@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 21 Sep 2021 pada 11.04
+-- Waktu pembuatan: 22 Sep 2021 pada 16.13
 -- Versi server: 5.6.38
 -- Versi PHP: 8.0.0
 
@@ -33,27 +33,26 @@ CREATE TABLE `beban_kerja` (
   `user_id` int(11) NOT NULL,
   `seksi_id` int(11) NOT NULL,
   `tgl_buat` date NOT NULL,
-  `tgl_akhir` datetime NOT NULL
+  `tgl_akhir` datetime NOT NULL,
+  `bulan` text NOT NULL,
+  `catatan` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data untuk tabel `beban_kerja`
 --
 
-INSERT INTO `beban_kerja` (`id`, `nama_pekerjaan`, `user_id`, `seksi_id`, `tgl_buat`, `tgl_akhir`) VALUES
-(1, 'Pekerjaan1', 100, 5, '2021-09-15', '2021-09-01 00:00:00'),
-(2, 'Pekerjaan2', 100, 5, '2021-09-01', '2021-09-15 00:00:00'),
-(3, 'Pekerjaansosial', 100, 6, '2021-09-15', '2021-09-15 00:00:00'),
-(4, 'Pekerjaan1', 100, 5, '2021-09-15', '2021-09-15 00:00:00'),
-(5, 'wkwkde', 100, 7, '2021-08-01', '2021-09-15 00:00:00'),
-(6, 'Kdedd', 100, 8, '2021-08-12', '2021-09-15 00:00:00'),
-(7, 'Skes', 100, 7, '2021-06-17', '2021-09-15 00:00:00'),
-(8, 'awokawokD', 100, 6, '2021-07-01', '2021-09-15 00:00:00'),
-(9, 'D3ddd', 100, 8, '2021-09-15', '2021-09-15 00:00:00'),
-(10, 'F4fff', 101, 9, '2021-09-15', '2021-09-15 00:00:00'),
-(11, 'Dedf', 100, 9, '2021-09-15', '2021-09-15 00:00:00'),
-(12, 'Yyy', 100, 5, '2021-01-03', '2021-03-18 00:00:00'),
-(13, 'Jj', 100, 5, '2021-01-01', '2021-02-02 00:00:00');
+INSERT INTO `beban_kerja` (`id`, `nama_pekerjaan`, `user_id`, `seksi_id`, `tgl_buat`, `tgl_akhir`, `bulan`, `catatan`) VALUES
+(25, 'Hhhhhh', 103, 5, '0000-00-00', '0000-00-00 00:00:00', '[\"1\"]', 'Akwkw'),
+(24, 'Pekerjaan1', 103, 5, '0000-00-00', '0000-00-00 00:00:00', '[\"1\"]', 'Awokawk'),
+(23, 'awokawok', 100, 10, '0000-00-00', '0000-00-00 00:00:00', '[\"4\",\"5\"]', '1 maret - 23 april'),
+(22, 'Ghjjj', 102, 6, '0000-00-00', '0000-00-00 00:00:00', '[\"1\",\"2\",\"3\"]', 'mulai 12 Jan -  13 mar'),
+(21, 'awokawok', 100, 5, '0000-00-00', '0000-00-00 00:00:00', '[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\",\"8\",\"9\",\"10\",\"11\",\"12\"]', 'Wyfyftrrr'),
+(20, 'awokawok', 100, 8, '0000-00-00', '0000-00-00 00:00:00', '[\"2\",\"3\"]', 'Dee'),
+(19, 'Ddf', 101, 6, '0000-00-00', '0000-00-00 00:00:00', '[\"2\",\"3\"]', 'Ewe'),
+(18, 'awokawok', 100, 5, '0000-00-00', '0000-00-00 00:00:00', '[\"1\",\"2\"]', '1'),
+(26, 'Pekerjaan3', 103, 5, '0000-00-00', '0000-00-00 00:00:00', '[\"1\",\"2\",\"3\"]', 'Wkwk'),
+(27, 'Pekerjaan1', 103, 6, '0000-00-00', '0000-00-00 00:00:00', '[\"1\",\"2\",\"3\",\"4\",\"5\"]', '2idje');
 
 -- --------------------------------------------------------
 
@@ -127,7 +126,24 @@ CREATE TABLE `laporan` (
 INSERT INTO `laporan` (`id`, `judul`, `file`, `status`, `tgl_upload`, `tgl_respon`, `catatan`, `user_id`, `jenis_laporan_id`) VALUES
 (1, 'Laporsn1', 'laporan-pegawai_1-1631644084.xlsx', 'pending', '2021-09-15 01:28:04', '0000-00-00 00:00:00', '', 100, 2),
 (2, 'Laporan2', 'laporan-pegawai_1-1631644105.xls', 'reject', '2021-09-15 01:28:25', '2021-09-15 01:36:27', 'Ulangi', 100, 4),
-(3, 'Laporan3', 'laporan-pegawai_1-1631675091.xls', 'approve', '2021-09-15 10:04:51', '2021-09-19 20:56:54', '', 100, 5);
+(3, 'Laporan3', 'laporan-pegawai1-1632206576.xls', 'koreksi', '2021-09-21 13:42:56', '2021-09-19 20:56:54', '', 100, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `loan`
+--
+
+CREATE TABLE `loan` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `items` text NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `expired_at` datetime NOT NULL,
+  `processed_at` datetime NOT NULL,
+  `returned_at` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -166,12 +182,12 @@ CREATE TABLE `seksi` (
 --
 
 INSERT INTO `seksi` (`id`, `nama_seksi`, `warna`) VALUES
-(5, 'Umum', 'abu'),
-(6, 'Sosial', 'biru'),
-(7, 'Distribusi', 'orange'),
-(8, 'Produksi', 'hijau'),
-(9, 'Nerwilis', 'ungu'),
-(10, 'IPDS', 'kuning');
+(5, 'Umum', '#cfcfc4'),
+(6, 'Sosial', '#00AEEF'),
+(7, 'Distribusi', '#F7931E'),
+(8, 'Produksi', '#8CC63E'),
+(9, 'Nerwilis', '#9B9BEE'),
+(10, 'IPDS', '#F8BE2D');
 
 -- --------------------------------------------------------
 
@@ -204,7 +220,7 @@ INSERT INTO `user` (`id`, `nip`, `nama_lengkap`, `jenis_kelamin`, `tgl_lahir`, `
 (1, 1, 'Mas Admin', 'l', '0000-00-00', 'admin@example.com', '0834256454', 'admin bebas', '', 'admin', '$2y$10$rkgsEAivitanNqCPlHtMw.d89Buus/GrfUnbFx8MeFx58nfmGkAjW', 12, 1, 'admin'),
 (13, 2, 'kang super admin', 'l', '0000-00-00', 'superadmin@gmail.com', '083107396037', 'dimana mana', '', 'superadmin', '$2y$10$ezz2NunZ2Kc3QTOPfBYZf.8dbWE6vXWeqMvsjC81mxFjVQnDMncXG', 12, 1, 'superadmin'),
 (15, 3, 'kang supervisor', 'p', '0000-00-00', 'supervisor@gmail.com', '7675765', '', '', 'supervisor', '$2y$10$2JSTy1Ukrsq4HrRHkb9PyONSFfnaZfr3tNVJ6cng0OVJUgSoO9BTu', 13, 1, 'supervisor'),
-(100, 104030421, 'Pegawai1', 'p', '2004-01-03', 'user1@bps.com', '62812345678', 'Desa Ghoib', 'profilepict-pegawai1-1632093144.jpg', 'user123', '$2y$10$KaNWFXTJLyYOcGWUf2PiFeoW9WQkB/7Fi8F1azuXJbKXsqWEH3G8m', 13, 2, 'user'),
+(100, 104030421, 'Pegawai1', 'l', '2004-01-03', 'user1@bps.com', '62812345678', 'Desa Ghoib', 'profilepict-pegawai1-1632211894.jpg', 'user123', '$2y$10$VDIHUvXFQfw5fQe9ODnex.5Yu/GwWScjOU6/03dH1nYBQbZJCqJLS', 13, 2, 'user'),
 (101, 104030422, 'Pegawai 2', 'l', '2004-02-03', 'user2@bps.com', '62812345679', 'Desa Durajaya', 'profilepict-pegawai_2-1632097270.jpg', 'user124', '$2y$10$VhgTJmyK6DPSyup47ggDsuXz2yKVhbEtmvhQYr5RpW/hCW0hxunVu', 13, 2, 'user'),
 (102, 104030423, 'Pegawai 3', 'p', '2004-03-03', 'user3@bps.com', '62812345680', 'Desa Durajaya', '', 'user125', '$2y$10$yyKyYbEF8D.VtXxKB/9Z7.Huj4zG3y9sC0sTPki2wwsaHsYb09aua', 13, 2, 'user'),
 (103, 104030424, 'Pegawai 4', 'l', '2004-04-03', 'user4@bps.com', '62812345681', 'Desa Durajaya', '', 'user126', '$2y$10$bwqew.6n12VIjWVO6VrIIeZPh7cJN13QhuYDfqgzS2K8f./TiB/B6', 13, 2, 'user'),
@@ -245,6 +261,12 @@ ALTER TABLE `laporan`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indeks untuk tabel `loan`
+--
+ALTER TABLE `loan`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `pangkat`
 --
 ALTER TABLE `pangkat`
@@ -273,7 +295,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `beban_kerja`
 --
 ALTER TABLE `beban_kerja`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT untuk tabel `jabatan`
@@ -294,6 +316,12 @@ ALTER TABLE `laporan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT untuk tabel `loan`
+--
+ALTER TABLE `loan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `pangkat`
 --
 ALTER TABLE `pangkat`
@@ -303,7 +331,7 @@ ALTER TABLE `pangkat`
 -- AUTO_INCREMENT untuk tabel `seksi`
 --
 ALTER TABLE `seksi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

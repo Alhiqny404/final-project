@@ -43,14 +43,16 @@ class Beban extends CI_Controller {
   public function index() {
     $data['user'] = $this->user->getWhere(['role' => 'user']);
     $data['title'] = 'Dashboard';
-    view('admin/beban-kerja', $data);
+    view('admin/beban-kerja',
+      $data);
   }
 
   public function create() {
     $data['title'] = 'Dashboard';
     $data['user'] = $this->user->getWhere(['role' => 'user']);
     $data['seksi'] = $this->seksi->getAll();
-    view('admin/create-beban-kerja', $data);
+    view('admin/create-beban-kerja',
+      $data);
   }
 
 
@@ -63,6 +65,7 @@ class Beban extends CI_Controller {
   * @return redirect ke prefix ini
   */
   public function insert() {
+    //var_dump($_POST); die;
     if ($this->beban->add() > 0) {
       $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
       redirect($this->prefix);

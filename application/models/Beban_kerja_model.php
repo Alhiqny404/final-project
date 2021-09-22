@@ -49,12 +49,16 @@ class Beban_kerja_model extends CI_Model {
   */
   public function add() {
     $dataForm = $this->input->post();
+
     $data = [
       'nama_pekerjaan' => htmlspecialchars($dataForm['nama_pekerjaan'], true),
       'user_id' => htmlspecialchars($dataForm['user_id'], true),
       'seksi_id' => htmlspecialchars($dataForm['seksi_id'], true),
-      'tgl_buat' => $dataForm['tgl_buat'],
-      'tgl_akhir' => $dataForm['tgl_akhir']
+      'bulan' => json_encode($dataForm['bulan']),
+      'catatan' => htmlspecialchars($dataForm['catatan'], true)
+
+      //'tgl_buat' => $dataForm['tgl_buat'],
+      //'tgl_akhir' => $dataForm['tgl_akhir']
 
     ];
     $this->db->insert($this->table, $data);

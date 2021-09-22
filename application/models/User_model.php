@@ -215,24 +215,26 @@ class User_model extends CI_Model {
   }
 
 
-  public function editAkun() {
+  public function editPassword() {
     $dataForm = $this->input->post();
-    $dataUpdate = [
-      'username' => htmlspecialchars($dataForm['username'], true)
-    ];
+
     if (!empty($dataForm['old_pass'])) {
       $password = $this->db->get_where('user', ['id' => $dataForm['id']])->row()->password;
       if (password_verify($dataForm['old_pass'], $password)) {
         if ($dataForm['new_pass'] == $dataForm['confirm_pass']) {
-          $dataUpdate['password'] = password_hash($dataForm['new_pass'], PASSWORD_BCRYPT);
+          $dataUpdate = ['password' => password_hash($dataForm['new_pass'], PASSWORD_BCRYPT)];
         } else {
           // confirm password tidak sesuai
           $data['error'] = 'konfirmasi password tidak sesuai';
+          $data['perubahan'] = false;
+          return $data;
           //   return false;
         }
       } else {
         // pasword lama salah
         $data['error'] = 'password lama salah';
+        $data['perubahan'] = false;
+        return $data;
         // return false;
       }
     }
@@ -241,7 +243,6 @@ class User_model extends CI_Model {
       $this->primaryKey => $dataForm['id']
     ];
     $this->db->update($this->table, $dataUpdate, $where);
-    $this->session->userdata('username', $dataForm['username']);
     $data['perubahan'] = $this->db->affected_rows();
     return $data;
 

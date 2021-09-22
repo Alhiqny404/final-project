@@ -51,8 +51,21 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group mb-4">
-                  <label for="tgl_buat" class="form-label">Tanggal Awal</label>
-                  <input type="date" id="tgl_buat" name="tgl_buat" class="form-control" required>
+                  <label for="bulan" class="form-label">Bulan Kerja</label>
+                  <select name="bulan[]" id="bulan" class="form-select" multiple>
+                    <option value="1">Januari</option>
+                    <option value="2">Februari</option>
+                    <option value="3">Maret</option>
+                    <option value="4">April</option>
+                    <option value="5">Mei</option>
+                    <option value="6">Juni</option>
+                    <option value="7">Juli</option>
+                    <option value="8">Agustus</option>
+                    <option value="9">September</option>
+                    <option value="10">Oktober</option>
+                    <option value="11">Nobember</option>
+                    <option value="12">Desember</option>
+                  </select>
                   <div class="invalid-feedback">
                     inputan harus diisi
                   </div>
@@ -60,8 +73,8 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group mb-4">
-                  <label for="tgl_akhir" class="form-label">Tanggal Akhir</label>
-                  <input type="date" id="tgl_akhir" name="tgl_akhir" class="form-control" required>
+                  <label for="catatan" class="form-label">Catatan</label>
+                  <textarea name="catatan" id="catatan" cols="30" rows="10" class="form-control"></textarea>
                   <div class="invalid-feedback">
                     inputan harus diisi
                   </div>

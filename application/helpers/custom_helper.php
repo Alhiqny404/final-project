@@ -12,10 +12,10 @@ function assets_dashboard() {
   return base_url('assets/dashboard/');
 }
 
-function profilePict() {
+function profilePict($user_id = null) {
   $ci = get_instance();
   $pp = $ci->db->select('foto_profile')
-  ->where('id', sud('user_id'))
+  ->where('id', $user_id)
   ->get('user')
   ->row()->foto_profile;
   $path = 'uploads/profilepict/';
@@ -81,7 +81,9 @@ function CLBI($user_id, $bool) {
   return $res;
 }
 
-function BKBI($user_id, $bulan) {
+
+/*
+function BKBI_bck($user_id, $bulan) {
   $ci = get_instance();
   $res = [];
   $seksi = $ci->db->get('seksi')->result();
@@ -98,6 +100,21 @@ function BKBI($user_id, $bulan) {
     $ci->db->join('seksi', 'beban_kerja.seksi_id = seksi.id');
     $ci->db->where($where);
     $bebanKerja = $ci->db->get()->num_rows();
+    if ($bebanKerja > 0) array_push($res, $seksi[$key]);
+  }
+  return $res;
+
+}
+*/
+
+function BKBI($user_id, $bulan) {
+  $ci = get_instance();
+  $res = [];
+  $seksi = $ci->db->get('seksi')->result();
+  foreach ($seksi as $key => $val) {
+    $ci->db->like('bulan', $bulan);
+    $ci->db->where(['user_id' => $user_id, 'seksi_id' => $val->id]);
+    $bebanKerja = $ci->db->get('beban_kerja')->num_rows();
     if ($bebanKerja > 0) array_push($res, $seksi[$key]);
   }
   return $res;
@@ -215,7 +232,7 @@ function isLogin() {
 
 function notLogin() {
   $role = sud('role');
-  if (sud('user_id')) return ke("$role/dashboard");
+  if (sud('user_id')) return ke("{$role}/dashboard");
 }
 
 function harus($role = '') {

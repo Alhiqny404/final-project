@@ -13,19 +13,19 @@
     background: #cfcfc4;
   }
   .biru {
-    background-color: #93CAED;
+    background-color: #00AEEF;
   }
   .orange {
-    background-color: #FF7E47;
+    background-color: #F7931E;
   }
   .hijau {
-    background-color: #ACD1AF;
+    background-color: #8CC63E;
   }
   .ungu {
     background-color: #9B9BEE;
   }
   .kuning {
-    background-color: #EEEE9B;
+    background-color: #F8BE2D;
   }
 </style>
 
@@ -163,11 +163,15 @@
                       <?php $no = 1; foreach ($user as $val): ?>
                       <tr>
                         <td><?=$no++ ?></td>
-                        <td><?=$val->nama_lengkap ?></td>
+                        <td>
+                          <a type="button" class="" data-bs-toggle="modal" data-bs-target="#bebanzz" onclick="detailBebanKerja(<?=$val->id ?>)">
+                            <?=$val->nama_lengkap ?>
+                          </a>
+                        </td>
                         <?php foreach (noBulan() as $key => $bln): ?>
                         <td scope="<?=$bln ?>">
-                          <?php foreach (BKBI($val->id, sprintf("%'02d", $key+1)) as $bk): ?>
-                          <div class="kerja<?=" ".$bk->warna ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=$bk->nama_seksi ?>"></div>
+                          <?php foreach (BKBI($val->id, sprintf($key+1)) as $bk): ?>
+                          <div class="kerja" style="background-color:<?=$bk->warna ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=$bk->nama_seksi ?>"></div>
                           <?php endforeach; ?>
                         </td>
                         <?php endforeach; ?>
@@ -347,7 +351,7 @@
                               </td>
                               <?php if (sud('role') != 'user' && sud('role') != 'supervisor'): ?>
                               <td>
-                                <button type="button" class="btnbtn-sm  btn-primary" data-bs-toggle="modal" onclick="detailUser(<?=$val->nip ?>,'<?=$val->nama_lengkap ?>','<?=$val->no_hp ?>','<?=$val->alamat ?>')" data-bs-target="#exampleModal">
+                                <button type="button" class="btnbtn-sm  btn-primary" data-bs-toggle="modal" onclick="detailUser(<?=$val->nip ?>,'<?=$val->nama_lengkap ?>','<?=$val->no_hp ?>','<?=$val->alamat ?>','<?=profilePict($val->id) ?>')" data-bs-target="#exampleModal">
                                   <i class="fas fa-eye"></i>
                                 </button>
                               </td>
@@ -393,7 +397,7 @@
                               </td>
                               <?php if (sud('role') != 'user' && sud('role') != 'supervisor'): ?>
                               <td>
-                                <button type="button" class="btnbtn-sm  btn-primary" onclick="detailUser(<?=$val->nip ?>,'<?=$val->nama_lengkap ?>','<?=$val->no_hp ?>','<?=$val->alamat ?>')" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="button" class="btnbtn-sm  btn-primary" onclick="detailUser(<?=$val->nip ?>,'<?=$val->nama_lengkap ?>','<?=$val->no_hp ?>','<?=$val->alamat ?>','<?=profilePict($val->id) ?>')" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                   <i class="fas fa-eye"></i>
                                 </button>
                               </td>
@@ -631,6 +635,10 @@
       </div>
       <!-- container -->
 
+      <script>
+        let userId;
+      </script>
+
       <!-- modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -641,7 +649,7 @@
             </div>
             <div class="modal-body">
               <h5 class="text-center">
-                <img src="<?=base_url('uploads/profilepict/default.jpg') ?>" alt="" class="m-auto rounded-circle" style="max-height: 200px; max-width: 200px">
+                <img src="" alt="" class="m-auto rounded-circle show_profilepict" style="max-height: 200px; max-width: 200px">
               </h5>
               <div class="table-responsive">
                 <table class="table table-hover mb-0">
@@ -685,6 +693,22 @@
         </div>
       </div>
 
+      <div class="modal fade modal-fullscreen" id="bebanzz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Beban Kerja Nama Pegawai</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="accordion list-beban-kerja" id="accordionExample">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
 
       <?php view('_layouts/footer'); ?>
 
@@ -695,15 +719,43 @@
 </div>
 <!-- end page-wrapper -->
 <?php view('_layouts/js'); ?>
-<script src="<?=assets_dashboard() ?>plugins/chartjs/chart.min.js"></script>
 <?php view('_layouts/end'); ?>
+<script src="<?=assets_dashboard() ?>plugins/chartjs/chart.min.js"></script>
 
 
 
 <script>
 
+  function detailBebanKerja(userId) {
 
-  function detailUser(nip, nama, no_hp, alamat) {
+    let res = '';
+    let url = "<?=site_url('ajax/detailBebanKerja/') ?>"+userId;
+    $.ajax({
+      url: url,
+      type: "GET",
+      cache: false,
+      success: function(data) {
+        $('.list-beban-kerja').html(data)
+      },
+      error: function(jqxhr, textStatus, errorThrown) {
+        console.log(jqxhr);
+        console.log(textStatus);
+        console.log(errorThrown);
+
+        for (key in jqxhr)
+          alert(key + ":" + jqxhr[key])
+        for (key2 in textStatus)
+          alert(key + ":" + textStatus[key])
+        for (key3 in errorThrown)
+          alert(key + ":" + errorThrown[key])
+
+      }
+    });
+  }
+
+  function detailUser(nip, nama, no_hp, alamat, profilePict) {
+    $('.show_profilepict').attr('src',
+      '<?=base_url() ?>'+profilePict);
     $('.show_nip').html(nip);
     $('.show_nama').html(nama);
     $('.show_no_hp').html(no_hp);
@@ -718,9 +770,10 @@
   const showTable = ($table)=> {
     tableHideToggle.forEach(tableToggle=> {
       tableToggle.classList.remove('active')
-      tableToggle.addEventListener('click', ()=> {
-        tableToggle.classList.add('active')
-      })
+      tableToggle.addEventListener('click',
+        ()=> {
+          tableToggle.classList.add('active')
+        })
     })
     if ($table == 'male') {
       male.classList.remove('hidden')
@@ -818,9 +871,6 @@ function($) {
   "use strict";
   $.ChartJs.init()
 }(window.jQuery);
-
-
-
 
 </script>
 <script type="text/javascript" charset="utf-8">

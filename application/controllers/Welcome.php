@@ -19,6 +19,6 @@ class Welcome extends CI_Controller {
   * @see https://codeigniter.com/user_guide/general/urls.html
   */
   public function index() {
-    ke('login');
+    var_dump($_SESSION);
   }
 }

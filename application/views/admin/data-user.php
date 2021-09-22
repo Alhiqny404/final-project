@@ -64,7 +64,7 @@ $prefix_page = 'admin/kelola/user/';
                               data-id="<?=$val->id ?>"
                               data-nama="<?=$val->nama_lengkap ?>"><i class="fas fa-trash-alt"></i></button>
                             <button type="button" class="btn btn-sm  btn-primary" onclick="detailUser(
-                              '<?=$val->nip ?>','<?=$val->nama_lengkap ?>','<?=$val->nama_jabatan ?>','<?=$val->nama_pangkat ?>','<?=$val->no_hp ?>','<?=$val->email ?>','<?=$val->username ?>','<?=$val->alamat ?>'
+                              '<?=$val->nip ?>','<?=$val->nama_lengkap ?>','<?=$val->nama_jabatan ?>','<?=$val->nama_pangkat ?>','<?=$val->no_hp ?>','<?=$val->email ?>','<?=$val->username ?>','<?=$val->alamat ?>','<?=profilePict($val->id) ?>'
                               )">
                               <i class="fas fa-eye"></i>
                             </button>
@@ -218,7 +218,7 @@ $prefix_page = 'admin/kelola/user/';
         } else if (role == 'user') {
           role = '4';
         }
-        console.log(1)
+
         $('.custom-modal-title').html('Edit Data User');
         $('#form').attr('action', url);
         $('[name=id]').val(id);
@@ -263,7 +263,8 @@ $prefix_page = 'admin/kelola/user/';
       })
   });
 
-  function detailUser(nip, nama, jabatan, pangkat, no_hp, email, username, alamat) {
+  function detailUser(nip, nama, jabatan, pangkat, no_hp, email, username, alamat, profilepict) {
+    $('.show-profilepict').attr('src', '<?=base_url() ?>'+profilepict);
     $('#modal_detail').modal('show');
     $('.show-nip').html(nip);
     $('.show-nama').html(nama);
@@ -289,7 +290,7 @@ $prefix_page = 'admin/kelola/user/';
       </div>
       <div class="modal-body">
         <h5 class="text-center">
-          <img src="<?=base_url('uploads/profilepict/default.jpg') ?>" alt="" class="m-auto rounded-circle" style="max-height: 200px; max-width: 200px">
+          <img src="" alt="" class="m-auto rounded-circle show-profilepict" style="max-height: 200px; max-width: 200px">
         </h5>
         <div class="table-responsive">
           <table class="table table-hover mb-0">

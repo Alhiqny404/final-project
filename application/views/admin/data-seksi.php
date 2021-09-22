@@ -44,7 +44,7 @@ $prefix_page = 'admin/kelola/seksi/';
                         <td><?=$val->warna ?></td>
                         <td>
                           <center>
-                            <button type="button" class="btn btn-sm btn-success mr-2 edit-table" data-id="<?=$val->id ?>" data-nama="<?=$val->nama_seksi ?>" data-warna="<?=$val->warna?>"><i class="fas fa-edit"></i></button>
+                            <button type="button" class="btn btn-sm btn-success mr-2 edit-table" data-id="<?=$val->id ?>" data-nama="<?=$val->nama_seksi ?>" data-warna="<?=$val->warna ?>"><i class="fas fa-edit"></i></button>
                             <button type="button" class="btn btn-sm btn-danger delete-table" data-id="<?=$val->id ?>" data-nama="<?=$val->nama_seksi ?>"><i class="fas fa-trash-alt"></i></button>
                           </center>
                         </td>
@@ -170,7 +170,7 @@ $prefix_page = 'admin/kelola/seksi/';
           </div>
           <div class="form-group">
             <label>Warna</label>
-            <input type="text" class="form-control" required placeholder="warna..." name="warna" />
+            <input type="color" class="form-control" required placeholder="warna..." name="warna" />
           </div>
           <div class="form-group mb-0">
             <button type="submit" class="btn btn-primary waves-effect waves-light" onclick="Custombox.modal.close();">

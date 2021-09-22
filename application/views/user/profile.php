@@ -2,24 +2,23 @@
 <?php  view('_layouts/topbar'); ?>
 
 <style>
-
   .abu {
     background: #cfcfc4;
   }
   .biru {
-    background-color: #93CAED;
+    background-color: #00AEEF;
   }
   .orange {
-    background-color: #FF7E47;
+    background-color: #F7931E;
   }
   .hijau {
-    background-color: #ACD1AF;
+    background-color: #8CC63E;
   }
   .ungu {
     background-color: #9B9BEE;
   }
   .kuning {
-    background-color: #EEEE9B;
+    background-color: #F8BE2D;
   }
 </style>
 <?php view('_layouts/wrapper-img');
@@ -40,7 +39,7 @@
                     <div class="col-md-6 mb-3 mb-lg-0">
                       <div class="fro_profile-main">
                         <div class="fro_profile-main-pic">
-                          <img src="<?=base_url(profilePict()) ?>" alt="foto" class="rounded-circle w-100">
+                          <img src="<?=base_url(profilePict(sud('user_id'))) ?>" alt="foto" class="rounded-circle w-100">
                           <span class="fro-profile_main-pic-change">
                             <i class="fas fa-camera"></i>
                           </span>
@@ -64,7 +63,9 @@
                           <div class="seling-report">
                             <ul class="mb-0">
                               <?php foreach ($seksi_kerja as $val): ?>
-                              <li class="mb-2 list-inline-item text-muted font-13"><i class="mdi mdi-label mr-2"></i><?=$val['nama_seksi'] ?></li>
+                              <li class="mb-2 list-inline-item text-muted font-13">
+                                <i class="mdi mdi-label mr-2" style="color:<?=$val['warna'] ?>"></i><?=$val['nama_seksi'] ?>
+                              </li>
                               <?php endforeach; ?>
                             </ul>
                           </div>
@@ -183,7 +184,7 @@
                         Edit Biodata
                       </a>
                       <a href="<?=site_url('user/akun/edit') ?>" class="btn btn-primary px-4 mt-3">
-                        Edit Akun
+                        Edit Password
                       </a>
                     </div>
                   </div>
@@ -195,7 +196,7 @@
                   <h4 class="mt-0 header-title mb-3">Aktifitas pekerjaan</h4>
                   <?php foreach ($seksi_kerja as $val): ?>
                   <div class="activity d-flex justify-content-between mt-4">
-                    <div class="<?=$val['warna'] ?>" style="width: 20px; height:20px; width:10%"></div>
+                    <div style="width: 20px; height:20px; width:10%;background-color:<?=$val['warna'] ?>"></div>
                     <div class="time-item " style="width: 90%">
                       <?php foreach (ActivitasBebanKerjaKu($val['id']) as $subval): ?>
                       <div class="item-info d-flex justify-content-between">
@@ -206,7 +207,7 @@
                           </p>
                         </div>
                         <div class="text-muted text-right font-10">
-                          <?= monthString($subval->tgl_buat) ?>
+                          <?=$subval->catatan ?>
                         </div>
                       </div>
                       <?php endforeach; ?>

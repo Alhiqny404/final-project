@@ -31,6 +31,7 @@ class Dashboard extends CI_Controller {
   * @return view
   */
   public function index() {
+    $data['seksi'] = $this->seksi->getAll();
     $data['user'] = $this->user->getWhere(['role' => 'user']);
     $data['user_l'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'l']);
     $data['user_p'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'p']);

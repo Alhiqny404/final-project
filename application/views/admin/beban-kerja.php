@@ -14,19 +14,19 @@
     background: #cfcfc4;
   }
   .biru {
-    background-color: #93CAED;
+    background-color: #00AEEF;
   }
   .orange {
-    background-color: #FF7E47;
+    background-color: #F7931E;
   }
   .hijau {
-    background-color: #ACD1AF;
+    background-color: #8CC63E;
   }
   .ungu {
     background-color: #9B9BEE;
   }
   .kuning {
-    background-color: #EEEE9B;
+    background-color: #F8BE2D;
   }
 </style>
 
@@ -79,15 +79,22 @@ $prefix_page = 'admin/beban/';
                 <td class="text-center">Des</td>
               </tr>
             </thead>
+            <?php
+
+            ?>
             <tbody>
               <?php $no = 1; foreach ($user as $val): ?>
               <tr>
                 <td><?=$no++ ?></td>
-                <td><?=$val->nama_lengkap ?></td>
+                <td>
+                  <a type="button" class="" data-bs-toggle="modal" data-bs-target="#bebanzz" onclick="detailBebanKerja(<?=$val->id ?>)">
+                    <?=$val->nama_lengkap ?>
+                  </a>
+                </td>
                 <?php foreach (noBulan() as $key => $bln): ?>
                 <td scope="<?=$bln ?>">
-                  <?php foreach (BKBI($val->id, sprintf("%'02d", $key+1)) as $bk): ?>
-                  <div class="kerja<?=" ".$bk->warna ?>"></div>
+                  <?php foreach (BKBI($val->id, $key+1) as $bk): ?>
+                  <div class="kerja" style="background-color:<?=$bk->warna ?>"></div>
                   <?php endforeach; ?>
                 </td>
                 <?php endforeach; ?>
@@ -187,7 +194,65 @@ $prefix_page = 'admin/beban/';
   <!--end page-wrapper-inner -->
 </div>
 <!-- end page-wrapper -->
+
+
+
+
+
+
+
+<div class="modal fade modal-fullscreen" id="bebanzz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Beban Kerja Nama Pegawai</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="accordion list-beban-kerja" id="accordionExample">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
 <?php view('_layouts/js'); ?>
+
+
+<script>
+  function detailBebanKerja(userId) {
+
+    let res = '';
+    let url = "<?=site_url('ajax/detailBebanKerja/') ?>"+userId;
+    $.ajax({
+      url: url,
+      type: "GET",
+      cache: false,
+      success: function(data) {
+        $('.list-beban-kerja').html(data)
+      },
+      error: function(jqxhr, textStatus, errorThrown) {
+        console.log(jqxhr);
+        console.log(textStatus);
+        console.log(errorThrown);
+
+        for (key in jqxhr)
+          alert(key + ":" + jqxhr[key])
+        for (key2 in textStatus)
+          alert(key + ":" + textStatus[key])
+        for (key3 in errorThrown)
+          alert(key + ":" + errorThrown[key])
+
+      }
+    });
+  }
+
+</script>
 
 
 <?php view('_layouts/end'); ?>

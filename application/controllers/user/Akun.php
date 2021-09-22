@@ -40,9 +40,9 @@ class Akun extends CI_Controller {
 
 
   public function update() {
-    $edit = $this->user->editAkun();
+    $edit = $this->user->editPassword();
     if ($edit['perubahan'] > 0) {
-      $this->session->set_flashdata('success', 'Akun Berhasil Diupdate');
+      $this->session->set_flashdata('success', 'Password Berhasil Diupdate');
       redirect($this->prefix);
     } else {
       $this->session->set_flashdata('error', $edit['error']);

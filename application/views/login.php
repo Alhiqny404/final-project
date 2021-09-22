@@ -120,6 +120,9 @@
                 <h4 class="mt-4 apk-name text-center">Si Mba'e Cakep</h4>
               </div>
             </div>
+            <div class="col-12">
+              <h5 class="text-center mt-4 text-muted">Sistem Informasi Monitoring Beban Kerja dan <br> Capaian Kinerja Pegawai</h5>
+            </div>
           </div>
           <?php if ($this->session->flashdata('error')): ?>
           <div class="alert alert-danger mt-3" role="alert">
@@ -127,7 +130,7 @@
           </div>
           <?php endif; ?>
           <!--    <h4 class="text-center mt-5 mb-5 heading position-relative">Si Mba'e Cakep</h4> -->
-          <form action="" method="post" class="mt-5 pr-2 form-login">
+          <form action="" method="post" class="mt-3 pr-2 form-login">
             <?=csrf() ?>
             <div class="input-group mb-3">
               <div class="input-group-text">
