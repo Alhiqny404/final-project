@@ -173,7 +173,7 @@
                         <tr>
                           <td><?=$no++ ?></td>
                           <td>
-                            <a type="button" class="" data-bs-toggle="modal" data-bs-target="#bebanzz" onclick="detailBebanKerja(<?=$val->id ?>)">
+                            <a type="button" class="" <?php if (sud('role') != 'user'): ?>onclick="detailBebanKerja(<?=$val->id ?>)"<?php endif; ?>>
                               <?=$val->nama_lengkap ?>
                             </a>
                           </td>
@@ -737,7 +737,7 @@
 <script>
 
   function detailBebanKerja(userId) {
-
+    $('#bebanzz').modal('show');
     let res = '';
     let url = "<?=site_url('ajax/detailBebanKerja/') ?>"+userId;
     $.ajax({
