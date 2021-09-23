@@ -10,7 +10,9 @@
           <img src="<?=assets_dashboard() ?>images/logo.png" alt="logo-bps" class="logo-sm">
         </span>
         <span>
-          <img src="<?=assets_dashboard() ?>images/logo-dark.png" alt="logo-large" class="logo-lg">
+          <h4 class="d-inline ml-2">
+            Badan Pusat Statistik
+          </h4>
         </span>
       </a>
     </div>

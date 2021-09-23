@@ -53,55 +53,57 @@ $prefix_page = 'admin/beban/';
               Tambah Beban Kerja
             </a>
           </div>
-          <table class="table table-striped table-hover table-responsive">
-            <thead>
-              <tr>
-                <th rowspan="2" class="text-white" style="background-color: #00ADEF">
-                  <h6 class="mb-4">No.</h6>
-                </th>
-                <th rowspan="2" style="white-space: nowrap; background-color: #8CC63E" class="text-white">
-                  <h6 class="mb-4 mx-3"> Nama Pegawai</h6>
-                </th>
-                <th colspan="12" class="text-center text-light" style="background-color: #F8931F">Beban Kerja</th>
-              </tr>
-              <tr style="background-color: #F8BE2D" class="text-white">
-                <td class="text-center">Jan</td>
-                <td class="text-center">Feb</td>
-                <td class="text-center">Mar</td>
-                <td class="text-center">Apr</td>
-                <td class="text-center">Mei</td>
-                <td class="text-center">Jun</td>
-                <td class="text-center">Jul</td>
-                <td class="text-center">Agt</td>
-                <td class="text-center">Sep</td>
-                <td class="text-center">Okt</td>
-                <td class="text-center">Nov</td>
-                <td class="text-center">Des</td>
-              </tr>
-            </thead>
-            <?php
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+                <tr>
+                  <th rowspan="2" class="text-white" style="background-color: #00ADEF">
+                    <h6 class="mb-4">No.</h6>
+                  </th>
+                  <th rowspan="2" style="white-space: nowrap; background-color: #8CC63E" class="text-white">
+                    <h6 class="mb-4 mx-3"> Nama Pegawai</h6>
+                  </th>
+                  <th colspan="12" class="text-center text-light" style="background-color: #F8931F">Beban Kerja</th>
+                </tr>
+                <tr style="background-color: #F8BE2D" class="text-white">
+                  <td class="text-center">Jan</td>
+                  <td class="text-center">Feb</td>
+                  <td class="text-center">Mar</td>
+                  <td class="text-center">Apr</td>
+                  <td class="text-center">Mei</td>
+                  <td class="text-center">Jun</td>
+                  <td class="text-center">Jul</td>
+                  <td class="text-center">Agt</td>
+                  <td class="text-center">Sep</td>
+                  <td class="text-center">Okt</td>
+                  <td class="text-center">Nov</td>
+                  <td class="text-center">Des</td>
+                </tr>
+              </thead>
+              <?php
 
-            ?>
-            <tbody>
-              <?php $no = 1; foreach ($user as $val): ?>
-              <tr>
-                <td><?=$no++ ?></td>
-                <td>
-                  <a type="button" class="" data-bs-toggle="modal" data-bs-target="#bebanzz" onclick="detailBebanKerja(<?=$val->id ?>)">
-                    <?=$val->nama_lengkap ?>
-                  </a>
-                </td>
-                <?php foreach (noBulan() as $key => $bln): ?>
-                <td scope="<?=$bln ?>">
-                  <?php foreach (BKBI($val->id, $key+1) as $bk): ?>
-                  <div class="kerja" style="background-color:<?=$bk->warna ?>"></div>
+              ?>
+              <tbody>
+                <?php $no = 1; foreach ($user as $val): ?>
+                <tr>
+                  <td><?=$no++ ?></td>
+                  <td>
+                    <a type="button" class="" data-bs-toggle="modal" data-bs-target="#bebanzz" onclick="detailBebanKerja(<?=$val->id ?>)">
+                      <?=$val->nama_lengkap ?>
+                    </a>
+                  </td>
+                  <?php foreach (noBulan() as $key => $bln): ?>
+                  <td scope="<?=$bln ?>">
+                    <?php foreach (BKBI($val->id, $key+1) as $bk): ?>
+                    <div class="kerja" style="background-color:<?=$bk->warna ?>"></div>
+                    <?php endforeach; ?>
+                  </td>
                   <?php endforeach; ?>
-                </td>
+                </tr>
                 <?php endforeach; ?>
-              </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
           <div class="card mt-4">
             <div class="card-header">
               Kode Warna Seksi
