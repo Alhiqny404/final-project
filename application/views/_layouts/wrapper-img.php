@@ -7,10 +7,7 @@
         <h5 class="text-light">Sebagai <?=sud('role') ?> </h5>
         <ul class="list-unstyled list-inline mb-0 mt-2">
           <li class="list-inline-item">
-            <a href="#" class=""><i class="mdi mdi-account text-light"></i></a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#" class=""><i class="mdi mdi-settings text-light"></i></a>
+            <a href="<?=site_url('user/profile') ?>" class=""><i class="mdi mdi-account text-light"></i></a>
           </li>
         </ul>
       </div>

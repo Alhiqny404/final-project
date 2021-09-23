@@ -211,8 +211,14 @@ $prefix_page = 'admin/beban/';
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="accordion list-beban-kerja" id="accordionExample">
-
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+          <?php foreach ($seksi as $val): ?>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#<?= strtolower($val->nama_seksi) ?>"><?=$val->nama_seksi ?></button>
+          </li>
+          <?php endforeach; ?>
+        </ul>
+        <div class="tab-content list-beban-kerja" id="pills-tabContent">
         </div>
       </div>
     </div>

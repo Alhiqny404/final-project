@@ -1,9 +1,9 @@
 <!-- Top Bar Start -->
 <style>
-@media only screen and (max-width: 1024px){
-    .text-logo{
-        visibility: hidden !important;
-    }
+@media only screen and (max-width: 1024px) {
+  .text-logo {
+    visibility: hidden !important;
+  }
 }
 </style>
 
@@ -101,7 +101,6 @@
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a class="dropdown-item" href="<?=site_url('user/profile') ?>"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
-          <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted mr-2"></i> Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="<?=site_url('login/logout') ?>"><i class="dripicons-exit text-muted mr-2"></i> Logout</a>
         </div>
@@ -116,12 +115,6 @@
         </button>
       </li>
 
-      <li class="hide-phone app-search">
-        <form role="search" class="">
-          <input type="text" placeholder="Search..." class="form-control">
-          <a href=""><i class="fas fa-search"></i></a>
-        </form>
-      </li>
 
     </ul>
 

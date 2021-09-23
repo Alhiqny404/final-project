@@ -667,33 +667,25 @@
                     <td>
                       NIP
                     </td>
-                    <td class="show_nip">
-                      123456
-                    </td>
+                    <td class="show_nip"></td>
                   </tr>
                   <tr>
                     <td>
                       Nama
                     </td>
-                    <td class="show_nama">
-                      Ilham Hafidz
-                    </td>
+                    <td class="show_nama"></td>
                   </tr>
                   <tr>
                     <td>
                       No. Telp
                     </td>
-                    <td class="show_no_hp">
-                      0974567809753
-                    </td>
+                    <td class="show_no_hp"></td>
                   </tr>
                   <tr>
                     <td>
                       Alamat
                     </td>
-                    <td class="show_alamat">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto ipsa quibusdam, do odio illum at consectetur labore quaerat dolore et, necessitatibus!
-                    </td>
+                    <td class="show_alamat"></td>
                   </tr>
                 </table>
                 <!--end table-->
@@ -705,14 +697,20 @@
 
       <div class="modal fade modal-fullscreen" id="bebanzz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
+          <div class="modal-content p-0">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Beban Kerja Nama Pegawai</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="accordion list-beban-kerja" id="accordionExample">
-
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <?php foreach ($seksi as $val): ?>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#<?= strtolower($val->nama_seksi) ?>"><?=$val->nama_seksi ?></button>
+                </li>
+                <?php endforeach; ?>
+              </ul>
+              <div class="tab-content list-beban-kerja" id="pills-tabContent">
               </div>
             </div>
           </div>
