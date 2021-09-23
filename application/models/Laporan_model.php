@@ -149,6 +149,8 @@ class Laporan_model extends CI_Model {
     $LaporanLama = $this->db->select('status')->from('laporan')->where('id', $dataForm['id'])->get()->row();
     if ($LaporanLama->status == 'approve') {
       $data['status'] = 'koreksi';
+    }if ($LaporanLama->status == 'reject') {
+      $data['status'] = 'pending';
     }
     $data['judul'] = htmlspecialchars($dataForm['judul']);
     $where = [

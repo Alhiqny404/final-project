@@ -48,7 +48,7 @@ $prefix_page = 'superadmin/laporan/';
                         <td>
                           <?php if ($val->status == 'pending'): ?>
                           <span class="badge badge-warning"><?=$val->status; ?></span>
-                          <?php elseif ($val->status == 'accept'): ?>
+                          <?php elseif ($val->status == 'approve'): ?>
                           <span class="badge badge-success"><?=$val->status; ?></span>
                           <?php elseif ($val->status == 'reject'): ?>
                           <span class="badge badge-danger"><?=$val->status; ?></span>
