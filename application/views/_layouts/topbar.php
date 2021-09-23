@@ -1,4 +1,13 @@
 <!-- Top Bar Start -->
+<style>
+@media only screen and (max-width: 1024px){
+    .text-logo{
+        visibility: hidden !important;
+    }
+}
+</style>
+
+
 <div class="topbar">
   <!-- Navbar -->
   <nav class="navbar-custom">
@@ -10,7 +19,7 @@
           <img src="<?=assets_dashboard() ?>images/logo.png" alt="logo-bps" class="logo-sm">
         </span>
         <span>
-          <h4 class="d-inline ml-2">
+          <h4 class="d-inline ml-2 text-logo">
             Badan Pusat Statistik
           </h4>
         </span>
