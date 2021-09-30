@@ -68,8 +68,11 @@ class Dashboard extends CI_Controller {
       'l50' => $l50
     ];
 
-
-
+  }
+  
+  public function removeNotif($id = null) {
+      if($id == null) return $this->index();
+      $this->db->delete('notifikasi',['id'=>$id]);
   }
 
 

@@ -244,8 +244,20 @@ class User_model extends CI_Model {
     ];
     $this->db->update($this->table, $dataUpdate, $where);
     $data['perubahan'] = $this->db->affected_rows();
+    $nama = $this->getById($dataForm['id'])->nama_lengkap;
+    $this->_sendNotif($nama);
     return $data;
 
+  }
+  
+  private function _sendNotif($nama){
+    $dataNotif = [
+      'role' => 'admin',
+      'judul' => 'ganti password',
+      'subjudul' => "user {$nama} telah ganti password",
+      'icon' => 'fas fa-edit'
+    ];
+    $this->db->insert('notifikasi',$dataNotif);
   }
 
   /**

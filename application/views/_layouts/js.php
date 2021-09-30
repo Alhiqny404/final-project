@@ -16,7 +16,17 @@
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
   var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
-  })
+  });
+  
+  
+  function removeNotif(id) {
+      $.get("<?=site_url('admin/dashboard/removeNotif/')?>"+id, function(data){
+        location.reload();
+      });
+  }
+  
+  
+  
 </script>
 
 

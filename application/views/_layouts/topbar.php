@@ -1,5 +1,14 @@
 <!-- Top Bar Start -->
 <style>
+i.fas.fa-times{
+    cursor: pointer;
+}
+i.fas.fa-times:hover{
+    color: #333 !important;
+}
+.text-logo{
+    color: #00aeef;
+}
 @media only screen and (max-width: 1024px) {
   .text-logo {
     visibility: hidden !important;
@@ -27,69 +36,38 @@
     </div>
 
     <ul class="list-unstyled topbar-nav float-right mb-0">
-
+ <?php
+            $notif = $this->db->get_where('notifikasi',['role'=> sud('role')])->result();
+            $countNotif = count((array)$notif);
+          ?>
       <li class="dropdown">
         <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
           aria-haspopup="false" aria-expanded="false">
           <i class="mdi mdi-bell-outline nav-icon"></i>
-          <span class="badge badge-danger badge-pill noti-icon-badge">2</span>
+          <span class="badge badge-danger badge-pill noti-icon-badge"><?=$countNotif?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-lg">
           <!-- item-->
           <h6 class="dropdown-item-text">
-            Notifications (258)
+            NOTIFIKASI (<?=$countNotif?>)
           </h6>
+         
           <div class="slimscroll notification-list">
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item active">
-              <div class="notify-icon bg-success">
-                <i class="mdi mdi-cart-outline"></i>
-              </div>
-              <p class="notify-details">
-                Your order is placed<small class="text-muted">Dummy text of the printing and typesetting industry.</small>
-              </p>
-            </a>
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-              <div class="notify-icon bg-warning">
-                <i class="mdi mdi-message"></i>
-              </div>
-              <p class="notify-details">
-                New Message received<small class="text-muted">You have 87 unread messages</small>
-              </p>
-            </a>
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-              <div class="notify-icon bg-info">
-                <i class="mdi mdi-glass-cocktail"></i>
-              </div>
-              <p class="notify-details">
-                Your item is shipped<small class="text-muted">It is a long established fact that a reader will</small>
-              </p>
-            </a>
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-              <div class="notify-icon bg-primary">
-                <i class="mdi mdi-cart-outline"></i>
-              </div>
-              <p class="notify-details">
-                Your order is placed<small class="text-muted">Dummy text of the printing and typesetting industry.</small>
-              </p>
-            </a>
-            <!-- item-->
-            <a href="javascript:void(0);" class="dropdown-item notify-item">
-              <div class="notify-icon bg-danger">
-                <i class="mdi mdi-message"></i>
-              </div>
-              <p class="notify-details">
-                New Message received<small class="text-muted">You have 87 unread messages</small>
-              </p>
-            </a>
+              <?php foreach($notif as $val) : ?>
+               <div class="position-relative">
+                   <a href="javascript:void(0);" class="dropdown-item notify-item">
+                  <div class="notify-icon bg-danger">
+                    <i class="mdi mdi-message"></i>
+                  </div>
+                  <p class="notify-details">
+                    <?=$val->judul?><small class="text-muted"><?=$val->subjudul?> &middot; <i><?=time_ago($val->created_at)?></i></small>
+                  </p>
+                </a>
+                <span onclick="removeNotif(<?=$val->id?>)" ><i class="fas fa-times position-absolute top-0 end-0 pe-3 pt-1 text-center text-muted"></i></span>
+                </div>
+              <?php endforeach;?>
+           
           </div>
-          <!-- All-->
-          <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
-            View all <i class="fi-arrow-right"></i>
-          </a>
         </div>
       </li>
 
