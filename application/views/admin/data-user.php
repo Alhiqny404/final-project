@@ -56,7 +56,7 @@ $prefix_page = 'admin/kelola/user/';
                     <tbody>
                       <?php $no = 1; foreach ($user as $val): ?>
                       <tr>
-                        <td><?=$no++ ?></td>
+                        <td><?=$no++; ?></td>
                         <td><?=$val->nip; ?></td>
                         <td><?=$val->username; ?></td>
                         <td><?=$val->nama_lengkap; ?></td>
@@ -65,9 +65,7 @@ $prefix_page = 'admin/kelola/user/';
                         <td>
                           <center>
                             <a href="<?=site_url($prefix_page.'edit/'.$val->id) ?>" class="btn btn-sm btn-success mr-2"><i class="fas fa-edit"></i></a>
-                            <button type="button" class="btn btn-sm btn-danger delete-table"
-                              data-id="<?=$val->id ?>"
-                              data-nama="<?=$val->nama_lengkap ?>"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteUser(<?=$val->id?>)"><i class="fas fa-trash-alt"></i></button>
                             <button type="button" class="btn btn-sm  btn-primary" onclick="detailUser(
                               '<?=$val->nip ?>','<?=$val->nama_lengkap ?>','<?=$val->nama_jabatan ?>','<?=$val->nama_pangkat ?>','<?=$val->no_hp ?>','<?=$val->email ?>','<?=$val->username ?>','<?=$val->alamat ?>','<?=profilePict($val->id) ?>'
                               )">
@@ -213,7 +211,6 @@ $prefix_page = 'admin/kelola/user/';
         let pangkat = $(this).data('pangkat-id');
         let role = $(this).data('role');
         let username = $(this).data('username');
-        console.log(role)
         if (role == 'superadmin') {
           role = '1';
         } else if (role == 'admin') {
@@ -235,12 +232,25 @@ $prefix_page = 'admin/kelola/user/';
         modalku('#custom-modal', 'fadein');
       })
 
-    // ketika button hapus diklik
-    $('.delete-table').on('click',
-      function(e) {
-        let url = "<?=site_url($prefix_page.'delete') ?>";
-        let id = $(this).data('id');
-        let nama = $(this).data('nama_lengkap');
+    
+  });
+
+  function detailUser(nip, nama, jabatan, pangkat, no_hp, email, username, alamat, profilepict) {
+    $('.show-profilepict').attr('src', '<?=base_url() ?>'+profilepict);
+    $('#modal_detail').modal('show');
+    $('.show-nip').html(nip);
+    $('.show-nama').html(nama);
+    $('.show-jabatan').html(jabatan);
+    $('.show-pangkat').html(pangkat);
+    $('.show-no_hpt').html(no_hp);
+    $('.show-email').html(email);
+    $('.show-username').html(username);
+    $('.show-alamat').html(alamat);
+  }
+
+
+function deleteUser(id){
+ let url = "<?=site_url($prefix_page.'delete') ?>";
         let form = $('<form/>', {
           action: url, method: 'POST'
         }).append(
@@ -265,22 +275,7 @@ $prefix_page = 'admin/kelola/user/';
             form.submit();
           }
         })
-      })
-  });
-
-  function detailUser(nip, nama, jabatan, pangkat, no_hp, email, username, alamat, profilepict) {
-    $('.show-profilepict').attr('src', '<?=base_url() ?>'+profilepict);
-    $('#modal_detail').modal('show');
-    $('.show-nip').html(nip);
-    $('.show-nama').html(nama);
-    $('.show-jabatan').html(jabatan);
-    $('.show-pangkat').html(pangkat);
-    $('.show-no_hpt').html(no_hp);
-    $('.show-email').html(email);
-    $('.show-username').html(username);
-    $('.show-alamat').html(alamat);
-  }
-
+    }
 
 </script>
 

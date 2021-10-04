@@ -29,8 +29,6 @@ class User_model extends CI_Model {
   * @var	string (field name)
   */
   private $primaryKey = 'id';
-
-
   private $uploadPath = 'uploads/profilepict/';
 
 
@@ -114,6 +112,7 @@ class User_model extends CI_Model {
       $sheetData = $spreadsheet->getActiveSheet()->toArray();
 
       for ($i = 1; $i < count($sheetData); $i++) {
+          if(empty($sheetData[$i]['0'])) break;
         $tgl_exp = explode('/', $sheetData[$i]['5']);
         $tgl_lahir = $tgl_exp[2].'-'.$tgl_exp[1].'-'.$tgl_exp[0];
         $data = [

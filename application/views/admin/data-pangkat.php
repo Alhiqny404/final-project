@@ -26,8 +26,8 @@ $prefix_page = 'admin/kelola/pangkat/';
                 <div class="text-right">
                   <a href="javascript:void(0)" class="btn btn-primary waves-effect text-right mb-4 tambah-data"><i class="fa fa-plus"></i></a>
                 </div>
-                <div class="">
-                  <table id="datatable" class="table dt-responsive table-hover nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <div class="table-responsive">
+                  <table id="datatable" class="table table-hover nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                       <tr>
                         <th width="10%">No</th>
@@ -43,7 +43,7 @@ $prefix_page = 'admin/kelola/pangkat/';
                         <td>
                           <center>
                             <button type="button" class="btn btn-sm btn-success mr-2 edit-table" data-id="<?=$val->id ?>" data-nama="<?=$val->nama_pangkat ?>"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-sm btn-danger delete-table" data-id="<?=$val->id ?>" data-nama="<?=$val->nama_pangkat ?>"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteUser(<?=$val->id?>)"><i class="fas fa-trash-alt"></i></button>
                           </center>
                         </td>
                       </tr>
@@ -112,11 +112,10 @@ $prefix_page = 'admin/kelola/pangkat/';
       modalku('#custom-modal', 'fadein');
     })
 
-    // ketika button hapus diklik
-    $('.delete-table').on('click', function(e) {
+  });
+
+    function deleteUser(id){
       let url = "<?=site_url($prefix_page.'delete') ?>";
-      let id = $(this).data('id');
-      let nama = $(this).data('nama');
       let form = $('<form/>', {
         action: url, method: 'POST'
       }).append(
@@ -141,10 +140,7 @@ $prefix_page = 'admin/kelola/pangkat/';
           form.submit();
         }
       })
-    })
-
-
-  });
+    }
 
 </script>
 
