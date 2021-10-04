@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+use \PhpOffice\PhpSpreadsheet\Spreadsheet;
+use \PhpOffice\PhpSpreadsheet\IOFactory;
+use \PhpOffice\PhpSpreadsheet\Reader\IReader;
+use \PhpOffice\PhpSpreadsheet\Writer\IWriter;
 
 /**
 * Controller User
@@ -40,6 +44,7 @@ class User extends CI_Controller {
   * @return view
   */
   public function index() {
+
     $data['user'] = $this->user->getAll();
     $data['jabatan'] = $this->jabatan->getAll();
     $data['pangkat'] = $this->pangkat->getAll();
@@ -123,6 +128,53 @@ class User extends CI_Controller {
     } else {
       $this->session->set_flashdata('error', 'Data Gagal Dihapus');
       redirect($this->prefix);
+    }
+
+  }
+
+
+  public function template() {
+
+    $jabatan = $this->jabatan->getAll();
+    $pangkat = $this->pangkat->getAll();
+
+    $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load(FCPATH.'uploads/template_user.xlsx');
+
+    $worksheet = $spreadsheet->getActiveSheet();
+    $i = 2;
+    foreach ($jabatan as $val) {
+      $worksheet->getCell("N{$i}")->setValue($val->nama_jabatan);
+      $worksheet->getCell("O{$i}")->setValue($val->id);
+      $i++;
+    }
+    $i = 2;
+    foreach ($pangkat as $val) {
+      $worksheet->getCell("Q{$i}")->setValue($val->nama_pangkat);
+      $worksheet->getCell("R{$i}")->setValue($val->id);
+      $i++;
+    }
+
+    $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
+    $writer->save(__DIR__.'/template_user.xls');
+    $path = __DIR__.'/template_user.xls';
+    if (file_exists($path)) {
+
+      header('Content-Description: File Transfer');
+      header('Content-Type: application/octet-stream');
+      header('Cache-Control: no-cache, must-revalidate');
+      header('Expires: 0');
+      header('Content-Disposition: attachment; filename="'.basename($path).'"');
+      header('Content-Length: '. filesize($path));
+      header('pragma: public');
+
+      flush();
+
+      readfile($path);
+      unlink($path);
+      die();
+
+    } else {
+      echo "File tidak ada";
     }
 
   }

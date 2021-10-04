@@ -1,19 +1,19 @@
 <!-- Top Bar Start -->
 <style>
-i.fas.fa-times{
+  i.fas.fa-times {
     cursor: pointer;
-}
-i.fas.fa-times:hover{
-    color: #333 !important;
-}
-.text-logo{
-    color: #00aeef;
-}
-@media only screen and (max-width: 1024px) {
-  .text-logo {
-    visibility: hidden !important;
   }
-}
+  i.fas.fa-times:hover {
+    color: #333 !important;
+  }
+  .text-logo {
+    color: #00aeef;
+  }
+@media only screen and (max-width: 1024px) {
+    .text-logo {
+      visibility: hidden !important;
+    }
+  }
 </style>
 
 
@@ -23,7 +23,7 @@ i.fas.fa-times:hover{
 
     <!-- LOGO -->
     <div class="topbar-left">
-      <a href="index.html" class="logo">
+      <a href="index.html" class="logo text-decoration-none">
         <span>
           <img src="<?=assets_dashboard() ?>images/logo.png" alt="logo-bps" class="logo-sm">
         </span>
@@ -36,37 +36,37 @@ i.fas.fa-times:hover{
     </div>
 
     <ul class="list-unstyled topbar-nav float-right mb-0">
- <?php
-            $notif = $this->db->get_where('notifikasi',['role'=> sud('role')])->result();
-            $countNotif = count((array)$notif);
-          ?>
+      <?php
+      $notif = $this->db->get_where('notifikasi', ['role' => sud('role')])->result();
+      $countNotif = count((array)$notif);
+      ?>
       <li class="dropdown">
         <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
           aria-haspopup="false" aria-expanded="false">
           <i class="mdi mdi-bell-outline nav-icon"></i>
-          <span class="badge badge-danger badge-pill noti-icon-badge"><?=$countNotif?></span>
+          <span class="badge badge-danger badge-pill noti-icon-badge"><?=$countNotif ?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-lg">
           <!-- item-->
           <h6 class="dropdown-item-text">
-            NOTIFIKASI (<?=$countNotif?>)
+            NOTIFIKASI (<?=$countNotif ?>)
           </h6>
-         
+
           <div class="slimscroll notification-list">
-              <?php foreach($notif as $val) : ?>
-               <div class="position-relative">
-                   <a href="javascript:void(0);" class="dropdown-item notify-item">
-                  <div class="notify-icon bg-danger">
-                    <i class="mdi mdi-message"></i>
-                  </div>
-                  <p class="notify-details">
-                    <?=$val->judul?><small class="text-muted"><?=$val->subjudul?> &middot; <i><?=time_ago($val->created_at)?></i></small>
-                  </p>
-                </a>
-                <span onclick="removeNotif(<?=$val->id?>)" ><i class="fas fa-times position-absolute top-0 end-0 pe-3 pt-1 text-center text-muted"></i></span>
+            <?php foreach ($notif as $val) : ?>
+            <div class="position-relative">
+              <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <div class="notify-icon bg-danger">
+                  <i class="mdi mdi-message"></i>
                 </div>
-              <?php endforeach;?>
-           
+                <p class="notify-details">
+                  <?=$val->judul ?><small class="text-muted"><?=$val->subjudul ?> &middot; <i><?=time_ago($val->created_at) ?></i></small>
+                </p>
+              </a>
+              <span onclick="removeNotif(<?=$val->id ?>)"><i class="fas fa-times position-absolute top-0 end-0 pe-3 pt-1 text-center text-muted"></i></span>
+            </div>
+            <?php endforeach; ?>
+
           </div>
         </div>
       </li>

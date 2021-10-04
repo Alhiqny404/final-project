@@ -1,7 +1,6 @@
 <?php
 // Prefix halaman ini
 $prefix_page = 'admin/kelola/user/';
-
 ?>
 
 <?php view('_layouts/header'); ?>
@@ -25,11 +24,17 @@ $prefix_page = 'admin/kelola/user/';
           <div class="col-lg-12 col-sm-12">
             <div class="card">
               <div class="card-body table-responsive">
-                <div class="text-right">
-                  <a href="" class="btn btn-success waves-effect text-right mb-4" data-bs-toggle="modal" data-bs-target="#importModal">
-                    <i class="fa fa-file-import me-2"></i>
-                    Import Excel
-                  </a>
+                <div class="w-100 d-flex justify-content-between">
+                  <div>
+                    <a href="<?=site_url($prefix_page.'template') ?>" class="btn btn-danger waves-effect mb-4">
+                      <i class="fas fa-download"></i>
+                      Download Template
+                    </a>
+                    <a href="" class="btn btn-success waves-effect text-right mb-4" data-bs-toggle="modal" data-bs-target="#importModal">
+                      <i class="fa fa-file-import me-2"></i>
+                      Import Excel
+                    </a>
+                  </div>
                   <a href="<?=site_url($prefix_page.'add') ?>" class="btn btn-primary waves-effect text-right mb-4 tambah-data">
                     <i class="fa fa-user-plus me-2"></i>
                     Tambah Pegawai

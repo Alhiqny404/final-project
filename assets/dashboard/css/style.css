@@ -113,7 +113,6 @@ p {
 * {
   outline: none !important;
 }
-
 a:hover, a:active, a:focus {
   outline: 0;
   text-decoration: none;
