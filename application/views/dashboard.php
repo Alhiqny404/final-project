@@ -132,6 +132,38 @@
               </div>
             </div>
           </div>
+           <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#prestasi" aria-expanded="false" aria-controls="collapseTwo">
+                Prestasi Pegawai
+              </button>
+            </h2>
+            <div id="prestasi" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <div class="card p-3">
+                  <table class="table table-stripped table-hover">
+                    <thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Nama Pegawai</th>
+                        <th>Total Laporan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                      <?php $no = 1; foreach ($ranking as $val): ?>
+                      <tr>
+                        <td><?=$no++ ?></td>
+                        <td><?=$val['nama_lengkap'] ?></td>
+                        <td><?=$val['total_laporan']?></td>
+                      </tr>
+                      <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#beban" aria-expanded="false" aria-controls="collapseTwo">
@@ -173,7 +205,7 @@
                         <tr>
                           <td><?=$no++ ?></td>
                           <td>
-                            <a type="button" class="" <?php if (sud('role') != 'user'): ?>onclick="detailBebanKerja(<?=$val->id ?>)"<?php endif; ?>>
+                            <a type="button" class="" <?php if (sud('role') != 'user'): ?> onclick="detailBebanKerja(<?=$val->id ?>,'<?=$val->nama_lengkap?>')" <?php endif; ?>>
                               <?=$val->nama_lengkap ?>
                             </a>
                           </td>
@@ -340,7 +372,7 @@
                           <thead class="thead-light">
                             <tr>
                               <th class="border-top-0">No</th>
-                              <th class="border-top-0">NIP</th>
+                              <th class="border-top-0">No.Urut Pegawai</th>
                               <th class="border-top-0">Nama</th>
                               <?php if (sud('role') != 'user' && sud('role') != 'supervisor'): ?>
                               <th class="border-top-0">Lihat</th>
@@ -386,7 +418,7 @@
                           <thead class="thead-light">
                             <tr>
                               <th class="border-top-0">No</th>
-                              <th class="border-top-0">NIP</th>
+                              <th class="border-top-0">No.Urut Pegawai</th>
                               <th class="border-top-0">Nama</th>
                               <?php if (sud('role') != 'user' && sud('role') != 'supervisor'): ?>
                               <th class="border-top-0">Lihat</th>
@@ -495,7 +527,7 @@
                             <thead class="thead-light">
                               <tr>
                                 <th class="border-top-0">No</th>
-                                <th class="border-top-0">NIP</th>
+                                <th class="border-top-0">No.Urut Pegawai</th>
                                 <th class="border-top-0">Nama</th>
                               </tr>
                             </thead>
@@ -531,7 +563,7 @@
                             <thead class="thead-light">
                               <tr>
                                 <th class="border-top-0">No</th>
-                                <th class="border-top-0">NIP</th>
+                                <th class="border-top-0">No.Urut Pegawai</th>
                                 <th class="border-top-0">Nama</th>
                               </tr>
                             </thead>
@@ -567,7 +599,7 @@
                             <thead class="thead-light">
                               <tr>
                                 <th class="border-top-0">No</th>
-                                <th class="border-top-0">NIP</th>
+                                <th class="border-top-0">No.Urut Pegawai</th>
                                 <th class="border-top-0">Nama</th>
                               </tr>
                             </thead>
@@ -603,7 +635,7 @@
                             <thead class="thead-light">
                               <tr>
                                 <th class="border-top-0">No</th>
-                                <th class="border-top-0">NIP</th>
+                                <th class="border-top-0">No.Urut Pegawai</th>
                                 <th class="border-top-0">Nama</th>
                               </tr>
                             </thead>
@@ -665,7 +697,7 @@
                 <table class="table table-hover mb-0">
                   <tr>
                     <td>
-                      NIP
+                      No.Urut Pegawai
                     </td>
                     <td class="show_nip"></td>
                   </tr>
@@ -706,10 +738,23 @@
               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <?php foreach ($seksi as $val): ?>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#<?= strtolower($val->nama_seksi) ?>"><?=$val->nama_seksi ?></button>
+                  <button class="nav-link nav-link-beban-kerja" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#<?= strtolower($val->nama_seksi) ?>"><?=$val->nama_seksi ?></button>
                 </li>
                 <?php endforeach; ?>
               </ul>
+              <div class="text-right mb-3">
+                  <div class="dropleft">
+                  <button class="btn btn-success dropdown-toggle w-100 text-filter-beban-kerja" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter Tahun
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2018">2018</a>
+                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2019">2019</a>
+                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2020">2020</a>
+                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2021">2021</a>
+                  </div>
+                </div>
+              </div>
               <div class="tab-content list-beban-kerja" id="pills-tabContent">
               </div>
             </div>
@@ -727,39 +772,60 @@
 </div>
 <!-- end page-wrapper -->
 <?php view('_layouts/js'); ?>
-<?php view('_layouts/end'); ?>
 <script src="<?=assets_dashboard() ?>plugins/chartjs/chart.min.js"></script>
 
 
 
 <script>
 
-  function detailBebanKerja(userId) {
+  $(document).ready(function(){
+    $('.item-filter-beban-kerja').on('click',function(e){
+         e.preventDefault();
+         let userId = $(this).data('id');
+         let namaLengkap = $(this).data('nama');
+         let tahun = $(this).data('tahun');
+         let url = "<?=site_url('ajax/detailBebanKerja/') ?>"+userId+`?tahun=${tahun}`;
+         $('.text-filter-beban-kerja').html(`Loading...`);
+         $('.nav-link-beban-kerja').removeClass('active');
+            $.ajax({
+              url: url,
+              type: "GET",
+              cache: false,
+              success: function(data) {
+                $('.text-filter-beban-kerja').html(`Filter Tahun ${tahun}`);
+                $('.list-beban-kerja').html(data);
+                $('.modal-title').html(`Beban Kerja ${namaLengkap}`);
+              },
+              error: function(jqxhr, textStatus, errorThrown) {
+                console.log(jqxhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+        
+                for (key in jqxhr)
+                  alert(key + ":" + jqxhr[key])
+                for (key2 in textStatus)
+                  alert(key + ":" + textStatus[key])
+                for (key3 in errorThrown)
+                  alert(key + ":" + errorThrown[key])
+        
+              }
+            });
+    })
+  })
+
+  function detailBebanKerja(userId,namaLengkap) {
+    console.log('masuk pak eko')
     $('#bebanzz').modal('show');
-    let res = '';
-    let url = "<?=site_url('ajax/detailBebanKerja/') ?>"+userId;
-    $.ajax({
-      url: url,
-      type: "GET",
-      cache: false,
-      success: function(data) {
-        $('.list-beban-kerja').html(data)
-      },
-      error: function(jqxhr, textStatus, errorThrown) {
-        console.log(jqxhr);
-        console.log(textStatus);
-        console.log(errorThrown);
-
-        for (key in jqxhr)
-          alert(key + ":" + jqxhr[key])
-        for (key2 in textStatus)
-          alert(key + ":" + textStatus[key])
-        for (key3 in errorThrown)
-          alert(key + ":" + errorThrown[key])
-
-      }
-    });
+    $('.modal-title').html(`Beban Kerja ${namaLengkap}`);
+    $('.item-filter-beban-kerja').data('id', userId);
+    $('.item-filter-beban-kerja').data('nama', namaLengkap);
+    $('.nav-link-beban-kerja').removeClass('active');
+    $('.list-beban-kerja').html('');
+    $('.text-filter-beban-kerja').html(`Filter Tahun`);
+    
   }
+  
+  
 
   function detailUser(nip, nama, no_hp, alamat, profilePict) {
     $('.show_profilepict').attr('src',
@@ -888,3 +954,7 @@ myModal.addEventListener('shown.bs.modal', function () {
 myInput.focus()
 });
 </script>
+
+
+
+<?php view('_layouts/end'); ?>

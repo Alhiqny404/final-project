@@ -26,7 +26,7 @@ $prefixPage = 'user/akun/';
                 <input required="" type="password" class="form-control" id="new_pass" name="new_pass">
               </div>
               <div class="mb-3 col-md-6">
-                <label for="confirm_pass" class="form-label">Ulang Password Baru</label>
+                <label for="confirm_pass" class="form-label">Konfirmasi Ulang Password Baru</label>
                 <input required="" type="password" class="form-control" id="confirm_pass" name="confirm_pass">
               </div>
               <div class="my-3 col-md-12 text-end">

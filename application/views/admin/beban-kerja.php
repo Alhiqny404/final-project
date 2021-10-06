@@ -88,7 +88,7 @@ $prefix_page = 'admin/beban/';
                 <tr>
                   <td><?=$no++ ?></td>
                   <td>
-                    <a type="button" class="" data-bs-toggle="modal" data-bs-target="#bebanzz" onclick="detailBebanKerja(<?=$val->id ?>)">
+                    <a type="button" class="" data-bs-toggle="modal" data-bs-target="#bebanzz" onclick="detailBebanKerja(<?=$val->id ?>,'<?=$val->nama_lengkap?>')">
                       <?=$val->nama_lengkap ?>
                     </a>
                   </td>
@@ -202,29 +202,40 @@ $prefix_page = 'admin/beban/';
 
 
 
-
-<div class="modal fade modal-fullscreen" id="bebanzz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Beban Kerja Nama Pegawai</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <?php foreach ($seksi as $val): ?>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#<?= strtolower($val->nama_seksi) ?>"><?=$val->nama_seksi ?></button>
-          </li>
-          <?php endforeach; ?>
-        </ul>
-        <div class="tab-content list-beban-kerja" id="pills-tabContent">
+ <div class="modal fade modal-fullscreen" id="bebanzz" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content p-0">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Beban Kerja Nama Pegawai</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <?php foreach ($seksi as $val): ?>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link nav-link-beban-kerja" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#<?= strtolower($val->nama_seksi) ?>"><?=$val->nama_seksi ?></button>
+                </li>
+                <?php endforeach; ?>
+              </ul>
+              <div class="text-right mb-3">
+                  <div class="dropleft">
+                  <button class="btn btn-success dropdown-toggle w-100 text-filter-beban-kerja" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Filter Tahun
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2018">2018</a>
+                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2019">2019</a>
+                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2020">2020</a>
+                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2021">2021</a>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-content list-beban-kerja" id="pills-tabContent">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-
 
 
 
@@ -233,32 +244,53 @@ $prefix_page = 'admin/beban/';
 
 
 <script>
-  function detailBebanKerja(userId) {
 
-    let res = '';
-    let url = "<?=site_url('ajax/detailBebanKerja/') ?>"+userId;
-    $.ajax({
-      url: url,
-      type: "GET",
-      cache: false,
-      success: function(data) {
-        $('.list-beban-kerja').html(data)
-      },
-      error: function(jqxhr, textStatus, errorThrown) {
-        console.log(jqxhr);
-        console.log(textStatus);
-        console.log(errorThrown);
+  $(document).ready(function(){
+    $('.item-filter-beban-kerja').on('click',function(e){
+         e.preventDefault();
+         let userId = $(this).data('id');
+         let namaLengkap = $(this).data('nama');
+         let tahun = $(this).data('tahun');
+         let url = "<?=site_url('ajax/detailBebanKerja/') ?>"+userId+`?tahun=${tahun}`;
+         $('.text-filter-beban-kerja').html(`Loading...`);
+         $('.nav-link-beban-kerja').removeClass('active');
+            $.ajax({
+              url: url,
+              type: "GET",
+              cache: false,
+              success: function(data) {
+                $('.text-filter-beban-kerja').html(`Filter Tahun ${tahun}`);
+                $('.list-beban-kerja').html(data)
+                $('.modal-title').html(`Beban Kerja ${namaLengkap}`)
+              },
+              error: function(jqxhr, textStatus, errorThrown) {
+                console.log(jqxhr);
+                console.log(textStatus);
+                console.log(errorThrown);
+        
+                for (key in jqxhr)
+                  alert(key + ":" + jqxhr[key])
+                for (key2 in textStatus)
+                  alert(key + ":" + textStatus[key])
+                for (key3 in errorThrown)
+                  alert(key + ":" + errorThrown[key])
+        
+              }
+            });
+    })
+  })
 
-        for (key in jqxhr)
-          alert(key + ":" + jqxhr[key])
-        for (key2 in textStatus)
-          alert(key + ":" + textStatus[key])
-        for (key3 in errorThrown)
-          alert(key + ":" + errorThrown[key])
-
-      }
-    });
+  function detailBebanKerja(userId,namaLengkap) {
+    $('#bebanzz').modal('show');
+    $('.modal-title').html(`Beban Kerja ${namaLengkap}`);
+    $('.item-filter-beban-kerja').data('id', userId);
+    $('.item-filter-beban-kerja').data('nama', namaLengkap);
+    $('.nav-link-beban-kerja').removeClass('active');
+    $('.list-beban-kerja').html('');
+    $('.text-filter-beban-kerja').html(`Filter Tahun`);
+    
   }
+
 
 </script>
 

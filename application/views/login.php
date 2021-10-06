@@ -25,6 +25,13 @@
       background-size: cover;
       background-position: center
     }
+    .title, .subtittle{
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 13px;
+        color:  #00AEEF;
+    }
     .heading::after, .heading::before {
       content: '';
       width: 100px;
@@ -60,7 +67,7 @@
     }
     .apk-name {
       font-family: 'Princess Sofia', Sans-Serif;
-      font-size: 25px;
+      font-size: 20px;
     }
 @media only screen and (max-width: 500px) {
       .col-md-7.form {
@@ -104,20 +111,20 @@
       <div class="col-md-7 pr-0 form">
         <div class="m-auto border-0 bg-transparent shadow-0 w-100 p-3" style="max-width: 450px">
           <div class="row">
-            <div class="col-7">
+            <div class="col-8">
               <div class="d-flex ">
                 <img src="<?=assets_dashboard(); ?>images/logo.png" width="60px" alt="logo" class="my-3 logo">
                 <div class="ml-3">
-                  <h6 class="mt-3 mb-1 title text-muted ms-1 mb-0 text-primary fw-bold">
+                  <h6 class="mt-3 mb-1 title ms-1 mb-0 fw-bold font-italic">
                     Badan Pusat Statistik
                   </h6>
-                  <h6 class="mt-0 text-primary">Kabupaten Kuningan</h6>
+                  <h6 class="mt-0 font-italic subtittle">Kabupaten Kuningan</h6>
                 </div>
               </div>
             </div>
-            <div class="col-5">
+            <div class="col-4">
               <div class="d-flex align-items-center">
-                <h4 class="mt-4 apk-name text-center">Si Mba'e Cakep</h4>
+                <h6 class="mt-4 apk-name text-center">Si Mba'e Cakep</h6>
               </div>
             </div>
             <div class="col-12">

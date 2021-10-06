@@ -55,6 +55,7 @@ class Beban_kerja_model extends CI_Model {
       'user_id' => htmlspecialchars($dataForm['user_id'], true),
       'seksi_id' => htmlspecialchars($dataForm['seksi_id'], true),
       'bulan' => json_encode($dataForm['bulan']),
+      'tahun' => date('Y'),
       'catatan' => htmlspecialchars($dataForm['catatan'], true)
 
       //'tgl_buat' => $dataForm['tgl_buat'],

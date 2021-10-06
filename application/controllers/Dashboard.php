@@ -33,6 +33,7 @@ class Dashboard extends CI_Controller {
   public function index() {
     $data['seksi'] = $this->seksi->getAll();
     $data['user'] = $this->user->getWhere(['role' => 'user']);
+    $data['ranking'] = $this->sortRanking();
     $data['user_l'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'l']);
     $data['user_p'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'p']);
     $umur = $this->_getUmur($data['user']);
@@ -43,6 +44,45 @@ class Dashboard extends CI_Controller {
     $data['title'] = 'Dashboard';
     view('dashboard', $data);
   }
+  
+  public function sortRanking() {
+      $ranking = [];
+      $users = $this->db->get_where('user',['role'=>'user'])->result();
+      foreach($users as $user){
+           $this->db->where('user_id',$user->id);
+           $this->db->where('MONTH(tgl_upload)',date('m'));
+           $this->db->where('YEAR(tgl_upload)',date('Y'));
+           $this->db->where('status !=','reject');
+           $this->db->where('status !=','koreksi');
+           $this->db->order_by('tgl_upload','asc');
+           $laporan = $this->db->get('laporan');
+           array_push($ranking,[
+             'nama_lengkap' => $user->nama_lengkap,
+             'total_laporan' => $laporan->num_rows(),
+             'tgl_upload' => !empty($laporan->row()->tgl_upload) ? $laporan->row()->tgl_upload : ''
+           ]);
+           
+      }
+      
+     return $this->bubble_sort($ranking);
+      
+     
+    
+  }
+  
+  private function bubble_sort($data){
+  $n = count($data);
+  for ($i = 0; $i<$n; $i++) { 
+      for ($j = $n-1; $j>$i; $j--){
+          if ($data[$j]['total_laporan'] > $data[$j-1]['total_laporan']){ 
+              $dummy = $data[$j];
+              $data[$j] = $data[$j-1];
+              $data[$j-1] = $dummy;
+          }
+      }    
+  }
+  return $data;
+}
 
   private function _getUmur($dataUser) {
 

@@ -56,7 +56,7 @@
 
                     <div class="col-md-4 mb-3 mb-lg-0">
                       <div class="header-title">
-                        Seksi Pekerjaan<?=sud('user_id') ?>
+                        Seksi Pekerjaan
                       </div>
                       <div class="row">
                         <div class="col-7">
@@ -119,7 +119,7 @@
                         <table cellpadding='5px' class="w-100 mb-3">
                           <tr>
                             <td>
-                              NIP
+                                No.Urut Pegawai
                             </td>
                             <td>
                               :
@@ -193,28 +193,26 @@
                 <!--end tab-pane-->
 
                 <div class="tab-pane fade" id="profile-activities">
-                  <h4 class="mt-0 header-title mb-3">Aktifitas pekerjaan</h4>
-                  <?php foreach ($seksi_kerja as $val): ?>
-                  <div class="activity d-flex justify-content-between mt-4">
-                    <div style="width: 20px; height:20px; width:10%;background-color:<?=$val['warna'] ?>"></div>
-                    <div class="time-item " style="width: 90%">
-                      <?php foreach (ActivitasBebanKerjaKu($val['id']) as $subval): ?>
-                      <div class="item-info d-flex justify-content-between">
-                        <div>
-                          <h5 class="my-0"><?=$subval->nama_pekerjaan ?></h5>
-                          <p class="text-muted font-13">
-                            <?=$subval->nama_seksi ?>
-                          </p>
-                        </div>
-                        <div class="text-muted text-right font-10">
-                          <?=$subval->catatan ?>
-                        </div>
+                  <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h4 class="my-0 header-title">Aktifitas pekerjaan</h4>
+                  <div class="dropdown">
+                      <button class="btn btn-sm btn-primary dropdown-toggle px-4 text-filter-laporan" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                        Filter Tahun
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item item-filter-laporan" href="javascript:void(0)" data-tahun="2021">2021</a>
+                        <a class="dropdown-item item-filter-laporan" href="javascript:void(0)" data-tahun="2020">2020</a>
+                        <a class="dropdown-item item-filter-laporan" href="javascript:void(0)" data-tahun="2019">2019</a>
+                        <a class="dropdown-item item-filter-laporan" href="javascript:void(0)" data-tahun="2018">2018</a>
                       </div>
-                      <?php endforeach; ?>
                     </div>
                   </div>
-                  <?php endforeach; ?>
-                  <!--end activity-->
+                 <div class="aktifitas-pekerjaan">
+                     
+                 </div>
+                 
+                 
+                 
                   <!--end activity-->
                 </div>
                 <!--end tab-pane-->
@@ -238,7 +236,13 @@
                             <?=$val['nama_laporan'] ?>
                           </td>
                           <td>
-                            <?=$val['status'] === 'approve' ? '<i class="fas fa-check"></i>' : '<i class="fas fa-times"></i>' ?>
+                             <?php if($val['status'] === 'approve') : ?>
+                                <i class="fas fa-check text-success"></i>
+                             <?php elseif($val['status'] === 'pending') : ?>
+                                <i class="far fa-window-minimize text-danger"></i>
+                             <?php elseif($val['status'] === 'reject' || $val['status'] === 'null' || $val['status'] === 'koreksi') : ?>
+                                <i class="fas fa-times text-danger"></i>
+                             <?php endif; ?>
                           </td>
                         </tr>
                         <?php endforeach; ?>
@@ -274,6 +278,40 @@
 </div>
 <!-- end page-wrapper -->
 <?php view('_layouts/js'); ?>
+
+<script>
+    $(document).ready(function(){
+        $('.item-filter-laporan').on('click',function(e){
+            e.preventDefault();
+            let tahun = $(this).data('tahun');
+             let url = "<?=site_url('ajax/detailLaporanMe/') ?>"+tahun;
+             $('.text-filter-laporan').html(`Loading...`);
+                $.ajax({
+                  url: url,
+                  type: "GET",
+                  cache: false,
+                  success: function(data) {
+                    $('.text-filter-laporan').html(`Filter Tahun ${tahun}`);
+                    $( ".aktifitas-pekerjaan" ).html(data);
+                  },
+                  error: function(jqxhr, textStatus, errorThrown) {
+                    console.log(jqxhr);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+            
+                    for (key in jqxhr)
+                      alert(key + ":" + jqxhr[key])
+                    for (key2 in textStatus)
+                      alert(key + ":" + textStatus[key])
+                    for (key3 in errorThrown)
+                      alert(key + ":" + errorThrown[key])
+            
+                  }
+                });
+            
+        })
+    })
+</script>
 
 
 <?php if ($this->session->flashdata('success')): ?>

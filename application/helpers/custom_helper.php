@@ -133,7 +133,7 @@ function BKBI($user_id, $bulan) {
   $seksi = $ci->db->get('seksi')->result();
   foreach ($seksi as $key => $val) {
     $ci->db->like('bulan', $bulan);
-    $ci->db->where(['user_id' => $user_id, 'seksi_id' => $val->id]);
+    $ci->db->where(['user_id' => $user_id, 'seksi_id' => $val->id,'tahun'=>date('Y')]);
     $bebanKerja = $ci->db->get('beban_kerja')->num_rows();
     if ($bebanKerja > 0) array_push($res, $seksi[$key]);
   }
@@ -149,21 +149,20 @@ function LaporanKuToMonth() {
     $where = [
       'user_id' => sud('user_id'),
       'jenis_laporan_id' => $val->id,
-      'MONTH(tgl_respon)' => date('m'),
-      'YEAR(tgl_respon)' => date('Y'),
-      'status' => 'approve'
+      'MONTH(tgl_upload)' => date('m'),
+      'YEAR(tgl_upload)' => date('Y')
     ];
-    $cek = $ci->db->get_where('laporan', $where)->num_rows();
-    if ($cek) {
+    $laporan = $ci->db->get_where('laporan', $where)->row();
+    if (count((array)$laporan) > 0) {
       $dataRes = [
         'nama_laporan' => $val->nama_laporan,
-        'status' => 'approve'
+        'status' => $laporan->status
       ];
       array_push($res, $dataRes);
     } else {
       $dataRes = [
         'nama_laporan' => $val->nama_laporan,
-        'status' => 'pending'
+        'status' => 'null'
       ];
       array_push($res, $dataRes);
     }

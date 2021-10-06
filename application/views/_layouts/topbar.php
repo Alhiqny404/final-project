@@ -28,7 +28,7 @@
           <img src="<?=assets_dashboard() ?>images/logo.png" alt="logo-bps" class="logo-sm">
         </span>
         <span>
-          <h4 class="d-inline ml-2 text-logo">
+          <h4 class="d-inline ml-2 text-logo font-italic text-uppercase">
             Badan Pusat Statistik
           </h4>
         </span>
