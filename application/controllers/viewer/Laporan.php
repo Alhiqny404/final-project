@@ -14,7 +14,7 @@ class Laporan extends CI_Controller {
   *
   * @var	string
   */
-  private $prefix = 'superadmin/laporan';
+  private $prefix = "viewer/laporan";
 
   /**
   * Class constructor
@@ -25,11 +25,10 @@ class Laporan extends CI_Controller {
   public function __construct() {
     parent::__Construct();
     isLogin();
-    isSuperadmin();
+    isViewer();
     model('Jabatan_model', 'jabatan');
     model('Pangkat_model', 'pangkat');
     model('Laporan_model', 'laporan');
-    model('Superadmin_model', 'superadmin');
   }
 
   /**
@@ -44,15 +43,14 @@ class Laporan extends CI_Controller {
     $data['laporan'] = $this->laporan->getAll();
     $data['jabatan'] = $this->jabatan->getAll();
     $data['pangkat'] = $this->pangkat->getAll();
-    //$data['laporan_bulan_ini'] = $this->laporan->bulanIni();
     $data['title'] = 'List Data laporan';
 
-    view('superadmin/list-laporan', $data);
+    view('viewer/list-laporan', $data);
   }
 
 
   public function respon() {
-    if ($this->superadmin->respon_laporan() > 0) {
+    if ($this->laporan->respon_laporan($this->input->post()) > 0) {
       $this->session->set_flashdata('success', 'Telah direspon');
       redirect($this->prefix);
     } else {

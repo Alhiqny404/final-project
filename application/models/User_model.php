@@ -42,7 +42,7 @@ class User_model extends CI_Model {
     $this->db->from($this->table);
     $this->db->join('jabatan', 'jabatan.id = user.jabatan_id', 'left outer');
     $this->db->join('pangkat', 'pangkat.id = user.pangkat_id', 'left outer');
-    $this->db->order_by('nama_lengkap', 'asc');
+    $this->db->order_by('user.urutan', 'asc');
     return $this->db->get()->result();
   }
 
@@ -112,7 +112,7 @@ class User_model extends CI_Model {
       $sheetData = $spreadsheet->getActiveSheet()->toArray();
 
       for ($i = 1; $i < count($sheetData); $i++) {
-          if(empty($sheetData[$i]['0'])) break;
+        if (empty($sheetData[$i]['0'])) break;
         $tgl_exp = explode('/', $sheetData[$i]['5']);
         $tgl_lahir = $tgl_exp[2].'-'.$tgl_exp[1].'-'.$tgl_exp[0];
         $data = [
@@ -248,15 +248,15 @@ class User_model extends CI_Model {
     return $data;
 
   }
-  
-  private function _sendNotif($nama){
+
+  private function _sendNotif($nama) {
     $dataNotif = [
       'role' => 'admin',
       'judul' => 'ganti password',
       'subjudul' => "user {$nama} telah ganti password",
       'icon' => 'fas fa-edit'
     ];
-    $this->db->insert('notifikasi',$dataNotif);
+    $this->db->insert('notifikasi', $dataNotif);
   }
 
   /**

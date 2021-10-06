@@ -14,7 +14,7 @@ class Laporan extends CI_Controller {
   *
   * @var	string
   */
-  private $prefix = 'superadmin/laporan';
+  private $prefix = 'supervisor/laporan';
 
   /**
   * Class constructor
@@ -29,7 +29,6 @@ class Laporan extends CI_Controller {
     model('Jabatan_model', 'jabatan');
     model('Pangkat_model', 'pangkat');
     model('Laporan_model', 'laporan');
-    model('Superadmin_model', 'superadmin');
   }
 
   /**
@@ -41,7 +40,7 @@ class Laporan extends CI_Controller {
   */
   public function index() {
     $this->db->order_by('tgl_upload', 'desc');
-    $this->db->where('status', 2);
+    $this->db->where('status', 'approve');
     $data['laporan'] = $this->laporan->getAll();
     $data['jabatan'] = $this->jabatan->getAll();
     $data['pangkat'] = $this->pangkat->getAll();

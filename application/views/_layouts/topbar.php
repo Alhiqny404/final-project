@@ -44,10 +44,11 @@
         <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
           aria-haspopup="false" aria-expanded="false">
           <i class="mdi mdi-bell-outline nav-icon"></i>
+          <?php if ($countNotif > 0): ?>
           <span class="badge badge-danger badge-pill noti-icon-badge"><?=$countNotif ?></span>
+          <?php endif; ?>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-lg">
-          <!-- item-->
           <h6 class="dropdown-item-text">
             NOTIFIKASI (<?=$countNotif ?>)
           </h6>

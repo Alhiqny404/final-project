@@ -1,8 +1,16 @@
 <?php
 // Prefix halaman ini
-$prefix_page = 'superadmin/laporan/';
+$prefix_page = 'viewer/laporan/';
+
+if (isset($_GET['download'])) {
+  $download = download('uploads/laporan/'.$_GET['download']);
+  if ($download === false) {
+    echo "<script>alert('File Tidak Ditemukan')</script>";
+  }
+}
 
 ?>
+
 
 <?php view('_layouts/header'); ?>
 <link href="<?=assets_dashboard() ?>plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -37,7 +45,7 @@ $prefix_page = 'superadmin/laporan/';
                         <th>Status</th>
                         <th>Diupload</th>
                         <th>Direspon</th>
-                        <th><center>Action</center></th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -65,14 +73,14 @@ $prefix_page = 'superadmin/laporan/';
                         <?php endif; ?>
                         <td><?=$val->tgl_respon == '0000-00-00 00:00:00' ? '-' : $val->tgl_respon; ?></td>
                         <td>
-                          <center>
-                            <button type="button" class="btn btn-sm btn-success mr-2 edit-table"
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-outline-secondary btn-sm edit-table"
                               data-id="<?=$val->id ?>"
                               data-judul="<?=$val->judul ?>"
                               data-status="<?=$val->status ?>"
-                              ><i class="fas fa-edit"></i></button>
-                            <a href="<?=base_url('uploads/laporan/'.$val->file) ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i></a>
-                          </center>
+                              ><i class="far fa-edit"></i></button>
+                            <a href="<?=current_url().'?download='.$val->file; ?>" class="btn btn-outline-secondary btn-sm"><i class="fas fa-download"></i></a>
+                          </div>
                         </td>
                       </tr>
                       <?php endforeach; ?>
@@ -162,45 +170,14 @@ $prefix_page = 'superadmin/laporan/';
         modalku('#custom-modal', 'fadein');
       })
 
-    // ketika button hapus diklik
-    $('.delete-table').on('click',
-      function(e) {
-        let url = "<?=site_url($prefix_page.'delete') ?>";
-        let id = $(this).data('id');
-        let nama = $(this).data('nama_lengkap');
-        let file = $(this).data('file');
-        let form = $('<form/>', {
-          action: url, method: 'POST'
-        }).append(
-          $('<input>', {
-            type: 'hidden', name: "<?=$this->security->get_csrf_token_name() ?>", value: "<?=$this->security->get_csrf_hash() ?>"
-          }),
-          $('<input>', {
-            type: 'hidden', name: 'id', value: id
-          }),
-          $('<input>', {
-            type: 'hidden', name: 'file', value: file
-          }),
-        ).appendTo('body');
-
-        Swal.fire({
-          title: 'Are you sure?',
-          text: "You won't be able to revert this!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            form.submit();
-          }
-        })
-      })
   });
 
-</script>
+  function download(path) {
+    <?php download('<script>path</script>') ?>
+  }
 
+
+</script>
 
 
 <div id="custom-modal" class="modal-demo">

@@ -25,6 +25,7 @@ $prefix_page = 'admin/kelola/seksi/';
               <div class="card-body table-responsive">
                 <div class="text-right">
                   <a href="javascript:void(0)" class="btn btn-primary waves-effect text-right mb-4 tambah-data"><i class="fa fa-plus"></i></a>
+                  <a href="<?=site_url($prefix_page.'sorting') ?>" class="btn btn-primary waves-effect text-right mb-4"><i class="fas fa-bars"></i></a>
                 </div>
                 <div class="">
                   <table id="datatable" class="table dt-responsive table-hover nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">

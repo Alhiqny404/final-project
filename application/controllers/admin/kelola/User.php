@@ -114,6 +114,29 @@ class User extends CI_Controller {
   }
 
 
+  public function sorting() {
+    $this->db->select('id,nama_lengkap');
+    $this->db->order_by('urutan', 'asc');
+    $data['user'] = $this->db->get('user')->result();
+    $data['title'] = 'Management User';
+    view('admin/data-user-sorting', $data);
+  }
+
+  public function updateSort() {
+    $dataUpdate = [];
+    foreach ($this->input->post('ids') as $key => $val) {
+      array_push($dataUpdate, ['id' => $val, 'urutan' => $key+1]);
+    }
+    $sort = $this->db->update_batch('user', $dataUpdate, 'id');
+    if ($sort) {
+      echo json_encode(true);
+    } else {
+      echo json_encode(false);
+    }
+  }
+
+
+
   /**
   * Method delete
   * Action saat melakukan penghapusan data user

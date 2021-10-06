@@ -4,7 +4,7 @@
       <img src="<?=base_url(profilePict(sud('user_id'))) ?>" alt="user" class="rounded-circle img-thumbnail mb-1">
       <span class="online-icon"><i class="mdi mdi-record text-success"></i></span>
       <div class="media-body">
-        <h5 class="text-light">Sebagai <?=sud('role') ?> </h5>
+        <h5 class="text-light"><?=sud('nama_lengkap') ?> </h5>
         <ul class="list-unstyled list-inline mb-0 mt-2">
           <li class="list-inline-item">
             <a href="<?=site_url('user/profile') ?>" class=""><i class="mdi mdi-account text-light"></i></a>

@@ -2,6 +2,13 @@
 // Prefix halaman ini
 $prefix_page = 'user/laporan/';
 
+if (isset($_GET['download'])) {
+  $download = download('uploads/laporan/'.$_GET['download']);
+  if ($download === false) {
+    echo "<script>alert('File Tidak Ditemukan')</script>";
+  }
+}
+
 ?>
 
 <?php view('_layouts/header'); ?>
@@ -62,17 +69,16 @@ $prefix_page = 'user/laporan/';
                         <td><?=$val->tgl_upload; ?></td>
                         <td><?=$val->tgl_respon == '0000-00-00 00:00:00' ? '-' : $val->tgl_respon; ?></td>
                         <td>
-                          <center>
-                            <button type="button" class="btn btn-sm btn-success mr-2 edit-table"
+                          <div class="btn-group">
+                            <button type="button" class="btn btn-outline-secondary btn-sm edit-table"
                               data-id="<?=$val->id ?>"
                               data-judul="<?=$val->judul ?>"
                               data-file="<?=$val->file ?>"
                               data-jenis-laporan-id="<?=$val->jenis_laporan_id ?>"
                               data-jenis-laporan="<?=$val->nama_laporan ?>"
-                              ><i class="fas fa-edit"></i></button>
-
-                            <a href="<?=base_url('uploads/laporan/'.$val->file) ?>" class="btn btn-sm btn-info"><i class="fas fa-download"></i></a>
-                          </center>
+                              ><i class="far fa-edit"></i></button>
+                            <a href="<?=current_url().'?download='.$val->file; ?>" class="btn btn-outline-secondary btn-sm"><i class="fas fa-download"></i></a>
+                          </div>
                         </td>
                       </tr>
                       <?php endforeach; ?>

@@ -78,6 +78,29 @@ class Pangkat extends CI_Controller {
   }
 
 
+
+  public function sorting() {
+    $data['pangkat'] = $this->pangkat->getAll();
+    $data['title'] = 'Management User';
+    view('admin/data-pangkat-sorting', $data);
+  }
+
+  public function updateSort() {
+    $dataUpdate = [];
+    foreach ($this->input->post('ids') as $key => $val) {
+      array_push($dataUpdate, ['id' => $val, 'urutan' => $key+1]);
+    }
+    $sort = $this->db->update_batch('pangkat', $dataUpdate, 'id');
+    if ($sort) {
+      echo json_encode(true);
+    } else {
+      echo json_encode(false);
+    }
+  }
+
+
+
+
   /**
   * Method delete
   * Action saat melakukan penghapusan data pangkat

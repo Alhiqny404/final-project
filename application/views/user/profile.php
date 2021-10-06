@@ -45,7 +45,7 @@
                           </span>
                         </div>
                         <div class="fro_profile_user-detail">
-                          <h5 class="fro_user-name"><?=$user->username ?></h5>
+                          <h5 class="fro_user-name"><?=$user->nama_lengkap ?></h5>
                           <p class="mb-0 fro_user-name-post">
                             <?=$user->nama_jabatan ?>
                           </p>

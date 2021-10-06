@@ -25,12 +25,16 @@ class Laporan_model extends CI_Model {
   */
   private $primaryKey = 'id';
 
-
+  /**
+  * Path untuk upload laporan
+  *
+  * @var	string
+  */
   private $uploadPath = './uploads/laporan/';
 
 
   /**
-  * Mengambil semua data pada table yang telah ditentukan diatas
+  * Mengambil semua data pada table $table
   *
   * @return	array object
   */
@@ -43,6 +47,12 @@ class Laporan_model extends CI_Model {
   }
 
 
+  /**
+  * Mengambil semua data pada table $table
+  * berdasarkan session user_id
+  *
+  * @return	array object
+  */
   public function getMe() {
     $this->db->select('jenis_laporan.nama_laporan,laporan.*');
     $this->db->from($this->table);
@@ -51,6 +61,13 @@ class Laporan_model extends CI_Model {
     return $this->db->get()->result();
   }
 
+  /**
+  * Mengambil semua data pada table $table
+  * berdasarkan session user_id
+  * khusus bulan ini
+  *
+  * @return	array object
+  */
   public function getMeToMonth() {
     $this->db->select('jenis_laporan.nama_laporan,laporan.*');
     $this->db->from($this->table);
@@ -61,6 +78,13 @@ class Laporan_model extends CI_Model {
     return $this->db->get()->result();
   }
 
+  /**
+  * Mengambil semua data pada table $table
+  * berdasarkan parameter $where
+  *
+  * @param where | array
+  * @return	array object
+  */
   public function getWhere($where) {
     $this->db->select('user.nama_lengkap,jenis_laporan.nama_laporan,laporan.*');
     $this->db->from($this->table);
@@ -72,7 +96,7 @@ class Laporan_model extends CI_Model {
 
 
   /**
-  * Menambah data pada table yang telah ditentukan diatas
+  * Menambah data pada table $table
   *
   * @return	int
   */
@@ -101,29 +125,8 @@ class Laporan_model extends CI_Model {
   }
 
 
-  private function _uploadFile($fileName) {
-    $config = [
-      'upload_path' => $this->uploadPath,
-      'allowed_types' => 'png|jpg|jpeg|doc|docx|pdf|xls|xlsx|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'max_size' => '10048',
-      'file_name' => $fileName
-    ];
-    $this->load->library('upload', $config);
-    if ($this->upload->do_upload('file')) {
-      return TRUE;
-    }
-  }
-
-
-  private function _fileName() {
-    $nama_user = str_replace(' ', '_', trim($this->session->userdata('nama_lengkap')));
-    //$nama_file = 'laporan-'.$nama_user.'-'.bulan(date('m')).'-'.date('Y');
-    $nama_file = 'laporan-'.$nama_user.'-'.time();
-    return strtolower($nama_file);
-  }
-
   /**
-  * Mengedit data pada table yang telah ditentukan diatas
+  * Mengedit data pada table $table
   *
   * @return	int
   */
@@ -177,7 +180,7 @@ class Laporan_model extends CI_Model {
 
 
   /**
-  * Menghapus data pada table yang telah ditentukan diatas
+  * Menghapus data pada table $table
   *
   * @return	int
   */
@@ -190,6 +193,40 @@ class Laporan_model extends CI_Model {
       return TRUE;
     }
 
+  }
+
+
+  private function _uploadFile($fileName) {
+    $config = [
+      'upload_path' => $this->uploadPath,
+      'allowed_types' => 'png|jpg|jpeg|doc|docx|pdf|xls|xlsx|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'max_size' => '10048',
+      'file_name' => $fileName
+    ];
+    $this->load->library('upload', $config);
+    if ($this->upload->do_upload('file')) {
+      return TRUE;
+    }
+  }
+
+
+  private function _fileName() {
+    $nama_user = str_replace(' ', '_', trim(sud('username')));
+    $nama_file = 'laporan-'.$nama_user.'-'.time();
+    return strtolower($nama_file);
+  }
+
+
+  /* ------------------ VIEWER ONLY ------------------ */
+
+  public function respon_laporan($dataForm) {
+    $data = [
+      'status' => htmlspecialchars($dataForm['status'], true),
+      'catatan' => htmlspecialchars($dataForm['catatan'], true),
+      'tgl_respon' => ayeuna()
+    ];
+    $this->db->update($this->table, $data, ['id' => $dataForm['id']]);
+    return $this->db->affected_rows();
   }
 
 }

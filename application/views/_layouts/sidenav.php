@@ -1,6 +1,6 @@
 <?php
 
-$prefix_superadmin = 'superadmin/';
+$prefix_viewer = 'viewer/';
 $prefix_supervisor = 'supervisor/';
 $prefix_admin = 'admin/';
 $prefix_user = 'user/';
@@ -14,15 +14,13 @@ $prefix_kelola = 'admin/kelola/';
   <ul class="metismenu left-sidenav-menu" id="side-nav">
 
     <li class="menu-title">Main Menu</li>
-    <?php if (sud('role') == 'superadmin'): ?>
+    <?=sud('viewer') ?>
+    <?php if (sud('role') == 'viewer'): ?>
     <li>
-      <a href="<?=site_url($prefix_superadmin.'dashboard') ?>" class="text-decoration-none"><i class="mdi mdi-monitor"></i><span>Dashboard</span></a>
+      <a href="<?=site_url($prefix_viewer.'dashboard') ?>" class="text-decoration-none"><i class="mdi mdi-monitor"></i><span>Dashboard</span></a>
     </li>
     <li>
-      <a href="javascript: void(0);"><i class="mdi mdi-book" class="text-decoration-none"></i><span>Laporan</span></a>
-      <ul class="nav-second-level" aria-expanded="false">
-        <li><a href="<?=site_url($prefix_superadmin.'laporan') ?>">List Laporan</a></li>
-      </ul>
+      <a href="<?=site_url($prefix_viewer.'laporan') ?>"><i class="mdi mdi-book" class="text-decoration-none"></i><span>Laporan</span></a>
     </li>
     <?php elseif (sud('role') == 'admin'): ?>
     <li>

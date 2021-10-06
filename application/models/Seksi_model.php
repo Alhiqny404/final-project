@@ -33,6 +33,7 @@ class Seksi_model extends CI_Model {
   * @return	array object
   */
   public function getAll() {
+    $this->db->order_by('urutan', 'asc');
     return $this->db->get($this->table)->result();
   }
 

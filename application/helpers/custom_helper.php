@@ -30,6 +30,26 @@ function profilePict($user_id = null) {
   }
 }
 
+function download($path) {
+  if (file_exists($path)) {
+
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Cache-Control: no-cache, must-revalidate');
+    header('Expires: 0');
+    header('Content-Disposition: attachment; filename="'.basename($path).'"');
+    header('Content-Length: '. filesize($path));
+    header('pragma: public');
+
+    flush();
+
+    readfile($path);
+    exit();
+  } else {
+    return false;
+  }
+}
+
 function sud($key = '') {
   $ci = get_instance();
   return $ci->session->userdata($key);
@@ -243,8 +263,8 @@ function isAdmin() {
   if (sud('role') != 'admin') return redirect(site_url('login'));
 }
 
-function isSuperadmin() {
-  if (sud('role') != 'superadmin') return redirect(site_url('login'));
+function isViewer() {
+  if (sud('role') != 'viewer') return redirect(site_url('login'));
 }
 
 

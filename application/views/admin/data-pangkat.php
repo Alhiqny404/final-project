@@ -25,6 +25,7 @@ $prefix_page = 'admin/kelola/pangkat/';
               <div class="card-body table-responsive">
                 <div class="text-right">
                   <a href="javascript:void(0)" class="btn btn-primary waves-effect text-right mb-4 tambah-data"><i class="fa fa-plus"></i></a>
+                  <a href="<?=site_url($prefix_page.'sorting') ?>" class="btn btn-primary waves-effect text-right mb-4"><i class="fas fa-bars"></i></a>
                 </div>
                 <div class="table-responsive">
                   <table id="datatable" class="table table-hover nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
@@ -43,7 +44,7 @@ $prefix_page = 'admin/kelola/pangkat/';
                         <td>
                           <center>
                             <button type="button" class="btn btn-sm btn-success mr-2 edit-table" data-id="<?=$val->id ?>" data-nama="<?=$val->nama_pangkat ?>"><i class="fas fa-edit"></i></button>
-                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteUser(<?=$val->id?>)"><i class="fas fa-trash-alt"></i></button>
+                            <button type="button" class="btn btn-sm btn-danger" onclick="deleteUser(<?=$val->id ?>)"><i class="fas fa-trash-alt"></i></button>
                           </center>
                         </td>
                       </tr>
@@ -114,33 +115,33 @@ $prefix_page = 'admin/kelola/pangkat/';
 
   });
 
-    function deleteUser(id){
-      let url = "<?=site_url($prefix_page.'delete') ?>";
-      let form = $('<form/>', {
-        action: url, method: 'POST'
-      }).append(
-        $('<input>', {
-          type: 'hidden', name: "<?=$this->security->get_csrf_token_name() ?>", value: "<?=$this->security->get_csrf_hash() ?>"
-        }),
-        $('<input>', {
-          type: 'hidden', name: 'id', value: id
-        }),
-      ).appendTo('body');
+  function deleteUser(id) {
+    let url = "<?=site_url($prefix_page.'delete') ?>";
+    let form = $('<form/>', {
+      action: url, method: 'POST'
+    }).append(
+      $('<input>', {
+        type: 'hidden', name: "<?=$this->security->get_csrf_token_name() ?>", value: "<?=$this->security->get_csrf_hash() ?>"
+      }),
+      $('<input>', {
+        type: 'hidden', name: 'id', value: id
+      }),
+    ).appendTo('body');
 
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          form.submit();
-        }
-      })
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        form.submit();
+      }
+    })
+  }
 
 </script>
 
