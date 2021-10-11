@@ -63,5 +63,10 @@ class Ajax extends CI_Controller {
         }
         echo $html;
   }
+  
+  public function removeNotif($id = null) {
+      if($id == null) return $this->index();
+      $this->db->delete('notifikasi',['id'=>$id]);
+  }
 
 }

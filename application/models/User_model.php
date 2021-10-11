@@ -57,6 +57,7 @@ class User_model extends CI_Model {
   }
 
   public function getWhere($where) {
+    $this->db->order_by('urutan','asc');
     return $this->db->get_where($this->table, $where)->result();
   }
 

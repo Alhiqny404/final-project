@@ -9,24 +9,7 @@
     width: 40px;
     height: 8px;
   }
-  .abu {
-    background: #cfcfc4;
-  }
-  .biru {
-    background-color: #00AEEF;
-  }
-  .orange {
-    background-color: #F7931E;
-  }
-  .hijau {
-    background-color: #8CC63E;
-  }
-  .ungu {
-    background-color: #9B9BEE;
-  }
-  .kuning {
-    background-color: #F8BE2D;
-  }
+  
 
   .nav-tabs .nav-link {
     color: #6c757d !important;
@@ -55,8 +38,8 @@
                 <div class="float-right">
                   <i class="dripicons-user-group font-24 text-secondary"></i>
                 </div>
-                <span class="badge badge-danger text-uppercase">TOTAL Pegawai</span>
-                <h3 class="font-weight-bold"><?=count($user) ?></h3>
+                <span class="badge badge-warning text-uppercase">TOTAL Pegawai Laki-laki</span>
+                <h3 class="font-weight-bold"><?=count($user_l) ?></h3>
                 <p class="mb-0 text-muted text-truncate">
                   INFO DATA PEGAWAI
                 </p>
@@ -77,14 +60,14 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+           <div class="col-md-4">
             <div class="card">
               <div class="card-body">
                 <div class="float-right">
                   <i class="dripicons-user-group font-24 text-secondary"></i>
                 </div>
-                <span class="badge badge-warning text-uppercase">TOTAL Pegawai Laki-laki</span>
-                <h3 class="font-weight-bold"><?=count($user_l) ?></h3>
+                <span class="badge badge-danger text-uppercase">TOTAL Pegawai</span>
+                <h3 class="font-weight-bold"><?=count($user) ?></h3>
                 <p class="mb-0 text-muted text-truncate">
                   INFO DATA PEGAWAI
                 </p>
@@ -147,6 +130,7 @@
                         <th>No</th>
                         <th>Nama Pegawai</th>
                         <th>Total Laporan</th>
+                        <th>Tanggal</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -156,6 +140,7 @@
                         <td><?=$no++ ?></td>
                         <td><?=$val['nama_lengkap'] ?></td>
                         <td><?=$val['total_laporan']?></td>
+                        <td><?= !empty($val['tgl_upload_terakhir']) ? time_ago($val['tgl_upload_terakhir']) : '' ?></td>
                       </tr>
                       <?php endforeach; ?>
                     </tbody>
@@ -228,77 +213,19 @@
                   </div>
                   <div class="card-body p-3">
                     <div class="row">
+                     <?php foreach($seksi as $val) : ?>
                       <div class="col-sm-3">
                         <div class="d-flex justify-content-between mb-3">
                           <div style="width: 70px" class="me-2">
-                            <div class="abu exKerja rounded m-auto"></div>
+                            <div class="abu exKerja rounded m-auto" style="background:<?=$val->warna?>"></div>
                           </div>
                           <div style="width: 250px">
-                            <h4 class="mb-0">Umum</h4>
-                            <h6 class="text-muted my-0">Abu-abu</h6>
+                            <h4 class="mb-0"><?=$val->nama_seksi?></h4>
+                            <h6 class="text-muted my-0"><?=$val->warna?></h6>
                           </div>
                         </div>
                       </div>
-                      <div class="col-sm-3">
-
-                        <div class="d-flex justify-content-between mb-3">
-                          <div style="width: 70px" class="me-2">
-                            <div class="biru exKerja rounded m-auto"></div>
-                          </div>
-                          <div style="width: 250px">
-                            <h4 class="mb-0">Sosial</h4>
-                            <h6 class="text-muted my-0">Biru</h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-3">
-
-                        <div class="d-flex justify-content-between mb-3">
-                          <div style="width: 70px" class="me-2">
-                            <div class="orange exKerja rounded m-auto"></div>
-                          </div>
-                          <div style="width: 250px">
-                            <h4 class="mb-0">Distribusi</h4>
-                            <h6 class="text-muted my-0">Orange</h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-3">
-
-                        <div class="d-flex justify-content-between mb-3">
-                          <div style="width: 70px" class="me-2">
-                            <div class="hijau exKerja rounded m-auto"></div>
-                          </div>
-                          <div style="width: 250px">
-                            <h4 class="mb-0">Produksi</h4>
-                            <h6 class="text-muted my-0">Hijau</h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-3">
-
-                        <div class="d-flex justify-content-between mb-3">
-                          <div style="width: 70px" class="me-2">
-                            <div class="ungu exKerja rounded m-auto"></div>
-                          </div>
-                          <div style="width: 250px">
-                            <h4 class="mb-0">Nerwilis</h4>
-                            <h6 class="text-muted my-0">Ungu</h6>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-3">
-
-                        <div class="d-flex justify-content-between mb-3">
-                          <div style="width: 70px" class="me-2">
-                            <div class="kuning exKerja rounded m-auto"></div>
-                          </div>
-                          <div style="width: 250px">
-                            <h4 class="mb-0">IPDS</h4>
-                            <h6 class="text-muted my-0">Kuning</h6>
-                          </div>
-                        </div>
-                      </div>
+                     <?php endforeach; ?>
                     </div>
                   </div>
                 </div>
@@ -735,6 +662,19 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <div class="text-right mb-3">
+                  <div class="dropleft">
+                      <button class="btn btn-success dropdown-toggle w-100 text-filter-beban-kerja" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Filter Tahun
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2018">2018</a>
+                        <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2019">2019</a>
+                        <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2020">2020</a>
+                        <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2021">2021</a>
+                      </div>
+                    </div>
+              </div>
               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <?php foreach ($seksi as $val): ?>
                 <li class="nav-item" role="presentation">
@@ -742,19 +682,6 @@
                 </li>
                 <?php endforeach; ?>
               </ul>
-              <div class="text-right mb-3">
-                  <div class="dropleft">
-                  <button class="btn btn-success dropdown-toggle w-100 text-filter-beban-kerja" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Filter Tahun
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2018">2018</a>
-                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2019">2019</a>
-                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2020">2020</a>
-                    <a class="dropdown-item item-filter-beban-kerja" href="javascript:void(0)" data-tahun="2021">2021</a>
-                  </div>
-                </div>
-              </div>
               <div class="tab-content list-beban-kerja" id="pills-tabContent">
               </div>
             </div>

@@ -35,11 +35,13 @@ $prefix_page = 'admin/kelola/user/';
                       Import Excel
                     </a>
                   </div>
-                  <a href="<?=site_url($prefix_page.'add') ?>" class="btn btn-primary waves-effect text-right mb-4 tambah-data">
+                  <div>
+                      <a href="<?=site_url($prefix_page.'add') ?>" class="btn btn-primary waves-effect text-right mb-4 tambah-data">
                     <i class="fa fa-user-plus me-2"></i>
                     Tambah Pegawai
                   </a>
                   <a href="<?=site_url($prefix_page.'sorting') ?>" class="btn btn-primary waves-effect text-right mb-4"><i class="fas fa-bars"></i></a>
+                  </div>
                 </div>
                 <div class="table-responsive">
                   <table id="datatable" class="table table-hover table-sm" style="border-collapse: collapse; border-spacing: 0; width: 100%;">

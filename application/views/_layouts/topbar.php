@@ -17,7 +17,7 @@
 </style>
 
 
-<div class="topbar">
+<div class="topbar" style="height: 0 !important">
   <!-- Navbar -->
   <nav class="navbar-custom">
 

@@ -21,7 +21,7 @@
 
 
   function removeNotif(id) {
-    $.get("<?=site_url('admin/dashboard/removeNotif/') ?>"+id, function(data) {
+    $.get("<?=site_url('ajax/removeNotif/') ?>"+id, function(data) {
       location.reload();
     });
   }

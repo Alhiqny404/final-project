@@ -34,6 +34,8 @@ class Dashboard extends CI_Controller {
     $data['seksi'] = $this->seksi->getAll();
     $data['user'] = $this->user->getWhere(['role' => 'user']);
     $data['ranking'] = $this->sortRanking();
+   
+
     $data['user_l'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'l']);
     $data['user_p'] = $this->user->getWhere(['role' => 'user', 'jenis_kelamin' => 'p']);
     $umur = $this->_getUmur($data['user']);
@@ -49,6 +51,7 @@ class Dashboard extends CI_Controller {
       $ranking = [];
       $users = $this->db->get_where('user',['role'=>'user'])->result();
       foreach($users as $user){
+          $nilai = 0;
            $this->db->where('user_id',$user->id);
            $this->db->where('MONTH(tgl_upload)',date('m'));
            $this->db->where('YEAR(tgl_upload)',date('Y'));
@@ -56,22 +59,45 @@ class Dashboard extends CI_Controller {
            $this->db->where('status !=','koreksi');
            $this->db->order_by('tgl_upload','asc');
            $laporan = $this->db->get('laporan');
+         
+           foreach($laporan->result() as $val){
+               if($val->status == 'approve'){
+                   $nilai+=2;
+               }elseif($val->status == 'pending'){
+                   $nilai+=1;
+               }
+           }
+           $totalLaporan = $laporan->num_rows() - 1;
+           $tglUploadTerakhir = $totalLaporan >= 0 ?  $laporan->result_array()[$totalLaporan]['tgl_upload'] : '';
            array_push($ranking,[
              'nama_lengkap' => $user->nama_lengkap,
+             'nilai' => $nilai,
              'total_laporan' => $laporan->num_rows(),
-             'tgl_upload' => !empty($laporan->row()->tgl_upload) ? $laporan->row()->tgl_upload : ''
+             'tgl_upload' => !empty($laporan->row()->tgl_upload) ? $laporan->row()->tgl_upload : '',
+             'tgl_upload_terakhir' => !empty($tglUploadTerakhir) ? $tglUploadTerakhir : ''
            ]);
            
       }
       
      return $this->bubble_sort($ranking);
-      
-     
     
   }
   
+
+  
   private function bubble_sort($data){
   $n = count($data);
+  
+   for ($i = 0; $i<$n; $i++) { 
+      for ($j = $n-1; $j>$i; $j--){
+          if ($data[$j]['tgl_upload'] < $data[$j-1]['tgl_upload']){ 
+              $dummy = $data[$j];
+              $data[$j] = $data[$j-1];
+              $data[$j-1] = $dummy;
+          }
+      }   
+   }
+      
   for ($i = 0; $i<$n; $i++) { 
       for ($j = $n-1; $j>$i; $j--){
           if ($data[$j]['total_laporan'] > $data[$j-1]['total_laporan']){ 
@@ -80,9 +106,25 @@ class Dashboard extends CI_Controller {
               $data[$j-1] = $dummy;
           }
       }    
+  }      
+    
+      
+  for ($i = 0; $i<$n; $i++) { 
+      for ($j = $n-1; $j>$i; $j--){
+          if ($data[$j]['nilai'] > $data[$j-1]['nilai']){ 
+              $dummy = $data[$j];
+              $data[$j] = $data[$j-1];
+              $data[$j-1] = $dummy;
+          }
+      }    
   }
+  
+  
+  
   return $data;
+
 }
+
 
   private function _getUmur($dataUser) {
 
