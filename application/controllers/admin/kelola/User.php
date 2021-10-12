@@ -48,14 +48,14 @@ class User extends CI_Controller {
     $data['user'] = $this->user->getAll();
     $data['jabatan'] = $this->jabatan->getAll();
     $data['pangkat'] = $this->pangkat->getAll();
-    $data['title'] = 'Kelola data user';
+    $data['title'] = 'Management User';
     view('admin/data-user', $data);
   }
 
   public function add() {
     $data['jabatan'] = $this->jabatan->getAll();
     $data['pangkat'] = $this->pangkat->getAll();
-    $data['title'] = 'Add Data User';
+    $data['title'] = 'Tambah User';
     view('admin/add-user', $data);
   }
 
@@ -99,7 +99,7 @@ class User extends CI_Controller {
     $data['user'] = $this->user->getById($id);
     $data['jabatan'] = $this->jabatan->getAll();
     $data['pangkat'] = $this->pangkat->getAll();
-    $data['title'] = 'Edit Data User';
+    $data['title'] = 'Edit User';
     view('admin/edit-user', $data);
   }
 
@@ -118,7 +118,7 @@ class User extends CI_Controller {
     $this->db->select('id,nama_lengkap');
     $this->db->order_by('urutan', 'asc');
     $data['user'] = $this->db->get('user')->result();
-    $data['title'] = 'Management User';
+    $data['title'] = 'Urutan Management User';
     view('admin/data-user-sorting', $data);
   }
 

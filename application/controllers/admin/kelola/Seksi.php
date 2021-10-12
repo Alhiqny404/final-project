@@ -81,7 +81,7 @@ class Seksi extends CI_Controller {
 
   public function sorting() {
     $data['seksi'] = $this->seksi->getAll();
-    $data['title'] = 'Management User';
+    $data['title'] = 'Urutan Management Seksi';
     view('admin/data-seksi-sorting', $data);
   }
 

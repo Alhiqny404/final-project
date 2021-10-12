@@ -47,22 +47,8 @@ class Laporan_sebelumnya extends CI_Controller {
     $data['pangkat'] = $this->pangkat->getAll();
     $data['jenis_laporan'] = $this->jenis_laporan->getAll();
     $data['laporan_bulan_ini'] = $this->laporan->MebulanIni();
-
-
-    foreach ($data['jenis_laporan'] as $key => $val) {
-      $where = [
-        'tgl_upload >=' => date('Y-m-01 00:00:00'),
-        'tgl_upload <=' => date('Y-m-t 23:59:59'),
-        'user_id' => sud('user_id'),
-        'jenis_laporan_id' => $val->id
-      ];
-      $cek = $this->laporan->getWhere($where);
-      if ($cek) {
-        unset($data['jenis_laporan'][$key]);
-      }
-    }
-    $data['title'] = 'List Data laporan';
-    view('user/list-laporan', $data);
+    $data['title'] = 'Management Laporan Sebelumnya';
+    view('user/list-laporan_sebelumnya', $data);
   }
 
   /**

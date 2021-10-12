@@ -57,3 +57,9 @@ $route['admin/dashboard'] = 'dashboard/index';
 $route['user/dashboard'] = 'dashboard/index';
 $route['viewer/dashboard'] = 'dashboard/index';
 $route['supervisor/dashboard'] = 'dashboard/index';
+
+
+$route['admin/management'] = 'management/index';
+$route['user/management'] = 'management/index';
+$route['viewer/management'] = 'management/index';
+$route['supervisor/management'] = 'management/index';

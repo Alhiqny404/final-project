@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
-* Controller Dashboard
+* Controller Management
 *
 * @author	Pertiwi Team
 * @copyright	Copyright (c) 2021
 */
-class Dashboard extends CI_Controller {
+class Management extends CI_Controller {
 
   /**
   * Class constructor
@@ -18,7 +18,6 @@ class Dashboard extends CI_Controller {
   public function __construct() {
     parent::__Construct();
     isLogin();
-    // isAdmin();
     model('User_model', 'user');
     model('Seksi_model', 'seksi');
   }
@@ -42,8 +41,8 @@ class Dashboard extends CI_Controller {
     $data['userUK40'] = $umur['k40'];
     $data['userUK50'] = $umur['k50'];
     $data['userUL50'] = $umur['l50'];
-    $data['title'] = 'Dashboard';
-    view('dashboard', $data);
+    $data['title'] = 'Mamagement Laporan';
+    view('management', $data);
   }
   
   public function sortRanking() {

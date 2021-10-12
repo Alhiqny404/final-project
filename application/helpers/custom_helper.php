@@ -102,30 +102,6 @@ function CLBI($user_id, $bool) {
 }
 
 
-/*
-function BKBI_bck($user_id, $bulan) {
-  $ci = get_instance();
-  $res = [];
-  $seksi = $ci->db->get('seksi')->result();
-  foreach ($seksi as $key => $val) {
-    $where = [
-      'user_id' => $user_id,
-      'seksi_id' => $val->id,
-      "MONTH(tgl_buat)" => $bulan,
-      "YEAR(tgl_buat)" => date('Y'),
-    ];
-
-    $ci->db->select('beban_kerja.*,seksi.warna,seksi.nama_seksi');
-    $ci->db->from('beban_kerja');
-    $ci->db->join('seksi', 'beban_kerja.seksi_id = seksi.id');
-    $ci->db->where($where);
-    $bebanKerja = $ci->db->get()->num_rows();
-    if ($bebanKerja > 0) array_push($res, $seksi[$key]);
-  }
-  return $res;
-
-}
-*/
 
 function BKBI($user_id, $bulan) {
   $ci = get_instance();
@@ -139,6 +115,25 @@ function BKBI($user_id, $bulan) {
   }
   return $res;
 
+}
+
+
+
+function ReportLaporan($user_id, $bulan) {
+  $ci = get_instance();
+  $res = [];
+  $jenisLaporan = $ci->db->get('jenis_laporan')->result();
+  foreach ($jenisLaporan as $key => $val) {
+    $ci->db->where([
+      'user_id' => $user_id,
+      'jenis_laporan_id' => $val->id,
+      'MONTH(tgl_upload)' => $bulan,
+      'YEAR(tgl_upload)' => date('Y')
+    ]);
+    $laporan = $ci->db->get('laporan')->num_rows();
+    if ($laporan > 0) array_push($res, $jenisLaporan[$key]);
+  }
+  return $res;
 }
 
 function LaporanKuToMonth() {

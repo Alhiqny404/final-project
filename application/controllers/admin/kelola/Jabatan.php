@@ -38,7 +38,7 @@ class Jabatan extends CI_Controller {
   */
   public function index() {
     $data['jabatan'] = $this->jabatan->getAll();
-    $data['title'] = 'Management User';
+    $data['title'] = 'Management Jabatan';
     view('admin/data-jabatan', $data);
   }
 
@@ -79,7 +79,7 @@ class Jabatan extends CI_Controller {
 
   public function sorting() {
     $data['jabatan'] = $this->jabatan->getAll();
-    $data['title'] = 'Management User';
+    $data['title'] = 'Uratan Management Jabatan';
     view('admin/data-jabatan-sorting', $data);
   }
 

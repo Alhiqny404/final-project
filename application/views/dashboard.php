@@ -77,78 +77,6 @@
         </div>
 
         <div class="accordion" id="accordionExample">
-          <div class="accordion-item active">
-            <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#kinerja" aria-expanded="false" aria-controls="collapseTwo">
-                Kinerja Pegawai
-              </button>
-            </h2>
-            <div id="kinerja" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <div class="card p-3">
-                  <table class="table table-stripped table-hover">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Nama Pegawai</th>
-                        <th>Sudah</th>
-                        <th>Belum</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <?php $no = 1; foreach ($user as $val): ?>
-                      <tr>
-                        <td><?=$no++ ?></td>
-                        <td><?=$val->nama_lengkap ?></td>
-                        <td>
-                          <?= CLBI($val->id, TRUE); ?>
-                        </td>
-                        <td>
-                          <?= CLBI($val->id, FALSE); ?>
-                        </td>
-                      </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-           <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#prestasi" aria-expanded="false" aria-controls="collapseTwo">
-                Prestasi Pegawai
-              </button>
-            </h2>
-            <div id="prestasi" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <div class="card p-3">
-                  <table class="table table-stripped table-hover">
-                    <thead>
-                      <tr>
-                        <th>No</th>
-                        <th>Nama Pegawai</th>
-                        <th>Total Laporan</th>
-                        <th>Tanggal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                      <?php $no = 1; foreach ($ranking as $val): ?>
-                      <tr>
-                        <td><?=$no++ ?></td>
-                        <td><?=$val['nama_lengkap'] ?></td>
-                        <td><?=$val['total_laporan']?></td>
-                        <td><?= !empty($val['tgl_upload_terakhir']) ? time_ago($val['tgl_upload_terakhir']) : '' ?></td>
-                      </tr>
-                      <?php endforeach; ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
           <div class="accordion-item">
             <h2 class="accordion-header" id="headingTwo">
               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#beban" aria-expanded="false" aria-controls="collapseTwo">
@@ -197,6 +125,7 @@
                           <?php foreach (noBulan() as $key => $bln): ?>
                           <td scope="<?=$bln ?>">
                             <?php foreach (BKBI($val->id, sprintf($key+1)) as $bk): ?>
+                           
                             <div class="kerja" style="background-color:<?=$bk->warna ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=$bk->nama_seksi ?>"></div>
                             <?php endforeach; ?>
                           </td>

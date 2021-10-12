@@ -44,7 +44,7 @@ class Laporan_sebelumnya extends CI_Controller {
     $data['laporan'] = $this->laporan->getAll();
     $data['jabatan'] = $this->jabatan->getAll();
     $data['pangkat'] = $this->pangkat->getAll();
-    $data['title'] = 'List Data laporan';
+    $data['title'] = 'List Data laporan Terlambat';
     view('supervisor/list-laporan_sebelumnya', $data);
   }
 

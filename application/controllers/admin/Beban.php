@@ -42,14 +42,14 @@ class Beban extends CI_Controller {
   */
   public function index() {
     $data['user'] = $this->user->getWhere(['role' => 'user']);
-    $data['title'] = 'Dashboard';
+    $data['title'] = 'Beban Kerja Pegawai';
     $data['seksi'] = $this->seksi->getAll();
     view('admin/beban-kerja',
       $data);
   }
 
   public function create() {
-    $data['title'] = 'Dashboard';
+    $data['title'] = 'Tambah Beban Kerja Pegawai';
     $data['user'] = $this->user->getWhere(['role' => 'user']);
     $data['seksi'] = $this->seksi->getAll();
     view('admin/create-beban-kerja',

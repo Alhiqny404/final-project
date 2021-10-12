@@ -38,7 +38,7 @@ class Pangkat extends CI_Controller {
   */
   public function index() {
     $data['pangkat'] = $this->pangkat->getAll();
-    $data['title'] = 'Kelola data pangkat';
+    $data['title'] = 'Management Pangkat';
     view('admin/data-pangkat', $data);
   }
 
@@ -81,7 +81,7 @@ class Pangkat extends CI_Controller {
 
   public function sorting() {
     $data['pangkat'] = $this->pangkat->getAll();
-    $data['title'] = 'Management User';
+    $data['title'] = 'Urutan Management Pangkat';
     view('admin/data-pangkat-sorting', $data);
   }
 
