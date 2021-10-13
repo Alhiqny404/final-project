@@ -157,6 +157,11 @@ class User extends CI_Controller {
   }
 
 
+
+  /**
+  * Method tempale
+  * generate and create template excel
+  */
   public function template() {
 
     $jabatan = $this->jabatan->getAll();
