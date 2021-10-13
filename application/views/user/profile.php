@@ -39,7 +39,8 @@
                     <div class="col-md-6 mb-3 mb-lg-0">
                       <div class="fro_profile-main">
                         <div class="fro_profile-main-pic">
-                          <img src="<?=base_url(profilePict(sud('user_id'))) ?>" alt="foto" class="rounded-circle w-100">
+                             <div class="rounded-circle img-thumbnail mb-1" style="width: 100px; height: 100px; background-size: cover; background-position: center; background-image: url(<?=base_url(profilePict(sud('user_id'))) ?>)"></div>
+                          
                           <span class="fro-profile_main-pic-change">
                             <i class="fas fa-camera"></i>
                           </span>

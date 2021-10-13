@@ -98,6 +98,7 @@ class User_model extends CI_Model {
 
 
   public function import_excel() {
+    // extention file yang diizinkan
     $file_mimes = [
       'application/octet-stream',
       'application/vnd.ms-excel',
@@ -106,6 +107,7 @@ class User_model extends CI_Model {
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     ];
 
+// jika ada file yang akan di upload
     if (isset($_FILES['fileimport']['name']) && in_array($_FILES['fileimport']['type'], $file_mimes)) {
       $arr_file = explode('.', $_FILES['fileimport']['name']);
       $extension = end($arr_file);
@@ -113,6 +115,18 @@ class User_model extends CI_Model {
       $sheetData = $spreadsheet->getActiveSheet()->toArray();
 
       for ($i = 1; $i < count($sheetData); $i++) {
+          
+          $this->db->where('nip',htmlspecialchars($sheetData[$i]['0'], true));
+          $this->db->or_where('email',htmlspecialchars($sheetData[$i]['6'], true));
+          $this->db->or_where('no_hp',htmlspecialchars($sheetData[$i]['7'], true));
+          $this->db->or_where('username',$sheetData[$i]['10']);
+          $validasi = $this->db->get($this->table)->num_rows();
+          if($validasi > 0){
+              return ['status'=>false,'msg'=>'Terjadi duplikat data'];
+              exit();
+          }
+          
+          
         if (empty($sheetData[$i]['0'])) break;
         $tgl_exp = explode('/', $sheetData[$i]['5']);
         $tgl_lahir = $tgl_exp[2].'-'.$tgl_exp[1].'-'.$tgl_exp[0];
@@ -133,9 +147,9 @@ class User_model extends CI_Model {
 
         $this->db->insert($this->table, $data);
       }
-      return $this->db->insert_id();
+      return ['status'=>true,'results'=>$this->db->insert_id()];
     } else {
-      echo 'tidak ada';
+        return ['status' => false, 'msg' => 'Import data gagal'];
     }
   }
 
@@ -178,8 +192,7 @@ class User_model extends CI_Model {
         }
       }
     } else {
-      echo 'upload foto bermasalah';
-      exit();
+      
     }
     $where = [
       $this->primaryKey => $dataForm['id']

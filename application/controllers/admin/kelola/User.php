@@ -78,11 +78,12 @@ class User extends CI_Controller {
 
 
   public function import_excel() {
-    if ($this->user->import_excel() > 0) {
+    $import = $this->user->import_excel();
+    if ($import['status'] == true) {
       $this->session->set_flashdata('success', 'Data berhasil ditambahkan');
       redirect($this->prefix);
     } else {
-      $this->session->set_flashdata('error', 'Data gagal ditambahkan');
+      $this->session->set_flashdata('error', $import['msg']);
       redirect($this->prefix);
     }
   }
