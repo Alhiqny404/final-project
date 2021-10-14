@@ -1,6 +1,8 @@
-# FINAL PROJECT BY PERTIWI TEAM
+# Si Mba'e Cakep versi 1.0
 
-## technology used
+### Tugas akhir PKL di BPS (Badan Pusat Statistik) - RPL Pertiwi Team 2021
+
+
 - Codeigniter 3 (PHP)
 - Bootstrap 4 and Bootstrap 5
 
