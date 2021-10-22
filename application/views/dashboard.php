@@ -126,7 +126,11 @@
                           <td scope="<?=$bln ?>">
                             <?php foreach (BKBI($val->id, sprintf($key+1)) as $bk): ?>
                            
-                            <div class="kerja" style="background-color:<?=$bk->warna ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=$bk->nama_seksi ?>"></div>
+                            <div class="kerja" style="background-color:<?=$bk->warna ?>" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=$bk->nama_seksi ?>">
+                                <div class="kerja position-relative" style="background-color:<?=$bk->warna ?>">
+                                    <small class="position-absolute top-0" style="font-size: 5px; color: <?=$bk->warna ?>"><?=$bk->nama_seksi ?></small>
+                                </div>
+                            </div>
                             <?php endforeach; ?>
                           </td>
                           <?php endforeach; ?>
@@ -134,6 +138,7 @@
                         <?php endforeach; ?>
                       </tbody>
                     </table>
+                     <small class="d-block text-right">.</small>
                   </div>
                 </div>
                 <div class="card mt-4">

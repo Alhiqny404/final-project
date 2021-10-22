@@ -23,7 +23,7 @@
 
     <!-- LOGO -->
     <div class="topbar-left">
-      <a href="index.html" class="logo text-decoration-none">
+      <a href="javascript:void(0)" class="logo text-decoration-none">
         <span>
           <img src="<?=assets_dashboard() ?>images/logo.png" alt="logo-bps" class="logo-sm">
         </span>

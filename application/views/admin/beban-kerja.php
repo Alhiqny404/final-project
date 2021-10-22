@@ -95,7 +95,9 @@ $prefix_page = 'admin/beban/';
                   <?php foreach (noBulan() as $key => $bln): ?>
                   <td scope="<?=$bln ?>">
                     <?php foreach (BKBI($val->id, $key+1) as $bk): ?>
-                    <div class="kerja" style="background-color:<?=$bk->warna ?>"></div>
+                    <div class="kerja position-relative" style="background-color:<?=$bk->warna ?>">
+                        <small class="position-absolute top-0" style="font-size: 5px; color: <?=$bk->warna ?>"><?=$bk->nama_seksi ?></small>
+                    </div>
                     <?php endforeach; ?>
                   </td>
                   <?php endforeach; ?>
@@ -103,6 +105,7 @@ $prefix_page = 'admin/beban/';
                 <?php endforeach; ?>
               </tbody>
             </table>
+            <small class="d-block text-right">.</small>
           </div>
         <div class="card mt-4">
           <div class="card-header">

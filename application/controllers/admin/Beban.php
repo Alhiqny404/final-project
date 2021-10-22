@@ -77,5 +77,14 @@ class Beban extends CI_Controller {
   }
 
 
+public function export() {
+    $data['user'] = $this->user->getWhere(['role' => 'user']);
+    $data['title'] = 'Beban Kerja Pegawai';
+    $data['seksi'] = $this->seksi->getAll();
+    view('admin/export-beban-kerja',
+      $data);
+    
+}
+
 
 }
